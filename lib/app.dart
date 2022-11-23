@@ -34,7 +34,7 @@ class EdpiiiApp extends StatelessWidget {
 
         return MaterialApp.router(
           theme: theme,
-          title: 'flutterfairy ∙ ${getTitle(state.screenTitle)}',
+          title: 'FlutterFairy ∙ ${getTitle(state.screenTitle)}',
           builder: (context, widget) => Overlay(
             initialEntries: [
               OverlayEntry(

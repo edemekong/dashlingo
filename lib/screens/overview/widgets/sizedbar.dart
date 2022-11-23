@@ -40,8 +40,9 @@ class EdSizedbar extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: AppSpaces.defaultBorderRadius,
                             child: DisplayImage(
-                              url: isLight ? IconPaths.logoDark : IconPaths.logo,
-                              width: 100,
+                              url: IconPaths.logo,
+                              width: 150,
+                              backgroundColor: isLight ? AppColors.black : AppColors.white,
                               local: true,
                             ),
                           ),

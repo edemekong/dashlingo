@@ -1,6 +1,3 @@
-import 'package:flutterfairy/components/textfield.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/screens/overview/widgets/sizedbar.dart';
 import 'package:flutterfairy/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +44,9 @@ class EdAppbar extends StatelessWidget {
               },
               child: Center(
                 child: DisplayImage(
-                  url: isLight ? IconPaths.logoDark : IconPaths.logo,
-                  width: 80,
+                  url: IconPaths.logo,
+                  backgroundColor: isLight ? AppColors.black : AppColors.white,
+                  width: 120,
                 ),
               ),
             ),

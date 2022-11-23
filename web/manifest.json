@@ -1,11 +1,11 @@
 {
-    "name": "flutterfairy",
-    "short_name": "flutterfairy",
+    "name": "Flutter Fairy",
+    "short_name": "FlutterFairy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Personal blog, Learn | Build | Deploy",
+    "description": "FlutterFairy's Learn | Build | Deploy",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

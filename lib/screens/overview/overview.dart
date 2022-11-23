@@ -64,7 +64,7 @@ class NavigationBody extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         child: Navigator(
-          initialRoute: postPath,
+          initialRoute: homePath,
           observers: [RouteObservers()],
           key: navigationService.navigatorKey,
           onGenerateRoute: navigationService.onGeneratedRoute,

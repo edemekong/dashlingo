@@ -7,5 +7,4 @@ class IconPaths {
   static const String youtube = 'assets/icons/youtube.png';
   static const String linkedIn = 'assets/icons/linkedin.png';
   static const String logo = 'assets/icons/logo.png';
-  static const String logoDark = 'assets/icons/logoDark.png';
 }

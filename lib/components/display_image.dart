@@ -14,12 +14,15 @@ class DisplayImage extends StatelessWidget {
   final double iconSize;
   final Widget icon;
   final BoxFit? fit;
+
   final bool local;
+  final Color? backgroundColor;
   final Function(LoadState)? status;
 
   const DisplayImage({
     Key? key,
     required this.url,
+    this.backgroundColor,
     this.aspectRatio = 1,
     this.width,
     this.height,
@@ -40,6 +43,7 @@ class DisplayImage extends StatelessWidget {
             height: height,
             width: width,
             fit: fit ?? BoxFit.cover,
+            color: backgroundColor,
             enableLoadState: true,
             loadStateChanged: (state) {
               if (status != null) {
@@ -63,6 +67,7 @@ class DisplayImage extends StatelessWidget {
           cache: true,
           height: height,
           width: width,
+          color: backgroundColor,
           fit: fit ?? BoxFit.cover,
           enableLoadState: true,
           printError: false,

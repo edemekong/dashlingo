@@ -1,0 +1,11 @@
+const String homePath = "/home";
+const String postPath = "/post";
+const String lastPostPath = "/lastest-posts";
+const String mobileDevPostPath = "$lastPostPath/mobile-development";
+const String lifestylePostPath = "$lastPostPath/lifestyle";
+const String practicePath = "/practice";
+const String dartPracticePath = "$practicePath/dart";
+const String flutterPracticePath = "$practicePath/flutter";
+const String aboutPath = "/about";
+const String contactPath = "/contact";
+const String videoTutorialPath = "/video-tutorials";

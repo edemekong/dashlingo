@@ -17,7 +17,7 @@ class EdButton extends StatelessWidget {
   final double? height;
   final Color? background;
   final Color? textColor;
-  final Icon? icon;
+  final Widget? icon;
 
   const EdButton({
     Key? key,
@@ -60,7 +60,7 @@ class EdButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.cardPadding * 0.8),
       decoration: BoxDecoration(
         color: background ?? (disable ? AppColors.lightBlue : AppColors.blue),
-        borderRadius: AppSpaces.defaultCircularRadius,
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Center(
         child: isLoading
@@ -96,7 +96,7 @@ class EdButton extends StatelessWidget {
       constraints: const BoxConstraints(minWidth: 130),
       decoration: BoxDecoration(
         color: background ?? Theme.of(context).canvasColor,
-        borderRadius: AppSpaces.defaultCircularRadius,
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Center(
         child: isLoading
@@ -125,8 +125,14 @@ class EdButton extends StatelessWidget {
       constraints: const BoxConstraints(minWidth: 130),
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.cardPadding),
       decoration: BoxDecoration(
-        color: disable ? AppColors.lightRed : AppColors.primaryColor,
-        borderRadius: AppSpaces.defaultCircularRadius,
+        color: disable ? (AppColors.blackCard2) : (background ?? AppColors.primaryColor),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: ((disable ? AppColors.accentColor : background ?? AppColors.primaryColorDark)).darken(),
+            offset: const Offset(1, 4),
+          ),
+        ],
       ),
       child: Center(
         child: isLoading
@@ -134,8 +140,12 @@ class EdButton extends StatelessWidget {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buttonTitle(context, Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w500)),
-                  if (icon != null) ...[const SizedBox(width: AppSpaces.elementSpacing * 0.5), icon!],
+                  if (icon != null) ...[
+                    icon!,
+                    const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+                  ],
+                  buttonTitle(context,
+                      Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w500, color: textColor)),
                 ],
               ),
       ),
@@ -147,5 +157,25 @@ class EdButton extends StatelessWidget {
       "$title",
       style: style,
     );
+  }
+}
+
+extension ColorBrightness on Color {
+  Color darken([double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(this);
+    final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+    return hslDark.toColor();
+  }
+
+  Color lighten([double amount = .1]) {
+    assert(amount >= 0 && amount <= 1);
+
+    final hsl = HSLColor.fromColor(this);
+    final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+    return hslLight.toColor();
   }
 }

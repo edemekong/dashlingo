@@ -15,7 +15,6 @@ class DisplayImage extends StatelessWidget {
   final Widget icon;
   final BoxFit? fit;
 
-  final bool local;
   final Color? backgroundColor;
   final Function(LoadState)? status;
 
@@ -30,14 +29,14 @@ class DisplayImage extends StatelessWidget {
     this.icon = const Icon(Icons.image_search_outlined, size: 40),
     this.fit,
     this.status,
-    this.local = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isFromNetwork = url!.startsWith('https://');
     return Builder(builder: (context) {
       if (url != null && url != '') {
-        if (local) {
+        if (!isFromNetwork) {
           return ExtendedImage.asset(
             url!,
             height: height,

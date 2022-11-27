@@ -63,7 +63,7 @@ class AboutViewWidget extends StatelessWidget {
             children: [
               const SizedBox(height: AppSpaces.cardPadding * 2),
               const ProfileAvater(
-                url: ImagePaths.flutterfairy,
+                url: ImagePaths.edpi,
                 size: 250,
                 local: true,
               ),

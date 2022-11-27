@@ -1,6 +1,7 @@
 import 'package:flutterfairy/components/bounce_animation.dart';
 import 'package:flutterfairy/components/scaffold.dart';
 import 'package:flutterfairy/components/texts.dart';
+import 'package:flutterfairy/screens/overview/widgets/appbar.dart';
 import 'package:flutterfairy/screens/overview/widgets/post_card.dart';
 import 'package:flutterfairy/screens/posts/post_state.dart';
 import 'package:flutterfairy/theme/colors.dart';
@@ -28,6 +29,9 @@ class PostsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                EdAppbar(
+                  showMenu: (info.isMobile || info.isTablet),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: padding),
                   child: Column(

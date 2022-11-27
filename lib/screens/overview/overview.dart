@@ -29,17 +29,13 @@ class OverviewView extends StatelessWidget {
                   children: [
                     if (!info.isMobile && !info.isTablet) ...[
                       const EdSizedbar(drawer: false),
-                    ],
-                    Expanded(
-                      child: Column(
-                        children: [
-                          EdAppbar(
-                            showMenu: (info.isMobile || info.isTablet),
-                          ),
-                          const NavigationBody(),
-                        ],
+                      Container(
+                        width: 1.5,
+                        height: MediaQuery.of(context).size.height,
+                        color: Theme.of(context).dividerColor,
                       ),
-                    ),
+                    ],
+                    const NavigationBody(),
                   ],
                 );
               },

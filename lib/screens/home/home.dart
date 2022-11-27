@@ -2,6 +2,7 @@ import 'package:flutterfairy/components/button.dart';
 import 'package:flutterfairy/components/display_image.dart';
 import 'package:flutterfairy/components/scaffold.dart';
 import 'package:flutterfairy/components/texts.dart';
+import 'package:flutterfairy/screens/overview/widgets/appbar.dart';
 import 'package:flutterfairy/screens/overview/widgets/post_card.dart';
 import 'package:flutterfairy/theme/colors.dart';
 import 'package:flutterfairy/theme/spaces.dart';
@@ -26,6 +27,9 @@ class HomeView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                EdAppbar(
+                  showMenu: (info.isMobile || info.isTablet),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: padding),
                   child: Column(
@@ -53,7 +57,6 @@ class HomeView extends StatelessWidget {
                             child: DisplayImage(
                               url:
                                   "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKRJ0JSXxoQ3f-iEOdxSxz4WfIb89djk0Th2JaADQmQYQaPk0cwwJHJP6Ru61P364sDoi4-UUHb9pOv4c5LwXmh-WHPuH5FazOQLqx2TcncIweR3-IZO5fc_C4Eb1jrGhz04mZOmkvdYRor8nDIbFUcEIcae6p04Bf6FTpNVbuC2IKvPWOGVjbwX0yQQ/s1920/Flutter%20UI%20Movies%20Neon%20App.png",
-                              local: false,
                             ),
                           ),
                         ),
@@ -62,6 +65,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpaces.cardPadding),
+                Divider(thickness: 1.5, color: Theme.of(context).dividerColor, height: 0),
                 Container(
                   color: isLight ? AppColors.lightGrey : AppColors.darkBlue,
                   padding: EdgeInsets.symmetric(
@@ -83,6 +87,7 @@ class HomeView extends StatelessWidget {
                     ],
                   ),
                 ),
+                Divider(thickness: 1.5, color: Theme.of(context).dividerColor, height: 0),
                 const SizedBox(height: AppSpaces.cardPadding),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: padding),

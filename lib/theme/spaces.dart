@@ -6,10 +6,10 @@ class AppSpaces {
   static const double webWidth = 1080;
   static const double elementSpacing = cardPadding * 0.5;
   static const defaultBorderRadius = BorderRadius.only(
-    topLeft: Radius.circular(18),
-    topRight: Radius.circular(18),
-    bottomLeft: Radius.circular(18),
-    bottomRight: Radius.circular(18),
+    topLeft: Radius.circular(14),
+    topRight: Radius.circular(14),
+    bottomLeft: Radius.circular(14),
+    bottomRight: Radius.circular(14),
   );
 
   static const defaultCircularRadius = BorderRadius.only(

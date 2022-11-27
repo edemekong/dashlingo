@@ -35,6 +35,8 @@ class BounceAnimation extends StatefulWidget {
 class _BounceAnimationState extends State<BounceAnimation> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
+  late CurvedAnimation _curveController;
+
   @override
   void initState() {
     _controller = AnimationController(
@@ -43,6 +45,8 @@ class _BounceAnimationState extends State<BounceAnimation> with SingleTickerProv
       lowerBound: 0.0,
       upperBound: 0.05,
     );
+
+    _curveController = CurvedAnimation(parent: _controller, curve: Curves.easeInOutSine);
 
     _controller.addListener(() {
       setState(() {});
@@ -122,7 +126,7 @@ class _BounceAnimationState extends State<BounceAnimation> with SingleTickerProv
         onLongPress: widget.onLongPress,
         onTap: widget.onTap,
         child: Transform.scale(
-          scale: widget.reverse ? 1 + _controller.value : 1 - _controller.value,
+          scale: widget.reverse ? 1 + _curveController.value : 1 - _curveController.value,
           child: widget.child,
         ),
       ),

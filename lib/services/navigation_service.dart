@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, avoid_web_libraries_in_flutter
 
 import 'package:flutterfairy/screens/about/about.dart';
+import 'package:flutterfairy/screens/learn/learn_view.dart';
 import 'package:flutterfairy/screens/post/post_view.dart';
 import 'package:flutterfairy/screens/posts/posts_view.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +63,18 @@ class NavigationService {
         return navigateToPageRoute(
           settings,
           const PostsViewWidget(id: videoTutorialPath),
+        );
+
+      case dartLearnPath:
+        return navigateToPageRoute(
+          settings,
+          const LearnViewWidget(),
+        );
+
+      case flutterLearnPath:
+        return navigateToPageRoute(
+          settings,
+          const LearnViewWidget(),
         );
 
       case postPath:

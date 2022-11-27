@@ -100,7 +100,7 @@ class EdTexts {
           textAlign: center ? TextAlign.center : TextAlign.start,
           overflow: overflow,
           maxLines: maxLines,
-          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(
                 color: color,
                 fontWeight: fontWeight,
               ));

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color white = Color(0xFFFFFFFF);
 
-  static const Color red = Color(0xFFFC2B52);
-  static const Color lightRed = Color(0xFFFD6582);
+  static const Color red = Color(0xFFEC5A53);
+  static const Color lightRed = Color(0xFFF9DFDF);
 
   static const Color primaryColor = Color(0xFF2E74C7);
+  static const Color primaryColorDark = Color(0xFF224F84);
+
   static const Color accentColor = blue;
 
   static const Color dimGrey = Color(0xFF585757);
@@ -20,6 +22,7 @@ class AppColors {
   static const Color lightBlue = Color(0xFFCFD1D5);
 
   static const Color green = Color(0xFF10D908);
+  static const Color lightGreen = Color(0xFFDFFEBF);
 
   static const Color black = Color(0xFF191C1F);
   static const Color blackLight = Color(0xFF0F0F0F);
@@ -30,4 +33,6 @@ class AppColors {
   static const Color greyCard = Color(0xFFEFEFEF);
   static const Color mediumGrey = Color(0xFFB7B7B7);
   static const Color lightGrey = Color(0xFFF8F7F7);
+
+  static const Color lightBackground = Color(0xFFFEFEFE);
 }

@@ -69,6 +69,8 @@ class EdpiiiApp extends StatelessWidget {
       path = "Home";
     } else if (path.startsWith(postPath)) {
       path = "Post";
+    } else if (path.startsWith(learnPath)) {
+      path = "Learn";
     } else {
       path = "Not Found";
     }

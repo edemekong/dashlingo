@@ -27,7 +27,6 @@ class ProfileAvater extends StatelessWidget {
       borderRadius: AppSpaces.defaultCircularRadius,
       child: DisplayImage(
         fit: BoxFit.cover,
-        local: local,
         width: size,
         height: size,
         url: url,

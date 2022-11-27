@@ -5,6 +5,7 @@ import 'package:flutterfairy/components/texts.dart';
 import 'package:flutterfairy/constants/icon_path.dart';
 import 'package:flutterfairy/constants/paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfairy/utils/logs.dart';
 import '../../../models/menu.dart';
 import '../../../services/get_it.dart';
 import '../../../services/navigation_service.dart';
@@ -38,12 +39,10 @@ class EdSizedbar extends StatelessWidget {
                       children: [
                         Center(
                           child: ClipRRect(
-                            borderRadius: AppSpaces.defaultBorderRadius,
                             child: DisplayImage(
                               url: IconPaths.logo,
-                              width: 150,
+                              width: 200,
                               backgroundColor: isLight ? AppColors.black : AppColors.white,
-                              local: true,
                             ),
                           ),
                         ),
@@ -104,11 +103,13 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
   @override
   Widget build(BuildContext context) {
     final navigationService = locate<NavigationService>();
+    final Color buttonColor = Theme.of(context).primaryColor;
 
     return ValueListenableBuilder<String>(
       valueListenable: navigationService.routeNotifier,
       builder: (context, value, _) {
         final isTapped = widget.menu.link == value;
+        edPrint("PARENT ${widget.menu.parent}");
 
         if (widget.menu.subRoutes.isNotEmpty) {
           return ListTileTheme(
@@ -117,6 +118,16 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
             horizontalTitleGap: AppSpaces.elementSpacing,
             minLeadingWidth: 10,
             child: ExpansionTile(
+              leading: IconTheme(
+                  data: Theme.of(context).iconTheme.copyWith(
+                        size: 20,
+                        color: isTapped
+                            ? buttonColor
+                            : (_isHovered
+                                ? Theme.of(context).iconTheme.color
+                                : Theme.of(context).iconTheme.color?.withOpacity(.8)),
+                      ),
+                  child: widget.menu.icon),
               iconColor: Theme.of(context).iconTheme.color,
               collapsedIconColor: Theme.of(context).iconTheme.color,
               onExpansionChanged: (_) {},
@@ -133,11 +144,14 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
                 widget.menu.subRoutes.length,
                 (index) {
                   final subMenu = widget.menu.subRoutes[index];
-                  return MenuButtonVertical(
-                    menu: subMenu,
-                    onChanged: () {
-                      widget.onChanged();
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing * 0.5),
+                    child: MenuButtonVertical(
+                      menu: subMenu,
+                      onChanged: () {
+                        widget.onChanged();
+                      },
+                    ),
                   );
                 },
               ),
@@ -152,24 +166,47 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
             pushNamedAndRemoveUntil(widget.menu.link);
           },
           child: Container(
-            color: Colors.transparent,
+            // color: Colors.transparent,
             padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.5),
+            decoration: BoxDecoration(
+              color: isTapped ? buttonColor.withOpacity(.1) : null,
+              borderRadius: BorderRadius.circular(8),
+              border: isTapped
+                  ? Border.all(
+                      width: 1.5,
+                      color: buttonColor,
+                    )
+                  : null,
+            ),
             child: Row(
               children: [
-                if (isTapped) ...[
-                  Container(
-                    width: 5,
-                    height: 20,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ],
+                const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+
+                IconTheme(
+                    data: Theme.of(context).iconTheme.copyWith(
+                          size: 20,
+                          color: isTapped
+                              ? buttonColor
+                              : (_isHovered
+                                  ? Theme.of(context).iconTheme.color
+                                  : Theme.of(context).iconTheme.color?.withOpacity(.8)),
+                        ),
+                    child: widget.menu.icon),
+
+                // if (isTapped) ...[
+                //   Container(
+                //     width: 5,
+                //     height: 20,
+                //     color: Theme.of(context).primaryColor,
+                //   ),
+                // ],
                 const SizedBox(width: AppSpaces.elementSpacing * 0.5),
                 EdTexts.subHeading(
                   widget.menu.title,
                   context,
                   fontWeight: isTapped || _isHovered ? FontWeight.w500 : FontWeight.w200,
                   color: isTapped
-                      ? Theme.of(context).primaryColor
+                      ? buttonColor
                       : (_isHovered
                           ? Theme.of(context).iconTheme.color
                           : Theme.of(context).iconTheme.color?.withOpacity(.8)),
@@ -183,73 +220,19 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
   }
 }
 
-class MenuButtonHorizontal extends StatefulWidget {
-  final Menu menu;
-  final void Function() onChanged;
-  const MenuButtonHorizontal({
-    Key? key,
-    required this.menu,
-    required this.onChanged,
-  }) : super(key: key);
-
-  @override
-  State<MenuButtonHorizontal> createState() => _MenuButtonLinkState();
-}
-
-class _MenuButtonLinkState extends State<MenuButtonHorizontal> {
-  bool _isHovered = false;
-
-  bool show = false;
-
-  void _onHover(bool value) {
-    setState(() {
-      _isHovered = value;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final navigationService = locate<NavigationService>();
-
-    return ValueListenableBuilder<String>(
-      valueListenable: navigationService.routeNotifier,
-      builder: (context, value, _) {
-        final isTapped = widget.menu.link == value;
-
-        return BounceAnimation(
-          onHover: (_) => _onHover(true),
-          onExit: (_) => _onHover(false),
-          onTap: () {
-            widget.onChanged();
-            pushNamedAndRemoveUntil(widget.menu.link);
-          },
-          child: Container(
-            margin: const EdgeInsets.only(bottom: AppSpaces.elementSpacing, top: AppSpaces.elementSpacing),
-            padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.5),
-            child: EdTexts.subHeading(
-              widget.menu.title,
-              context,
-              fontWeight: isTapped || _isHovered ? FontWeight.w500 : FontWeight.w200,
-              color: isTapped ? Theme.of(context).primaryColor : null,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
 const List<Menu> tabs = [
   Menu(
     title: 'Home',
+    icon: Icon(Icons.home_rounded),
     link: homePath,
   ),
   Menu(
     title: 'Latest Posts',
+    icon: Icon(Icons.article_outlined),
     link: lastPostPath,
     subRoutes: [
       Menu(
-        title: 'Mobile Development',
+        title: 'Mobile Dev',
         link: mobileDevPostPath,
         parent: lastPostPath,
       ),
@@ -262,27 +245,34 @@ const List<Menu> tabs = [
   ),
   Menu(
     title: 'Video Tutorials',
+    icon: Icon(
+      Icons.video_collection_outlined,
+    ),
     link: videoTutorialPath,
   ),
   Menu(
-    title: 'Practice',
-    link: practicePath,
-    parent: practicePath,
+    title: 'Learn',
+    link: learnPath,
+    icon: Icon(Icons.psychology_outlined),
+    parent: learnPath,
     subRoutes: [
       Menu(
-        title: 'Dart',
-        link: dartPracticePath,
-        parent: practicePath,
+        title: 'Flutter',
+        link: flutterLearnPath,
+        parent: learnPath,
       ),
       Menu(
-        title: 'Flutter',
-        link: flutterPracticePath,
-        parent: practicePath,
+        title: 'Dart',
+        link: dartLearnPath,
+        parent: learnPath,
       ),
     ],
   ),
   Menu(
     title: 'About',
     link: aboutPath,
+    icon: Icon(
+      Icons.info_outline_rounded,
+    ),
   ),
 ];

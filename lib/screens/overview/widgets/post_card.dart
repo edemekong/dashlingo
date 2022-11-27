@@ -1,5 +1,6 @@
 import 'package:flutterfairy/components/avatar.dart';
 import 'package:flutterfairy/components/bounce_animation.dart';
+import 'package:flutterfairy/components/button.dart';
 import 'package:flutterfairy/components/display_image.dart';
 import 'package:flutterfairy/components/texts.dart';
 import 'package:flutterfairy/constants/images_path.dart';
@@ -25,7 +26,7 @@ class PostCard extends StatelessWidget {
       child: BounceAnimation(
         reverse: true,
         onTap: () {
-          pushNamedAndRemoveUntil(postPath);
+          pushNamedAndRemoveUntil(postPath, queryParameter: {"id": "0skjdi123-234"});
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +40,6 @@ class PostCard extends StatelessWidget {
               child: const AspectRatio(
                 aspectRatio: 2.55,
                 child: DisplayImage(
-                  local: false,
                   url:
                       "https://dl.hiapphere.com/data/thumb/202112/flutter.learnflutter.flutterdevelopment.appdevelopment.mobileapp.development.crossplatform_HiAppHere_com_icon.png",
                 ),
@@ -54,6 +54,16 @@ class PostCard extends StatelessWidget {
                   topLeft: const Radius.circular(0),
                   topRight: const Radius.circular(0),
                 ),
+                border: Border.all(
+                  width: 1.5,
+                  color: Theme.of(context).dividerColor,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).dividerColor,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

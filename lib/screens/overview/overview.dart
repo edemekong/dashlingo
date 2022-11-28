@@ -60,7 +60,7 @@ class NavigationBody extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         child: Navigator(
-          initialRoute: homePath,
+          initialRoute: dartLearnPath,
           observers: [RouteObservers()],
           key: navigationService.navigatorKey,
           onGenerateRoute: navigationService.onGeneratedRoute,

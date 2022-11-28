@@ -23,7 +23,7 @@ class AppSpaces {
 
   static const OutlineInputBorder outLineBorder = OutlineInputBorder(
     borderRadius: defaultBorderRadius,
-    borderSide: BorderSide(color: AppColors.mediumGrey, width: cardOutlineWidth),
+    borderSide: BorderSide(color: AppColors.dividerDark, width: cardOutlineWidth),
   );
 
   static const OutlineInputBorder disabledOutLineBorder = OutlineInputBorder(

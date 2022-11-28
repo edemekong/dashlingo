@@ -58,7 +58,7 @@ class PostView extends StatelessWidget {
                 const SizedBox(height: AppSpaces.elementSpacing),
                 Container(
                   width: width,
-                  padding: const EdgeInsets.all(AppSpaces.cardPadding),
+                  padding: const EdgeInsets.all(AppSpaces.elementSpacing),
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: AppSpaces.defaultBorderRadius,
@@ -74,30 +74,32 @@ class PostView extends StatelessWidget {
                           "This tutorial goes over checking users entered location and notifying them if we dont service the area",
                           context),
                       const SizedBox(height: AppSpaces.elementSpacing),
-                      Row(
-                        children: [
-                          EdButton(
-                            title: 'Try quiz',
-                            icon: const Icon(
-                              Icons.psychology_outlined,
-                              color: AppColors.white,
+                      FittedBox(
+                        child: Row(
+                          children: [
+                            EdButton(
+                              title: 'Try quiz',
+                              icon: const Icon(
+                                Icons.psychology_outlined,
+                                color: AppColors.white,
+                              ),
+                              background: AppColors.green.withOpacity(.8),
+                              onPressed: () {},
                             ),
-                            background: AppColors.green.withOpacity(.8),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: AppSpaces.elementSpacing),
-                          EdButton(
-                            title: 'View Code',
-                            icon: Image.asset(
-                              IconPaths.github,
-                              height: 20,
-                              color: !isLight ? AppColors.black : AppColors.white,
+                            const SizedBox(width: AppSpaces.elementSpacing),
+                            EdButton(
+                              title: 'View Code',
+                              icon: Image.asset(
+                                IconPaths.github,
+                                height: 20,
+                                color: !isLight ? AppColors.black : AppColors.white,
+                              ),
+                              textColor: !isLight ? AppColors.black : AppColors.white,
+                              background: isLight ? AppColors.black : AppColors.white,
+                              onPressed: () {},
                             ),
-                            textColor: !isLight ? AppColors.black : AppColors.white,
-                            background: isLight ? AppColors.black : AppColors.white,
-                            onPressed: () {},
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       const SizedBox(height: AppSpaces.elementSpacing),
                       Row(
@@ -177,7 +179,7 @@ class PostView extends StatelessWidget {
                 const SizedBox(height: AppSpaces.elementSpacing),
                 Container(
                   width: width,
-                  padding: const EdgeInsets.all(AppSpaces.cardPadding),
+                  padding: const EdgeInsets.all(AppSpaces.elementSpacing),
                   decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: AppSpaces.defaultBorderRadius,

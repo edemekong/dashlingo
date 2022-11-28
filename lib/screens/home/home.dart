@@ -67,7 +67,7 @@ class HomeView extends StatelessWidget {
                 const SizedBox(height: AppSpaces.cardPadding),
                 Divider(thickness: 1.5, color: Theme.of(context).dividerColor, height: 0),
                 Container(
-                  color: isLight ? AppColors.lightGrey : AppColors.darkBlue,
+                  color: Theme.of(context).cardColor,
                   padding: EdgeInsets.symmetric(
                     vertical: AppSpaces.elementSpacing,
                     horizontal: padding,

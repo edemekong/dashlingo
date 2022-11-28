@@ -21,6 +21,8 @@ class NavigationService {
 
   List<String> pathToCloseNavigationBar = [];
 
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   set setNavigationBar(bool value) {
     showNavigationBar.value = value;
     showNavigationBar.notifyListeners();

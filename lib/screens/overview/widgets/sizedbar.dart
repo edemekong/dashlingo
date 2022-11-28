@@ -20,14 +20,17 @@ class EdSizedbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
-      color: isLight ? AppColors.lightGrey : AppColors.darkBlue,
+      color: Theme.of(context).cardColor,
       height: MediaQuery.of(context).size.height,
       width: AppSpaces.webWidth * 0.25,
       child: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(AppSpaces.cardPadding),
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpaces.elementSpacing,
+                horizontal: AppSpaces.cardPadding,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -42,7 +45,7 @@ class EdSizedbar extends StatelessWidget {
                             child: DisplayImage(
                               url: IconPaths.logo,
                               width: 200,
-                              backgroundColor: isLight ? AppColors.black : AppColors.white,
+                              backgroundColor: Theme.of(context).primaryColor,
                             ),
                           ),
                         ),

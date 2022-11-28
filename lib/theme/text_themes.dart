@@ -149,7 +149,7 @@ class AppTextThemes {
     bodyText1: TextStyle(
       fontFamily: "Poppins",
       fontSize: body1Size,
-      color: AppColors.mediumGrey,
+      color: AppColors.lightGrey,
       height: 1.35,
       fontWeight: FontWeight.w400,
     ),

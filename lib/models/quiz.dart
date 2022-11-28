@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 class Quiz extends Equatable {
@@ -7,13 +8,16 @@ class Quiz extends Equatable {
 
   /// beginner, intermediate or advance
   final String pathType;
-  final String pathLevel;
+  final String title;
+  final int pathLevel;
+
+  ///learn, play, playAndLearn
   final String quizType;
   final String instruction;
   final Map<String, dynamic> intructor;
   final Question question;
   final List<Answer> answers;
-  final Answer correctAnswer;
+  final String correctAnswerId;
   final String clue;
   final int createdAt;
   final int updatedAt;
@@ -22,13 +26,14 @@ class Quiz extends Equatable {
     required this.lessonId,
     required this.quizId,
     required this.pathType,
+    required this.title,
     required this.pathLevel,
     required this.quizType,
     required this.instruction,
     required this.intructor,
     required this.question,
     required this.answers,
-    required this.correctAnswer,
+    required this.correctAnswerId,
     required this.clue,
     required this.createdAt,
     required this.updatedAt,
@@ -38,13 +43,14 @@ class Quiz extends Equatable {
     String? lessonId,
     String? quizId,
     String? pathType,
-    String? pathLevel,
+    String? title,
+    int? pathLevel,
     String? quizType,
     String? instruction,
     Map<String, dynamic>? intructor,
     Question? question,
     List<Answer>? answers,
-    Answer? correctAnswer,
+    String? correctAnswerId,
     String? clue,
     int? createdAt,
     int? updatedAt,
@@ -53,13 +59,14 @@ class Quiz extends Equatable {
       lessonId: lessonId ?? this.lessonId,
       quizId: quizId ?? this.quizId,
       pathType: pathType ?? this.pathType,
+      title: title ?? this.title,
       pathLevel: pathLevel ?? this.pathLevel,
       quizType: quizType ?? this.quizType,
       instruction: instruction ?? this.instruction,
       intructor: intructor ?? this.intructor,
       question: question ?? this.question,
       answers: answers ?? this.answers,
-      correctAnswer: correctAnswer ?? this.correctAnswer,
+      correctAnswerId: correctAnswerId ?? this.correctAnswerId,
       clue: clue ?? this.clue,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
@@ -71,13 +78,14 @@ class Quiz extends Equatable {
       'lessonId': lessonId,
       'quizId': quizId,
       'pathType': pathType,
+      'title': title,
       'pathLevel': pathLevel,
       'quizType': quizType,
       'instruction': instruction,
       'intructor': intructor,
       'question': question.toMap(),
       'answers': answers.map((x) => x.toMap()).toList(),
-      'correctAnswer': correctAnswer.toMap(),
+      'correctAnswerId': correctAnswerId,
       'clue': clue,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
@@ -89,13 +97,14 @@ class Quiz extends Equatable {
       lessonId: map['lessonId'] ?? '',
       quizId: map['quizId'] ?? '',
       pathType: map['pathType'] ?? '',
-      pathLevel: map['pathLevel'] ?? '',
+      title: map['title'] ?? '',
+      pathLevel: map['pathLevel']?.toInt() ?? 0,
       quizType: map['quizType'] ?? '',
       instruction: map['instruction'] ?? '',
       intructor: Map<String, dynamic>.from(map['intructor']),
       question: Question.fromMap(map['question']),
       answers: List<Answer>.from(map['answers']?.map((x) => Answer.fromMap(x))),
-      correctAnswer: Answer.fromMap(map['correctAnswer']),
+      correctAnswerId: map['correctAnswerId'] ?? '',
       clue: map['clue'] ?? '',
       createdAt: map['createdAt']?.toInt() ?? 0,
       updatedAt: map['updatedAt']?.toInt() ?? 0,
@@ -108,7 +117,7 @@ class Quiz extends Equatable {
 
   @override
   String toString() {
-    return 'Quiz(lessonId: $lessonId, quizId: $quizId, pathType: $pathType, pathLevel: $pathLevel, quizType: $quizType, instruction: $instruction, intructor: $intructor, question: $question, answers: $answers, correctAnswer: $correctAnswer, clue: $clue, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Quiz(lessonId: $lessonId, quizId: $quizId, pathType: $pathType, title: $title, pathLevel: $pathLevel, quizType: $quizType, instruction: $instruction, intructor: $intructor, question: $question, answers: $answers, correctAnswerId: $correctAnswerId, clue: $clue, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -117,13 +126,14 @@ class Quiz extends Equatable {
       lessonId,
       quizId,
       pathType,
+      title,
       pathLevel,
       quizType,
       instruction,
       intructor,
       question,
       answers,
-      correctAnswer,
+      correctAnswerId,
       clue,
       createdAt,
       updatedAt,
@@ -131,12 +141,26 @@ class Quiz extends Equatable {
   }
 }
 
+enum QuestionType {
+  multipleChoice,
+  conditional,
+  fillInTheBlank,
+  fillInMultipleBlank,
+  multipleAnswers,
+  matching,
+  numericalAnswer,
+  formular,
+  essay,
+  fileUpload,
+}
+
 class Question extends Equatable {
   final String id;
   final String quizId;
-  final String questionType;
+
+  /// option
+  final QuestionType questionType;
   final String content;
-  final List<Map<String, dynamic>> fill;
   final String linkToLesson;
 
   const Question({
@@ -144,14 +168,13 @@ class Question extends Equatable {
     required this.quizId,
     required this.questionType,
     required this.content,
-    required this.fill,
     required this.linkToLesson,
   });
 
   Question copyWith({
     String? id,
     String? quizId,
-    String? questionType,
+    QuestionType? questionType,
     String? content,
     List<Map<String, dynamic>>? fill,
     String? linkToLesson,
@@ -161,7 +184,6 @@ class Question extends Equatable {
       quizId: quizId ?? this.quizId,
       questionType: questionType ?? this.questionType,
       content: content ?? this.content,
-      fill: fill ?? this.fill,
       linkToLesson: linkToLesson ?? this.linkToLesson,
     );
   }
@@ -172,7 +194,6 @@ class Question extends Equatable {
       'quizId': quizId,
       'questionType': questionType,
       'content': content,
-      'fill': fill,
       'linkToLesson': linkToLesson,
     };
   }
@@ -183,7 +204,6 @@ class Question extends Equatable {
       quizId: map['quizId'] ?? '',
       questionType: map['questionType'] ?? '',
       content: map['content'] ?? '',
-      fill: List<Map<String, dynamic>>.from(map['fill']?.map((x) => Map<String, dynamic>.from(x))),
       linkToLesson: map['linkToLesson'] ?? '',
     );
   }
@@ -194,7 +214,7 @@ class Question extends Equatable {
 
   @override
   String toString() {
-    return 'Question(id: $id, quizId: $quizId, questionType: $questionType, content: $content, fill: $fill, linkToLesson: $linkToLesson)';
+    return 'Question(id: $id, quizId: $quizId, questionType: $questionType, content: $content, linkToLesson: $linkToLesson)';
   }
 
   @override
@@ -204,7 +224,6 @@ class Question extends Equatable {
       quizId,
       questionType,
       content,
-      fill,
       linkToLesson,
     ];
   }
@@ -215,14 +234,12 @@ class Answer extends Equatable {
   final String quizId;
   final String content;
   final String type;
-  final bool correct;
 
   const Answer({
     required this.id,
     required this.quizId,
     required this.content,
     required this.type,
-    required this.correct,
   });
 
   Answer copyWith({
@@ -237,7 +254,6 @@ class Answer extends Equatable {
       quizId: quizId ?? this.quizId,
       content: content ?? this.content,
       type: type ?? this.type,
-      correct: correct ?? this.correct,
     );
   }
 
@@ -247,7 +263,6 @@ class Answer extends Equatable {
       'quizId': quizId,
       'content': content,
       'type': type,
-      'correct': correct,
     };
   }
 
@@ -257,7 +272,6 @@ class Answer extends Equatable {
       quizId: map['quizId'] ?? '',
       content: map['content'] ?? '',
       type: map['type'] ?? '',
-      correct: map['correct'] ?? false,
     );
   }
 
@@ -267,7 +281,7 @@ class Answer extends Equatable {
 
   @override
   String toString() {
-    return 'Answer(id: $id, quizId: $quizId, content: $content, type: $type, correct: $correct)';
+    return 'Answer(id: $id, quizId: $quizId, content: $content, type: $type, ';
   }
 
   @override
@@ -277,7 +291,6 @@ class Answer extends Equatable {
       quizId,
       content,
       type,
-      correct,
     ];
   }
 }

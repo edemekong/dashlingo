@@ -94,10 +94,10 @@ class DisplayImage extends StatelessWidget {
   Widget _buildError(BuildContext context) {
     final isLight = AppTheme.instance.isLightMode(context);
     return Container(
-      color: isLight ? AppColors.lightGrey : AppColors.darkBlue,
+      color: Theme.of(context).cardColor,
       child: IconTheme(
         data: Theme.of(context).iconTheme.copyWith(
-              color: isLight ? AppColors.mediumGrey : AppColors.mediumGrey,
+              color: Theme.of(context).canvasColor,
             ),
         child: icon,
       ),

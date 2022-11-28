@@ -1,3 +1,4 @@
+import 'package:flutterfairy/services/get_it.dart';
 import 'package:flutterfairy/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class EdAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
+    final navigationService = locate<NavigationService>();
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -33,7 +35,7 @@ class EdAppbar extends StatelessWidget {
             IconButton(
               splashRadius: 20,
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Scaffold.of(navigationService.navigatorKey.currentState!.context).openDrawer();
               },
               icon: const Icon(Icons.menu),
             ),
@@ -45,7 +47,7 @@ class EdAppbar extends StatelessWidget {
               child: Center(
                 child: DisplayImage(
                   url: IconPaths.logo,
-                  backgroundColor: isLight ? AppColors.black : AppColors.white,
+                  backgroundColor: Theme.of(context).primaryColor,
                   width: 120,
                 ),
               ),

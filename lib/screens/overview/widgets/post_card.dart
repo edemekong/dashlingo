@@ -49,7 +49,7 @@ class PostCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(AppSpaces.elementSpacing),
               decoration: BoxDecoration(
-                color: isLight ? AppColors.lightGrey : AppColors.darkBlue,
+                color: Theme.of(context).cardColor,
                 borderRadius: AppSpaces.defaultBorderRadius.copyWith(
                   topLeft: const Radius.circular(0),
                   topRight: const Radius.circular(0),

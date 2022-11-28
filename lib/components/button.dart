@@ -78,7 +78,7 @@ class EdButton extends StatelessWidget {
                       Theme.of(context).textTheme.button?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: disable
-                              ? (isLight ? AppColors.mediumGrey : AppColors.grey)
+                              ? (isLight ? Theme.of(context).canvasColor : AppColors.grey)
                               : textColor ?? (AppColors.white))),
                   if (icon != null) ...[const SizedBox(width: AppSpaces.elementSpacing * 0.5), icon!],
                 ],
@@ -109,7 +109,7 @@ class EdButton extends StatelessWidget {
                     Theme.of(context).textTheme.button?.copyWith(
                         fontWeight: FontWeight.w500,
                         color: disable
-                            ? (isLight ? AppColors.mediumGrey : AppColors.grey)
+                            ? (isLight ? Theme.of(context).canvasColor : AppColors.grey)
                             : textColor ?? (isLight ? AppColors.black : AppColors.white)),
                   ),
                   if (icon != null) ...[const SizedBox(width: AppSpaces.elementSpacing * 0.5), icon!],
@@ -125,7 +125,7 @@ class EdButton extends StatelessWidget {
       constraints: const BoxConstraints(minWidth: 130),
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.cardPadding),
       decoration: BoxDecoration(
-        color: disable ? (AppColors.blackCard2) : (background ?? AppColors.primaryColor),
+        color: disable ? (Theme.of(context).canvasColor) : (background ?? AppColors.primaryColor),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(

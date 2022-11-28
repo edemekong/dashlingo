@@ -10,13 +10,13 @@ class AppThemeData {
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.white,
       iconTheme: IconThemeData(
-        color: AppColors.blackCard,
+        color: AppColors.cardDark,
         size: 24,
       ),
       toolbarHeight: 47,
     ),
-    dividerTheme: const DividerThemeData(color: AppColors.mediumGrey, thickness: AppSpaces.cardOutlineWidth),
-    backgroundColor: AppColors.greyCard,
+    dividerTheme: const DividerThemeData(color: AppColors.dividerLight, thickness: AppSpaces.cardOutlineWidth),
+    backgroundColor: AppColors.lightBackground,
     colorScheme: const ColorScheme(
       primary: AppColors.primaryColor,
       secondary: AppColors.black,
@@ -30,8 +30,7 @@ class AppThemeData {
       onError: AppColors.red,
       onSecondary: AppColors.white,
     ),
-    cardColor: AppColors.white,
-    scaffoldBackgroundColor: AppColors.greyCard,
+    scaffoldBackgroundColor: AppColors.lightBackground,
     primaryColor: AppColors.primaryColor,
     buttonTheme: const ButtonThemeData(
       height: 47,
@@ -40,7 +39,7 @@ class AppThemeData {
     hintColor: AppColors.white,
     indicatorColor: AppColors.white,
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(AppColors.mediumGrey),
+      fillColor: MaterialStateProperty.all(AppColors.cardDark),
       splashRadius: 16,
     ),
     iconTheme: const IconThemeData(
@@ -60,11 +59,11 @@ class AppThemeData {
         size: 28,
       ),
       unselectedIconTheme: IconThemeData(
-        color: AppColors.blackLight,
+        color: AppColors.unselectedColorLight,
         size: 28,
       ),
     ),
-    splashColor: AppColors.mediumGrey,
+    splashColor: AppColors.cardDark,
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.lightGrey,
       filled: true,
@@ -80,13 +79,14 @@ class AppThemeData {
       isDense: true,
       contentPadding: const EdgeInsets.all(16),
     ),
-    canvasColor: AppColors.white,
     primaryIconTheme: const IconThemeData(
       color: AppColors.black,
       size: 24,
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     unselectedWidgetColor: AppColors.unselectedColorLight,
+    canvasColor: AppColors.cardLight2,
+    cardColor: AppColors.cardLight,
     textTheme: AppTextThemes.mobileTextThemeLight,
     primaryTextTheme: AppTextThemes.mobileTextThemeLight,
     textSelectionTheme: const TextSelectionThemeData(cursorColor: AppColors.blue),
@@ -95,13 +95,13 @@ class AppThemeData {
   static ThemeData themeDark = ThemeData(
     fontFamily: "Poppins",
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.blackCard,
+      backgroundColor: AppColors.cardLight,
       iconTheme: IconThemeData(
         color: AppColors.white,
         size: 24,
       ),
     ),
-    dividerTheme: const DividerThemeData(color: AppColors.mediumGrey, thickness: 0.15),
+    dividerTheme: const DividerThemeData(color: AppColors.dividerDark, thickness: 0.15),
     colorScheme: const ColorScheme(
       primary: AppColors.primaryColor,
       secondary: AppColors.black,
@@ -115,7 +115,7 @@ class AppThemeData {
       onError: AppColors.red,
       onSecondary: AppColors.lightGrey,
     ),
-    cardColor: AppColors.darkBlue,
+    cardColor: AppColors.cardDark,
     backgroundColor: AppColors.black,
     scaffoldBackgroundColor: AppColors.black,
     primaryColor: AppColors.primaryColor,
@@ -125,9 +125,9 @@ class AppThemeData {
     ),
     hintColor: AppColors.white,
     indicatorColor: AppColors.white,
-    canvasColor: AppColors.black,
+    canvasColor: AppColors.cardDark2,
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(AppColors.mediumGrey),
+      fillColor: MaterialStateProperty.all(AppColors.cardLight),
       splashRadius: 16,
     ),
     iconTheme: const IconThemeData(

@@ -12,6 +12,13 @@ class AppSpaces {
     bottomRight: Radius.circular(14),
   );
 
+  static const defaultBorderRadiusTextField = BorderRadius.only(
+    topLeft: Radius.circular(8),
+    topRight: Radius.circular(8),
+    bottomLeft: Radius.circular(8),
+    bottomRight: Radius.circular(8),
+  );
+
   static const defaultCircularRadius = BorderRadius.only(
     topLeft: Radius.circular(999),
     topRight: Radius.circular(999),
@@ -22,16 +29,16 @@ class AppSpaces {
   static const double cardOutlineWidth = 0.3;
 
   static const OutlineInputBorder outLineBorder = OutlineInputBorder(
-    borderRadius: defaultBorderRadius,
+    borderRadius: defaultBorderRadiusTextField,
     borderSide: BorderSide(color: AppColors.dividerDark, width: cardOutlineWidth),
   );
 
   static const OutlineInputBorder disabledOutLineBorder = OutlineInputBorder(
-    borderRadius: defaultBorderRadius,
+    borderRadius: defaultBorderRadiusTextField,
     borderSide: BorderSide(color: AppColors.white, width: cardOutlineWidth),
   );
   static const OutlineInputBorder errorLineBorder = OutlineInputBorder(
-    borderRadius: defaultBorderRadius,
+    borderRadius: defaultBorderRadiusTextField,
     borderSide: BorderSide(color: AppColors.red, width: cardOutlineWidth + 0.5),
   );
 }

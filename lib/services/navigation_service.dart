@@ -46,42 +46,24 @@ class NavigationService {
     final routeData = settings.name?.getRouteData;
 
     switch (routeData?.route) {
-      case aboutPath:
-        return navigateToPageRoute(settings, const AboutViewWidget());
+      case profilePath:
+        return navigateToPageRoute(settings, const ProfileViewWidget());
       case homePath:
         return navigateToPageRoute(settings, const HomeView());
       case mobileDevPostPath:
-        return navigateToPageRoute(
-          settings,
-          const PostsViewWidget(id: mobileDevPostPath),
-        );
+        return navigateToPageRoute(settings, const PostsViewWidget(id: mobileDevPostPath));
       case lifestylePostPath:
-        return navigateToPageRoute(
-          settings,
-          const PostsViewWidget(id: lifestylePostPath),
-        );
-
-      case videoTutorialPath:
-        return navigateToPageRoute(
-          settings,
-          const PostsViewWidget(id: videoTutorialPath),
-        );
+        return navigateToPageRoute(settings, const PostsViewWidget(id: lifestylePostPath));
 
       case dartLearnPath:
-        return navigateToPageRoute(
-          settings,
-          const LearnViewWidget(),
-        );
+        return navigateToPageRoute(settings, const LearnViewWidget());
 
       case flutterLearnPath:
-        return navigateToPageRoute(
-          settings,
-          const LearnViewWidget(),
-        );
+        return navigateToPageRoute(settings, const LearnViewWidget());
 
       case postPath:
         final id = routeData?["id"] ?? "";
-        return navigateToPageRoute(settings, PostViewWidget(id: id));
+        return navigateToPageRoute(settings, PostView(id: id));
     }
 
     return navigateToPageRoute(settings, const ErrorScreen(type: ErrorType.notFound));

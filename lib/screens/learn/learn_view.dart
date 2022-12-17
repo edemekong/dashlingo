@@ -4,7 +4,6 @@ import 'package:flutterfairy/components/stepper.dart';
 import 'package:flutterfairy/screens/learn/learn_state.dart';
 import 'package:flutterfairy/screens/learn/pages/quiz_page.dart';
 import 'package:flutterfairy/theme/spaces.dart';
-import 'package:flutterfairy/utils/logs.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

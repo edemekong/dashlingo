@@ -1,4 +1,3 @@
-import 'package:flutterfairy/screens/overview/widgets/appbar.dart';
 import 'package:flutterfairy/screens/overview/widgets/sizedbar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -59,11 +58,15 @@ class NavigationBody extends StatelessWidget {
 
     return Expanded(
       child: ClipRRect(
-        child: Navigator(
-          initialRoute: dartLearnPath,
-          observers: [RouteObservers()],
-          key: navigationService.navigatorKey,
-          onGenerateRoute: navigationService.onGeneratedRoute,
+        child: Column(
+          children: [
+            Navigator(
+              initialRoute: homePath,
+              observers: [RouteObservers()],
+              key: navigationService.navigatorKey,
+              onGenerateRoute: navigationService.onGeneratedRoute,
+            ),
+          ],
         ),
       ),
     );

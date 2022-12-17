@@ -3,7 +3,6 @@ import 'package:flutterfairy/components/scaffold.dart';
 import 'package:flutterfairy/components/texts.dart';
 import 'package:flutterfairy/screens/learn/learn_state.dart';
 import 'package:flutterfairy/theme/spaces.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SetUpToLearn extends StatelessWidget {
@@ -28,8 +27,8 @@ class SetUpToLearn extends StatelessWidget {
                 const SizedBox(height: AppSpaces.cardPadding * 2),
                 ...List.generate(
                   2,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
+                  (index) => const Padding(
+                    padding: EdgeInsets.only(bottom: AppSpaces.elementSpacing),
                     child: EdQuizCard(),
                   ),
                 ),

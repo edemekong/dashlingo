@@ -39,7 +39,7 @@ class EdAppbar extends StatelessWidget {
               },
               icon: const Icon(Icons.menu),
             ),
-            const SizedBox(width: AppSpaces.elementSpacing),
+            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
             BounceAnimation(
               onTap: () {
                 pushNamedAndRemoveUntil(homePath);
@@ -47,8 +47,8 @@ class EdAppbar extends StatelessWidget {
               child: Center(
                 child: DisplayImage(
                   url: IconPaths.logo,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  width: 120,
+                  backgroundColor: isLight ? Theme.of(context).primaryColor : AppColors.white,
+                  width: 180,
                 ),
               ),
             ),

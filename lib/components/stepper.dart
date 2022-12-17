@@ -47,7 +47,7 @@ class StepperProgressBar extends StatelessWidget {
                     height: height * 0.25,
                     width: (count / 100) * (width) * 0.9,
                     decoration: BoxDecoration(
-                      color: AppColors.white.withOpacity(.2),
+                      color: AppColors.white.withOpacity(.1),
                       borderRadius: AppSpaces.defaultBorderRadius,
                     ),
                   ),

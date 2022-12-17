@@ -5,9 +5,9 @@ import 'package:flutterfairy/components/texts.dart';
 import 'package:flutterfairy/constants/icon_path.dart';
 import 'package:flutterfairy/constants/paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterfairy/services/get_it.dart';
 import 'package:flutterfairy/utils/logs.dart';
 import '../../../models/menu.dart';
-import '../../../services/get_it.dart';
 import '../../../services/navigation_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/spaces.dart';
@@ -29,36 +29,34 @@ class EdSizedbar extends StatelessWidget {
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
                 vertical: AppSpaces.elementSpacing,
-                horizontal: AppSpaces.cardPadding,
+                horizontal: AppSpaces.elementSpacing,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BounceAnimation(
                     onTap: () {
-                      pushNamedAndRemoveUntil(homePath);
+                      // pushNamedAndRemoveUntil(homePath);
                     },
-                    child: Column(
-                      children: [
-                        Center(
-                          child: ClipRRect(
-                            child: DisplayImage(
-                              url: IconPaths.logo,
-                              width: 200,
-                              backgroundColor: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: AppSpaces.elementSpacing),
-                      ],
+                    child: DisplayImage(
+                      url: IconPaths.logo,
+                      width: 250,
+                      backgroundColor: isLight ? Theme.of(context).primaryColor : AppColors.white,
                     ),
                   ),
-                  const EdTextfield(
-                    hintText: 'Search anything',
-                    showClear: true,
-                    maxLines: 1,
-                    padding: EdgeInsets.zero,
-                    prefix: Icon(Icons.search),
+                  const SizedBox(height: AppSpaces.elementSpacing),
+                  Row(
+                    children: const [
+                      Expanded(
+                        child: EdTextfield(
+                          hintText: 'Search anything',
+                          showClear: true,
+                          maxLines: 1,
+                          padding: EdgeInsets.zero,
+                          prefix: Icon(Icons.search),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: AppSpaces.cardPadding),
                   ...List.generate(
@@ -247,13 +245,6 @@ const List<Menu> tabs = [
     ],
   ),
   Menu(
-    title: 'Video Tutorials',
-    icon: Icon(
-      Icons.video_collection_outlined,
-    ),
-    link: videoTutorialPath,
-  ),
-  Menu(
     title: 'Learn',
     link: learnPath,
     icon: Icon(Icons.psychology_outlined),
@@ -272,10 +263,17 @@ const List<Menu> tabs = [
     ],
   ),
   Menu(
-    title: 'About',
-    link: aboutPath,
+    title: 'Leaderboard',
+    link: leaderboard,
     icon: Icon(
-      Icons.info_outline_rounded,
+      Icons.emoji_events_outlined,
+    ),
+  ),
+  Menu(
+    title: 'Profile',
+    link: profilePath,
+    icon: Icon(
+      Icons.account_circle_outlined,
     ),
   ),
 ];

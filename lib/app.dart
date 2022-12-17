@@ -57,20 +57,18 @@ class EdpiiiApp extends StatelessWidget {
       return 'Edpiii';
     }
 
-    if (path.startsWith(aboutPath)) {
-      path = "About";
-    } else if (path.startsWith(contactPath)) {
-      path = "Contact";
+    if (path.startsWith(profilePath)) {
+      path = "Profile";
     } else if (path.startsWith(lastPostPath)) {
       path = "Latest Posts";
-    } else if (path.startsWith(videoTutorialPath)) {
-      path = "Video Tutorials";
     } else if (path.startsWith(homePath)) {
       path = "Home";
     } else if (path.startsWith(postPath)) {
       path = "Post";
     } else if (path.startsWith(learnPath)) {
       path = "Learn";
+    } else if (path.startsWith(leaderboard)) {
+      path = "Leaderboard";
     } else {
       path = "Not Found";
     }

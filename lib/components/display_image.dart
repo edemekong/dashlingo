@@ -1,12 +1,10 @@
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/utils/logs.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../theme/theme.dart';
 
-class DisplayImage extends StatelessWidget {
+class DisplayImage extends StatefulWidget {
   final String? url;
   final double aspectRatio;
   final double? width;
@@ -32,21 +30,30 @@ class DisplayImage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DisplayImage> createState() => _DisplayImageState();
+}
+
+class _DisplayImageState extends State<DisplayImage> with AutomaticKeepAliveClientMixin<DisplayImage> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
-    bool isFromNetwork = url!.startsWith('https://');
+    super.build(context);
+    bool isFromNetwork = widget.url!.startsWith('https://');
     return Builder(builder: (context) {
-      if (url != null && url != '') {
+      if (widget.url != null && widget.url != '') {
         if (!isFromNetwork) {
           return ExtendedImage.asset(
-            url!,
-            height: height,
-            width: width,
-            fit: fit ?? BoxFit.cover,
-            color: backgroundColor,
+            widget.url!,
+            height: widget.height,
+            width: widget.width,
+            fit: widget.fit ?? BoxFit.cover,
+            color: widget.backgroundColor,
             enableLoadState: true,
             loadStateChanged: (state) {
-              if (status != null) {
-                status!(state.extendedImageLoadState);
+              if (widget.status != null) {
+                widget.status!(state.extendedImageLoadState);
               }
 
               switch (state.extendedImageLoadState) {
@@ -62,17 +69,17 @@ class DisplayImage extends StatelessWidget {
           );
         }
         return ExtendedImage.network(
-          url!,
+          widget.url!,
           cache: true,
-          height: height,
-          width: width,
-          color: backgroundColor,
-          fit: fit ?? BoxFit.cover,
+          height: widget.height,
+          width: widget.width,
+          color: widget.backgroundColor,
+          fit: widget.fit ?? BoxFit.cover,
           enableLoadState: true,
           printError: false,
           loadStateChanged: (state) {
-            if (status != null) {
-              status!(state.extendedImageLoadState);
+            if (widget.status != null) {
+              widget.status!(state.extendedImageLoadState);
             }
 
             switch (state.extendedImageLoadState) {
@@ -99,20 +106,20 @@ class DisplayImage extends StatelessWidget {
         data: Theme.of(context).iconTheme.copyWith(
               color: Theme.of(context).canvasColor,
             ),
-        child: icon,
+        child: widget.icon,
       ),
     );
   }
 
   Widget _isLoading(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Theme.of(context).canvasColor.withOpacity(.8),
-      highlightColor: Theme.of(context).canvasColor,
+      baseColor: Theme.of(context).cardColor.withOpacity(.8),
+      highlightColor: Theme.of(context).cardColor,
       enabled: true,
       direction: ShimmerDirection.ltr,
       child: Container(
-        color: Theme.of(context).canvasColor,
-        child: icon,
+        color: Theme.of(context).cardColor,
+        child: widget.icon,
       ),
     );
   }

@@ -48,8 +48,8 @@ List<Menu> links = [
   ),
 ];
 
-class AboutViewWidget extends StatelessWidget {
-  const AboutViewWidget({super.key});
+class ProfileViewWidget extends StatelessWidget {
+  const ProfileViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

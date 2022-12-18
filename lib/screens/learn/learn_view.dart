@@ -1,14 +1,14 @@
+import 'dart:async';
+
 import 'package:dashlingo/components/button.dart';
 import 'package:dashlingo/components/scaffold.dart';
 import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/paths.dart';
+import 'package:dashlingo/services/navigation_service.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
-import 'package:dashlingo/utils/logs.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
-import '../../components/stepper.dart';
 
 class LearnView extends StatefulWidget {
   const LearnView({super.key});
@@ -31,21 +31,28 @@ class _LearnViewState extends State<LearnView> {
           child: SizedBox(
             width: info.localWidgetSize.width * 0.8,
             height: MediaQuery.of(context).size.height * 2.2,
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: List.generate(
-                10,
-                (index) {
-                  final value = screenWidth / 8;
-                  final isNext3 = index % 2 == 0;
-                  return Positioned(
-                    left: isNext3 ? 0 : value,
-                    right: isNext3 ? value : 0,
-                    bottom: (index + 1) * 150,
-                    child: const LessonButton(),
-                  );
-                },
-              ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: List.generate(
+                      10,
+                      (index) {
+                        final value = screenWidth / 8;
+                        final isNext3 = index % 2 == 0;
+
+                        return Positioned(
+                          left: isNext3 ? 0 : value,
+                          right: isNext3 ? value : 0,
+                          bottom: (index + 1) * 180,
+                          child: const LessonButton(),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -63,8 +70,45 @@ class LessonButton extends StatefulWidget {
   State<LessonButton> createState() => _LessonButtonState();
 }
 
-class _LessonButtonState extends State<LessonButton> {
+class _LessonButtonState extends State<LessonButton> with TickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<double> offsetAnimation;
   bool toggle = false;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+    offsetAnimation = Tween<double>(
+      begin: -50,
+      end: -45,
+    ).animate(animationController);
+    animate();
+  }
+
+  animate() {
+    _timer?.cancel();
+    _timer = null;
+    _timer = Timer.periodic(const Duration(milliseconds: 900), (_) {
+      if (animationController.isCompleted) {
+        animationController.reverse();
+      } else {
+        animationController.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _timer = null;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +119,8 @@ class _LessonButtonState extends State<LessonButton> {
           width: square,
           height: square,
           child: Stack(
-            fit: StackFit.loose,
+            // fit: StackFit.loose,
+            clipBehavior: Clip.none,
             children: [
               Center(
                 child: CustomPaint(
@@ -84,6 +129,7 @@ class _LessonButtonState extends State<LessonButton> {
                     color: Theme.of(context).primaryColor,
                   ),
                   child: GestureDetector(
+                    onTap: () {},
                     onTapUp: (_) {
                       toggle = false;
                       setState(() {});
@@ -105,6 +151,35 @@ class _LessonButtonState extends State<LessonButton> {
                         ),
                       ),
                     ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: offsetAnimation,
+                builder: (context, child) {
+                  return Positioned(
+                    top: offsetAnimation.value,
+                    child: child!,
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpaces.elementSpacing,
+                    vertical: AppSpaces.elementSpacing * 0.5,
+                  ),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: AppSpaces.defaultBorderRadiusTextField,
+                    color: Theme.of(context).cardColor,
+                    border: Border.all(
+                      color: Theme.of(context).dividerColor,
+                    ),
+                  ),
+                  child: FairyTexts.subHeading(
+                    'START',
+                    context,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),

@@ -1,3 +1,3 @@
 ## dashlingo
 
-Personal blog application to showcase Flutter and my works.
+An open learning space for dart & flutter.

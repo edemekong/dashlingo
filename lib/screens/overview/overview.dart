@@ -19,7 +19,7 @@ class OverviewView extends StatelessWidget {
         children: [
           AppScaffold(
             drawer: const Drawer(
-              child: EdSizedbar(drawer: true),
+              child: DashSizedbar(drawer: true),
             ),
             body: ResponsiveBuilder(
               builder: (context, info) {
@@ -31,7 +31,7 @@ class OverviewView extends StatelessWidget {
                       child: Row(
                         children: [
                           if (!info.isMobile && !info.isTablet) ...[
-                            const EdSizedbar(drawer: false),
+                            const DashSizedbar(drawer: false),
                             Container(
                               width: 1.5,
                               height: MediaQuery.of(context).size.height,
@@ -66,7 +66,7 @@ class NavigationBody extends StatelessWidget {
     return Expanded(
       child: ClipRRect(
         child: Navigator(
-          initialRoute: dartLearnPath,
+          initialRoute: learnPath,
           observers: [RouteObservers()],
           key: navigationService.navigatorKey,
           onGenerateRoute: navigationService.onGeneratedRoute,

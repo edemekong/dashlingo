@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/bounce_animation.dart';
+import '../../../components/textfield.dart';
 import '../../../constants/paths.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
@@ -51,6 +52,7 @@ class DashAppbar extends StatelessWidget {
                   color: isLight ? Theme.of(context).primaryColor : null),
             ),
           ),
+          const SizedBox(width: AppSpaces.cardPadding),
           const Spacer(),
           MenuButtonVertical(
             menu: const Menu(

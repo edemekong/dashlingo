@@ -219,7 +219,7 @@ class _SnappbumTextfieldState extends State<EdTextfield> {
           ],
           const SizedBox(height: AppSpaces.elementSpacing * 0.5),
           SizedBox(
-            height: 38,
+            height: 55,
             child: TextFormField(
               autofillHints: widget.autofillHints,
               autofocus: widget.autofocus ?? false,

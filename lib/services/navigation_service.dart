@@ -2,6 +2,7 @@
 
 import 'package:dashlingo/screens/about/about.dart';
 import 'package:dashlingo/screens/learn/learn_view.dart';
+import 'package:dashlingo/screens/lessons/lesson/lesson_view.dart';
 import 'package:dashlingo/screens/tutorials/tutorial_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -54,8 +55,6 @@ class NavigationService {
       case tutorialPath:
         return navigateToPageRoute(settings, const TutorialsView(id: ''));
 
-      case flutterLearnPath:
-        return navigateToPageRoute(settings, const LearnViewWidget());
       case lessonPath:
         final id = routeData?["id"] ?? "";
         return navigateToPageRoute(settings, TutorialView(id: id));

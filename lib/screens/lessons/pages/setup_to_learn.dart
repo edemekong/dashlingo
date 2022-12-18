@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dashlingo/components/scaffold.dart';
 import 'package:dashlingo/components/texts.dart';
-import 'package:dashlingo/screens/learn/learn_state.dart';
+import 'package:dashlingo/screens/lessons/lesson/lesson_state.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

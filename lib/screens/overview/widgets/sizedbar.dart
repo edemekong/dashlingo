@@ -13,9 +13,9 @@ import '../../../services/navigation_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/spaces.dart';
 
-class EdSizedbar extends StatelessWidget {
+class DashSizedbar extends StatelessWidget {
   final bool drawer;
-  const EdSizedbar({Key? key, required, required this.drawer}) : super(key: key);
+  const DashSizedbar({Key? key, required, required this.drawer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +35,7 @@ class EdSizedbar extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: const [
-                      Expanded(
-                        child: EdTextfield(
-                          hintText: 'Search anything',
-                          showClear: true,
-                          maxLines: 1,
-                          padding: EdgeInsets.zero,
-                          prefix: Icon(Icons.search),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpaces.elementSpacing),
+                  const SizedBox(height: AppSpaces.cardPadding),
                   ...List.generate(
                     tabs.length,
                     (index) {

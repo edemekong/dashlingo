@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_renaming_method_parameters
 
-import 'package:flutterfairy/screens/overview/overview.dart';
-import 'package:flutterfairy/services/navigation_service.dart';
+import 'package:dashlingo/screens/overview/overview.dart';
+import 'package:dashlingo/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class UrlHandlerRouterDelegate extends RouterDelegate<String> {

@@ -1,20 +1,21 @@
-import 'package:flutterfairy/services/get_it.dart';
-import 'package:flutterfairy/theme/colors.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
+import 'package:dashlingo/services/get_it.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/bounce_animation.dart';
-import '../../../components/display_image.dart';
-import '../../../constants/icon_path.dart';
 import '../../../constants/paths.dart';
+import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
 import '../../../theme/spaces.dart';
 import '../../../theme/theme.dart';
 
-class EdAppbar extends StatelessWidget {
-  final bool showMenu;
-  const EdAppbar({
+class DashAppbar extends StatelessWidget {
+  final bool isDesktop;
+  const DashAppbar({
     Key? key,
-    required this.showMenu,
+    required this.isDesktop,
   }) : super(key: key);
 
   @override
@@ -25,13 +26,13 @@ class EdAppbar extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: kToolbarHeight * 1.2,
-      color: showMenu ? (isLight ? AppColors.lightGrey : AppColors.darkBlue) : Theme.of(context).backgroundColor,
+      color: Theme.of(context).backgroundColor,
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (showMenu) ...[
+          if (!isDesktop) ...[
             IconButton(
               splashRadius: 20,
               onPressed: () {
@@ -39,21 +40,28 @@ class EdAppbar extends StatelessWidget {
               },
               icon: const Icon(Icons.menu),
             ),
-            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-            BounceAnimation(
-              onTap: () {
-                pushNamedAndRemoveUntil(homePath);
-              },
-              child: Center(
-                child: DisplayImage(
-                  url: IconPaths.logo,
-                  backgroundColor: isLight ? Theme.of(context).primaryColor : AppColors.white,
-                  width: 180,
-                ),
-              ),
-            ),
           ],
+          const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+          BounceAnimation(
+            onTap: () {
+              pushNamedAndRemoveUntil(learnPath);
+            },
+            child: Center(
+              child: FairyTexts.headingMedium('dashlingo', context,
+                  color: isLight ? Theme.of(context).primaryColor : null),
+            ),
+          ),
           const Spacer(),
+          MenuButtonVertical(
+            menu: const Menu(
+              title: 'PROFILE',
+              icon: Icon(CupertinoIcons.person_circle),
+              link: profilePath,
+            ),
+            disableHighlight: true,
+            onChanged: () {},
+          ),
+          const SizedBox(width: AppSpaces.elementSpacing),
           IconButton(
             splashRadius: 20,
             onPressed: () {

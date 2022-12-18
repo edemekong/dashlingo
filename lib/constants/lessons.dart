@@ -1,5 +1,5 @@
-import 'package:flutterfairy/models/lesson/lesson.dart';
-import 'package:flutterfairy/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/lesson/lesson.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
 
 Lesson lesson = Lesson(
   id: '-123-',

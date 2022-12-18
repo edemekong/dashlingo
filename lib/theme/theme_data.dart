@@ -1,5 +1,5 @@
-import 'package:flutterfairy/theme/spaces.dart';
-import 'package:flutterfairy/theme/text_themes.dart';
+import 'package:dashlingo/theme/spaces.dart';
+import 'package:dashlingo/theme/text_themes.dart';
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
@@ -69,12 +69,27 @@ class AppThemeData {
       filled: true,
       hintStyle: AppTextThemes.mobileTextThemeLight.bodyText1,
       iconColor: AppColors.black,
-      border: AppSpaces.outLineBorder,
+      border: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerLight,
+        ),
+      ),
       focusColor: AppColors.white,
-      enabledBorder: AppSpaces.outLineBorder,
+      enabledBorder: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerLight,
+        ),
+      ),
       errorBorder: AppSpaces.errorLineBorder,
       focusedErrorBorder: AppSpaces.errorLineBorder,
-      focusedBorder: AppSpaces.outLineBorder,
+      focusedBorder: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerLight,
+        ),
+      ),
       disabledBorder: AppSpaces.disabledOutLineBorder,
       isDense: true,
       contentPadding: const EdgeInsets.all(16),
@@ -158,11 +173,26 @@ class AppThemeData {
       hintStyle: AppTextThemes.mobileTextThemeDark.bodyText1,
       iconColor: AppColors.white,
       helperStyle: AppTextThemes.mobileTextThemeDark.bodyText2,
-      border: AppSpaces.outLineBorder,
+      border: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerDark,
+        ),
+      ),
       focusColor: AppColors.white,
-      enabledBorder: AppSpaces.outLineBorder,
+      enabledBorder: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerDark,
+        ),
+      ),
       errorBorder: AppSpaces.errorLineBorder,
-      focusedBorder: AppSpaces.outLineBorder,
+      focusedBorder: AppSpaces.outLineBorder.copyWith(
+        borderSide: const BorderSide(
+          width: 1.5,
+          color: AppColors.dividerDark,
+        ),
+      ),
       disabledBorder: AppSpaces.disabledOutLineBorder,
       isDense: true,
       contentPadding: const EdgeInsets.all(16),

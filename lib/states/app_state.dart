@@ -1,6 +1,4 @@
-import 'package:flutterfairy/utils/logs.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/paths.dart';
 import '../services/get_it.dart';
 import '../services/navigation_service.dart';
@@ -9,7 +7,7 @@ import '../components/base_state.dart';
 
 class AppState extends BaseState with WidgetsBindingObserver {
   final navigationService = locate<NavigationService>();
-  String screenTitle = homePath;
+  String screenTitle = learnPath;
 
   AppState() {
     WidgetsBinding.instance.addObserver(this);
@@ -24,8 +22,6 @@ class AppState extends BaseState with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    edPrint(state);
-
     switch (state) {
       case AppLifecycleState.resumed:
         AppTheme.instance.setThemeFromLocalStorage();

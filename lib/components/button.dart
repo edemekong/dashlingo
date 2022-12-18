@@ -1,7 +1,7 @@
-import 'package:flutterfairy/components/progress_indicator.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
-import 'package:flutterfairy/theme/theme.dart';
+import 'package:dashlingo/components/progress_indicator.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
+import 'package:dashlingo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'bounce_animation.dart';
 
@@ -9,7 +9,7 @@ enum ButtonType { primary, secondary, outline }
 
 enum ButtonState { initial, loading, disabled }
 
-class EdButton extends StatelessWidget {
+class DashButton extends StatelessWidget {
   final ButtonType type;
   final ButtonState state;
   final String? title;
@@ -19,7 +19,7 @@ class EdButton extends StatelessWidget {
   final Color? textColor;
   final Widget? icon;
 
-  const EdButton({
+  const DashButton({
     Key? key,
     this.type = ButtonType.primary,
     this.state = ButtonState.initial,

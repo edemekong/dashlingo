@@ -1,5 +1,5 @@
-import 'package:flutterfairy/services/navigation_service.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/services/navigation_service.dart';
+import 'package:dashlingo/utils/logs.dart';
 import 'package:get_it/get_it.dart';
 
 import 'ui_service.dart';

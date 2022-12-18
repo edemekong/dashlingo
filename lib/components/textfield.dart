@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
+import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -165,10 +165,8 @@ class _SnappbumTextfieldState extends State<EdTextfield> {
               if (verify) {
                 textFieldState = TextfieldState.filled;
                 validate = widget.validator;
-                edPrint("valid");
               } else {
                 textFieldState = TextfieldState.error;
-                edPrint("invalid");
                 if (widget.userErrorText == true) {
                   validate = ((p0, {callback}) => widget.errorText);
                 } else {
@@ -197,7 +195,6 @@ class _SnappbumTextfieldState extends State<EdTextfield> {
           setState(() {
             if (!isFocused) {
               if (_errorText.isNotEmpty) {
-                edPrint(_errorText);
                 textFieldState = TextfieldState.error;
               }
             }
@@ -218,7 +215,7 @@ class _SnappbumTextfieldState extends State<EdTextfield> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.labelText != null) ...[
-            EdTexts.callout(widget.labelText!, context),
+            FairyTexts.callout(widget.labelText!, context),
           ],
           const SizedBox(height: AppSpaces.elementSpacing * 0.5),
           SizedBox(

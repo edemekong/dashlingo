@@ -1,4 +1,4 @@
-import 'package:flutterfairy/theme/colors.dart';
+import 'package:dashlingo/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class EdCircularProgressIndicator extends StatelessWidget {

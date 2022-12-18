@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/components/base_state.dart';
-import 'package:flutterfairy/constants/duration.dart';
-import 'package:flutterfairy/constants/mock.dart';
-import 'package:flutterfairy/models/quiz.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/components/base_state.dart';
+import 'package:dashlingo/constants/duration.dart';
+import 'package:dashlingo/constants/mock.dart';
+import 'package:dashlingo/models/quiz.dart';
+import 'package:dashlingo/utils/logs.dart';
 
 class LearnState extends BaseState {
   late PageController pageController;
@@ -31,7 +31,6 @@ class LearnState extends BaseState {
   }
 
   void onNext(Answer answer) {
-    edPrint(answer.id);
     animateToPage();
   }
 }

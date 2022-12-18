@@ -1,12 +1,12 @@
-import 'package:flutterfairy/components/button.dart';
-import 'package:flutterfairy/components/display_image.dart';
-import 'package:flutterfairy/components/scaffold.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/screens/overview/widgets/appbar.dart';
-import 'package:flutterfairy/screens/overview/widgets/post_card.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/components/button.dart';
+import 'package:dashlingo/components/display_image.dart';
+import 'package:dashlingo/components/scaffold.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/screens/overview/widgets/appbar.dart';
+import 'package:dashlingo/screens/overview/widgets/tutorial_card.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
+import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -24,9 +24,6 @@ class HomeView extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              EdAppbar(
-                showMenu: (info.isMobile || info.isTablet),
-              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -38,13 +35,13 @@ class HomeView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: AppSpaces.cardPadding),
-                            EdTexts.headingBig(
+                            FairyTexts.headingBig(
                               "Build Flutter apps with ease.",
                               context,
                               fontWeight: FontWeight.w600,
                             ),
                             const SizedBox(height: AppSpaces.elementSpacing),
-                            EdTexts.subHeading(
+                            FairyTexts.subHeading(
                               "Inspired to give beginners & intermediates where they can always fallback to.",
                               context,
                               fontWeight: FontWeight.w400,
@@ -69,7 +66,6 @@ class HomeView extends StatelessWidget {
                       const SizedBox(height: AppSpaces.cardPadding),
                       Divider(thickness: 1.5, color: Theme.of(context).dividerColor, height: 0),
                       Container(
-                        color: Theme.of(context).cardColor,
                         padding: EdgeInsets.symmetric(
                           vertical: AppSpaces.elementSpacing,
                           horizontal: padding,
@@ -79,10 +75,10 @@ class HomeView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Expanded(
-                              child: EdTexts.subHeading("Test your Dart & Flutter skills", context),
+                              child: FairyTexts.subHeading("Test your Dart & Flutter skills", context),
                             ),
                             const SizedBox(width: AppSpaces.cardPadding),
-                            EdButton(
+                            DashButton(
                               title: 'Start Quiz',
                               onPressed: () {},
                             ),
@@ -96,7 +92,7 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            EdTexts.headingMedium(
+                            FairyTexts.headingMedium(
                               "Featured",
                               context,
                               fontWeight: FontWeight.w600,
@@ -122,7 +118,7 @@ class HomeView extends StatelessWidget {
                                   return SizedBox(
                                     width: 300,
                                     child: FittedBox(
-                                      child: PostCard(
+                                      child: TutorialCard(
                                         index: index,
                                       ),
                                     ),

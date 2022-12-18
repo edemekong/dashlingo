@@ -1,11 +1,11 @@
 {
     "name": "Flutter Fairy",
-    "short_name": "FlutterFairy",
+    "short_name": "Dashlingo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "FlutterFairy's Learn | Build | Deploy",
+    "description": "Dashlingo's Learn | Build | Deploy",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

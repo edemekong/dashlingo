@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/models/lesson/paragraph.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/theme/spaces.dart';
 
 class SeperatorCard extends StatelessWidget {
   final Paragraph paragraph;

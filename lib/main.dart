@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutterfairy/app.dart';
+import 'package:dashlingo/app.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/utils/logs.dart';
 
 void main() {
   runZonedGuarded(() async {

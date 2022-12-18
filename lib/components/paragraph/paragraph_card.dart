@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/components/paragraph/widgets/image_card.dart';
-import 'package:flutterfairy/models/lesson/lesson.dart';
-import 'package:flutterfairy/models/lesson/paragraph.dart';
-import 'package:flutterfairy/components/paragraph/widgets/code_card.dart';
-import 'package:flutterfairy/components/paragraph/widgets/seperator_card.dart';
-import 'package:flutterfairy/components/paragraph/widgets/text_card.dart';
+import 'package:dashlingo/components/paragraph/widgets/image_card.dart';
+import 'package:dashlingo/models/lesson/lesson.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/components/paragraph/widgets/code_card.dart';
+import 'package:dashlingo/components/paragraph/widgets/seperator_card.dart';
+import 'package:dashlingo/components/paragraph/widgets/text_card.dart';
 
 class ParagraphCard extends StatefulWidget {
   final Lesson lesson;

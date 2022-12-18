@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/components/stepper.dart';
-import 'package:flutterfairy/models/quiz.dart';
-import 'package:flutterfairy/screens/learn/quiz_page_state.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/quiz.dart';
+import 'package:dashlingo/screens/learn/quiz_page_state.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import 'package:flutterfairy/components/button.dart';
-import 'package:flutterfairy/components/display_image.dart';
-import 'package:flutterfairy/components/scaffold.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/constants/images_path.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/button.dart';
+import 'package:dashlingo/components/display_image.dart';
+import 'package:dashlingo/components/scaffold.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/images_path.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
+
+import '../../../components/paragraph/widgets/text_card.dart';
 
 class QuizPage extends StatelessWidget {
   const QuizPage({super.key});
@@ -38,7 +39,7 @@ class QuizPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: AppSpaces.cardPadding),
-                        EdTexts.headingSmall(quiz.title, context),
+                        FairyTexts.headingSmall(quiz.title, context),
                         const SizedBox(height: AppSpaces.cardPadding),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +67,7 @@ class QuizPage extends StatelessWidget {
                                   color: Theme.of(context).dividerColor,
                                 ),
                               ),
-                              child: EdTexts.subHeadingSmall(
+                              child: FairyTexts.subHeadingSmall(
                                 quiz.instruction,
                                 context,
                               ),
@@ -89,7 +90,7 @@ class QuizPage extends StatelessWidget {
                               color: Theme.of(context).dividerColor,
                             ),
                           ),
-                          child: const FillAnswerPlayingBoard(),
+                          child: const QuestionBoard(),
                         ),
                         const Divider(height: AppSpaces.cardPadding),
                         ...List.generate(
@@ -132,8 +133,8 @@ class QuizPage extends StatelessWidget {
   }
 }
 
-class FillAnswerPlayingBoard extends StatelessWidget {
-  const FillAnswerPlayingBoard({
+class QuestionBoard extends StatelessWidget {
+  const QuestionBoard({
     Key? key,
   }) : super(key: key);
 
@@ -141,56 +142,18 @@ class FillAnswerPlayingBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<QuizPageState>();
 
-    final elements = state.quiz.question.content;
-    // return Container(child: EdTexts.subHeading(elements, context));
-
-    TextSpan textSpan;
-
-    Widget result = LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        assert(constraints.hasBoundedWidth);
-
-        textSpan = TextSpan(
-          children: List.generate(elements.length, (index) {
-            final element = elements[index];
-            edPrint(element + index.toString());
-
-            if (element.startsWith("/blank")) {
-              // final check = element.url.toLowerCase().startsWith("https://medalla.page.link/");
-              return TextSpan(
-                text: "Heyyy",
-                style: Theme.of(context).textTheme.bodyText1,
-              );
-            } else {
-              return TextSpan(
-                text: element,
-                style: Theme.of(context).textTheme.subtitle1,
-              );
-            }
-          }),
-        );
-
-        final text = TextPainter(
-          text: textSpan,
-          textDirection: TextDirection.ltr,
-        );
-        text.layout(maxWidth: constraints.maxWidth);
-
-        if (text.didExceedMaxLines) {
-          return Column(
-            children: [
-              RichText(softWrap: true, text: textSpan),
-            ],
-          );
-        } else {
-          return RichText(
-            softWrap: true,
-            text: textSpan,
-          );
-        }
-      },
+    final element = state.quiz.question.content;
+    final paragraph = Paragraph(
+      id: 'question',
+      index: 0,
+      content: element,
+      type: 'text',
     );
-    return result;
+
+    return TextCard(
+      paragraph: paragraph,
+      onTapText: (TextType type, String context, {Offset? offset}) {},
+    );
   }
 }
 
@@ -246,7 +209,7 @@ class QuizBottomNav extends StatelessWidget {
                     ),
                   ],
                   const Spacer(),
-                  EdButton(
+                  DashButton(
                     title: isNext ? "Continue" : 'Check',
                     onPressed: state.selectedAnswer == null
                         ? null
@@ -295,7 +258,7 @@ class QuizBottomNav extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            EdTexts.callout(
+            FairyTexts.callout(
               correct ? "Nice!" : "Correct solution:",
               context,
               color: correct ? AppColors.green : AppColors.red,
@@ -303,7 +266,7 @@ class QuizBottomNav extends StatelessWidget {
             ),
             if (wrong) ...[
               const SizedBox(height: AppSpaces.elementSpacing * 0.25),
-              EdTexts.bodyText(
+              FairyTexts.bodyText(
                 state.correctAnswer?.content ?? "",
                 context,
                 color: AppColors.red,
@@ -387,7 +350,7 @@ class EdAnswerCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Center(
-                child: EdTexts.subHeading(
+                child: FairyTexts.subHeading(
                   '${index + 1}',
                   context,
                   color: Theme.of(context).backgroundColor,
@@ -396,7 +359,7 @@ class EdAnswerCard extends StatelessWidget {
             ),
             const SizedBox(width: AppSpaces.elementSpacing),
             Expanded(
-              child: EdTexts.subHeading(
+              child: FairyTexts.subHeading(
                 answer.content,
                 context,
                 fontWeight: FontWeight.w400,

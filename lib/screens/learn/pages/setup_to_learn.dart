@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/components/scaffold.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/screens/learn/learn_state.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/scaffold.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/screens/learn/learn_state.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SetUpToLearn extends StatelessWidget {
@@ -23,7 +23,7 @@ class SetUpToLearn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: AppSpaces.cardPadding),
-                EdTexts.headingSmall("Choose your path", context),
+                FairyTexts.headingSmall("Choose your path", context),
                 const SizedBox(height: AppSpaces.cardPadding * 2),
                 ...List.generate(
                   2,

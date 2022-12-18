@@ -1,5 +1,5 @@
-name: flutterfairy
-description: Personal blog
+name: dashlingo
+description: Learn dart & flutter
 
 publish_to: "none"
 version: 1.0.0+1
@@ -81,15 +81,13 @@ flutter:
     - assets/icons/
 
   fonts:
-    - family: Poppins
+    - family: DINRoundPro
       fonts:
-        - asset: assets/fonts/Poppins-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/DINRoundPro-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/DINRoundPro-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/DINRoundPro-Bold.ttf
           weight: 700
     - family: Courier New
       fonts:

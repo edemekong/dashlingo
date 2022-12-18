@@ -1,14 +1,13 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, avoid_web_libraries_in_flutter
 
-import 'package:flutterfairy/screens/about/about.dart';
-import 'package:flutterfairy/screens/learn/learn_view.dart';
-import 'package:flutterfairy/screens/post/post_view.dart';
-import 'package:flutterfairy/screens/posts/posts_view.dart';
+import 'package:dashlingo/screens/about/about.dart';
+import 'package:dashlingo/screens/learn/learn_view.dart';
+import 'package:dashlingo/screens/tutorials/tutorial_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constants/paths.dart';
-import '../screens/home/home.dart';
 import '../screens/not_found.dart';
+import '../screens/tutorial/tutorial_view.dart';
 import 'get_it.dart';
 import '../models/route_data.dart';
 import 'dart:html' as html;
@@ -16,7 +15,7 @@ import 'dart:html' as html;
 class NavigationService {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  ValueNotifier<String> routeNotifier = ValueNotifier<String>(homePath);
+  ValueNotifier<String> routeNotifier = ValueNotifier<String>(learnPath);
   ValueNotifier<bool> showNavigationBar = ValueNotifier<bool>(false);
 
   List<String> pathToCloseNavigationBar = [];
@@ -38,32 +37,28 @@ class NavigationService {
   }
 
   String determineHomePath() {
-    return homePath;
+    return learnPath;
   }
 
   Route? onGeneratedRoute(RouteSettings settings) {
-    html.window.history.pushState(null, 'flutterfairy', "#${settings.name}");
+    html.window.history.pushState(null, 'dashlingo', "#${settings.name}");
     final routeData = settings.name?.getRouteData;
 
     switch (routeData?.route) {
+      case learnPath:
+        return navigateToPageRoute(settings, const LearnViewWidget());
+
       case profilePath:
         return navigateToPageRoute(settings, const ProfileViewWidget());
-      case homePath:
-        return navigateToPageRoute(settings, const HomeView());
-      case mobileDevPostPath:
-        return navigateToPageRoute(settings, const PostsViewWidget(id: mobileDevPostPath));
-      case lifestylePostPath:
-        return navigateToPageRoute(settings, const PostsViewWidget(id: lifestylePostPath));
 
-      case dartLearnPath:
-        return navigateToPageRoute(settings, const LearnViewWidget());
+      case tutorialPath:
+        return navigateToPageRoute(settings, const TutorialsView(id: ''));
 
       case flutterLearnPath:
         return navigateToPageRoute(settings, const LearnViewWidget());
-
-      case postPath:
+      case lessonPath:
         final id = routeData?["id"] ?? "";
-        return navigateToPageRoute(settings, PostView(id: id));
+        return navigateToPageRoute(settings, TutorialView(id: id));
     }
 
     return navigateToPageRoute(settings, const ErrorScreen(type: ErrorType.notFound));
@@ -96,7 +91,7 @@ class RouteObservers extends RouteObserver<PageRoute<dynamic>> {
     if (previousRoute is PageRoute && route is PageRoute) {
       final settings = previousRoute.settings;
       if (settings.name != '/') {
-        navigationService.routeNotifier.value = settings.name ?? homePath;
+        // navigationService.routeNotifier.value = settings.name ?? homePath;
 
         final containPreviousRoutePath =
             navigationService.pathToCloseNavigationBar.contains(previousRoute.settings.name);
@@ -119,7 +114,7 @@ class RouteObservers extends RouteObserver<PageRoute<dynamic>> {
       final settings = route.settings;
 
       if (settings.name != '/') {
-        navigationService.routeNotifier.value = settings.name ?? homePath;
+        // navigationService.routeNotifier.value = settings.name ?? homePath;
 
         final paths = navigationService.pathToCloseNavigationBar;
         final containRoutePath = paths.contains(route.settings.name);
@@ -140,5 +135,7 @@ Future<void> pushNamedAndRemoveUntil<T>(String path, {Map<String, dynamic>? quer
     path = Uri(path: path, queryParameters: queryParameter).toString();
   }
 
-  locate<NavigationService>().pushNamedAndRemoveUntil(path, data: queryParameter);
+  final navigationService = locate<NavigationService>();
+  navigationService.routeNotifier.value = path;
+  navigationService.pushNamedAndRemoveUntil(path, data: queryParameter);
 }

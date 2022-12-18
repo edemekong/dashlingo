@@ -1,4 +1,4 @@
-import 'package:flutterfairy/models/quiz.dart';
+import 'package:dashlingo/models/quiz.dart';
 
 List<Quiz> quizData = const [
   Quiz(
@@ -17,7 +17,7 @@ List<Quiz> quizData = const [
       id: "",
       quizId: '-qwerty-123123',
       questionType: QuestionType.fillInTheBlank,
-      content: 'void main() => print("/blank");',
+      content: 'void main() => print(" <blank= ");',
       linkToLesson: "",
     ),
     answers: [

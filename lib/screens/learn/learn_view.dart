@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/components/scaffold.dart';
-import 'package:flutterfairy/components/stepper.dart';
-import 'package:flutterfairy/screens/learn/learn_state.dart';
-import 'package:flutterfairy/screens/learn/pages/quiz_page.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/scaffold.dart';
+import 'package:dashlingo/components/stepper.dart';
+import 'package:dashlingo/screens/learn/learn_state.dart';
+import 'package:dashlingo/screens/learn/pages/quiz_page.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -19,10 +19,21 @@ class LearnView extends StatelessWidget {
         return Column(
           children: [
             const SizedBox(height: AppSpaces.cardPadding),
-            StepperProgressBar(
-              count: (((state.currentPageIndex + 1) / 3) * 100).toInt(),
+            SizedBox(
               width: info.localWidgetSize.width * 0.8,
-              height: 15,
+              child: Row(
+                children: [
+                  const CloseButton(),
+                  const SizedBox(width: AppSpaces.elementSpacing),
+                  Expanded(
+                    child: StepperProgressBar(
+                      count: (((state.currentPageIndex + 1) / 3) * 100).toInt(),
+                      width: info.localWidgetSize.width * 0.8,
+                      height: 15,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Expanded(
               child: PageView(

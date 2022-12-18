@@ -1,4 +1,4 @@
-package com.example.flutterfairy
+package com.flutterfairy.dashlingo
 
 import io.flutter.embedding.android.FlutterActivity
 

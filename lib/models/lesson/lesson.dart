@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:flutterfairy/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
 
 class Lesson {
   final String id;

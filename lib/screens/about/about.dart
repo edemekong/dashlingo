@@ -1,10 +1,10 @@
-import 'package:flutterfairy/components/avatar.dart';
-import 'package:flutterfairy/components/bounce_animation.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/constants/font_family.dart';
-import 'package:flutterfairy/constants/images_path.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/avatar.dart';
+import 'package:dashlingo/components/bounce_animation.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/font_family.dart';
+import 'package:dashlingo/constants/images_path.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../components/scaffold.dart';
@@ -20,31 +20,31 @@ List<Menu> links = [
       color: AppColors.white,
     ),
     menuType: AppMenuType.link,
-    link: 'github.com/flutterfairy',
+    link: 'github.com/dashlingo',
   ),
   Menu(
     title: 'Facebook',
     icon: Image.asset(IconPaths.facebook),
     menuType: AppMenuType.link,
-    link: 'facebook.com/flutterfairy',
+    link: 'facebook.com/dashlingo',
   ),
   Menu(
     title: 'Instagram',
     icon: Image.asset(IconPaths.instagram),
     menuType: AppMenuType.link,
-    link: 'instagram.com/flutterfairy',
+    link: 'instagram.com/dashlingo',
   ),
   Menu(
     title: 'Linkedin',
     icon: Image.asset(IconPaths.linkedIn),
     menuType: AppMenuType.link,
-    link: 'linkedin.com/in/flutterfairy/',
+    link: 'linkedin.com/in/dashlingo/',
   ),
   Menu(
     title: 'Youtube',
     icon: Image.asset(IconPaths.youtube),
     menuType: AppMenuType.link,
-    link: 'youtube.com/@flutterfairy',
+    link: 'youtube.com/@dashlingo',
   ),
 ];
 
@@ -68,14 +68,14 @@ class ProfileViewWidget extends StatelessWidget {
                 local: true,
               ),
               const SizedBox(height: AppSpaces.cardPadding),
-              EdTexts.headingMedium(
+              FairyTexts.headingMedium(
                 "Paul Jeremiah",
                 context,
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w800,
               ),
               const SizedBox(height: AppSpaces.elementSpacing),
-              EdTexts.subHeading(
+              FairyTexts.subHeading(
                 'CODE | CODE REVIEW | CLEAN CODE | LIFESTYLE',
                 context,
                 fontFamily: COURIER_NEW,
@@ -134,7 +134,7 @@ class SocialLinks extends StatelessWidget {
                   color: Theme.of(context).iconTheme.color,
                 ),
                 const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-                EdTexts.bodyText(socialLinks[index].title, context),
+                FairyTexts.bodyText(socialLinks[index].title, context),
                 if (index == socialLinks.length - 1) ...[
                   const SizedBox(width: AppSpaces.elementSpacing),
                   VerticalDivider(color: Theme.of(context).iconTheme.color, width: 0),

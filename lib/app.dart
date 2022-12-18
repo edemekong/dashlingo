@@ -1,8 +1,8 @@
-import 'package:flutterfairy/route_delegates.dart';
-import 'package:flutterfairy/services/get_it.dart';
-import 'package:flutterfairy/services/storage_service.dart';
-import 'package:flutterfairy/states/app_state.dart';
-import 'package:flutterfairy/theme/theme.dart';
+import 'package:dashlingo/route_delegates.dart';
+import 'package:dashlingo/services/get_it.dart';
+import 'package:dashlingo/services/storage_service.dart';
+import 'package:dashlingo/states/app_state.dart';
+import 'package:dashlingo/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +34,7 @@ class EdpiiiApp extends StatelessWidget {
 
         return MaterialApp.router(
           theme: theme,
-          title: 'FlutterFairy ∙ ${getTitle(state.screenTitle)}',
+          title: 'Dashlingo ∙ ${getTitle(state.screenTitle)}',
           builder: (context, widget) => Overlay(
             initialEntries: [
               OverlayEntry(
@@ -54,17 +54,13 @@ class EdpiiiApp extends StatelessWidget {
 
   String getTitle(String? path) {
     if (path == null) {
-      return 'Edpiii';
+      return 'Dashlingo';
     }
 
     if (path.startsWith(profilePath)) {
       path = "Profile";
-    } else if (path.startsWith(lastPostPath)) {
-      path = "Latest Posts";
-    } else if (path.startsWith(homePath)) {
-      path = "Home";
-    } else if (path.startsWith(postPath)) {
-      path = "Post";
+    } else if (path.startsWith(tutorialPath)) {
+      path = "Tutorials";
     } else if (path.startsWith(learnPath)) {
       path = "Learn";
     } else if (path.startsWith(leaderboard)) {

@@ -1,4 +1,4 @@
-import 'package:flutterfairy/constants/paths.dart';
+import 'package:dashlingo/constants/paths.dart';
 import 'package:flutter/material.dart';
 
 enum AppMenuType { path, link }
@@ -17,7 +17,7 @@ class Menu {
     required this.title,
     this.menuType = AppMenuType.path,
     this.icon = const SizedBox(),
-    this.link = homePath,
+    this.link = learnPath,
     this.subRoutes = const [],
   });
 }

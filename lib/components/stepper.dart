@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
 
 class StepperProgressBar extends StatelessWidget {
   final int count;

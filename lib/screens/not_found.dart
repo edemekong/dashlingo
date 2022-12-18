@@ -1,5 +1,5 @@
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 import '../components/scaffold.dart';
 
@@ -22,8 +22,8 @@ class ErrorScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            EdTexts.headingBig("404", context),
-            EdTexts.headingMedium(message ?? "Page Not Found", context),
+            FairyTexts.headingBig("404", context),
+            FairyTexts.headingMedium(message ?? "Page Not Found", context),
             const SizedBox(height: AppSpaces.cardPadding * 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

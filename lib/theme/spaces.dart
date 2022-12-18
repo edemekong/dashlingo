@@ -1,4 +1,4 @@
-import 'package:flutterfairy/theme/colors.dart';
+import 'package:dashlingo/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppSpaces {
@@ -30,15 +30,15 @@ class AppSpaces {
 
   static const OutlineInputBorder outLineBorder = OutlineInputBorder(
     borderRadius: defaultBorderRadiusTextField,
-    borderSide: BorderSide(color: AppColors.dividerDark, width: cardOutlineWidth),
+    borderSide: BorderSide(color: AppColors.dividerLight, width: 1.5),
   );
 
   static const OutlineInputBorder disabledOutLineBorder = OutlineInputBorder(
     borderRadius: defaultBorderRadiusTextField,
-    borderSide: BorderSide(color: AppColors.white, width: cardOutlineWidth),
+    borderSide: BorderSide(color: AppColors.white, width: 1.5),
   );
   static const OutlineInputBorder errorLineBorder = OutlineInputBorder(
     borderRadius: defaultBorderRadiusTextField,
-    borderSide: BorderSide(color: AppColors.red, width: cardOutlineWidth + 0.5),
+    borderSide: BorderSide(color: AppColors.red, width: 1.5),
   );
 }

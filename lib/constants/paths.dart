@@ -1,8 +1,5 @@
-const String homePath = "/home";
-const String postPath = "/post";
-const String lastPostPath = "/lastest-posts";
-const String mobileDevPostPath = "$lastPostPath/mobile-development";
-const String lifestylePostPath = "$lastPostPath/lifestyle";
+const String tutorialPath = "/tutorials";
+const String lessonPath = "$tutorialPath/lesson";
 const String learnPath = "/learn";
 const String leaderboard = "/leaderboard";
 const String dartLearnPath = "$learnPath/dart";

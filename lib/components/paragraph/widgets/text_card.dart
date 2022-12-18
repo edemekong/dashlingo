@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfairy/theme/colors.dart';
+import 'package:dashlingo/theme/colors.dart';
 import 'package:linkify/linkify.dart';
 
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/models/lesson/paragraph.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/theme/spaces.dart';
 
+import '../../dash_text/formatted_texts.dart';
 import '../../widget_offset.dart';
 
 enum TextType { url, hyperLink, text }
@@ -37,7 +38,8 @@ class _TextCardState extends State<TextCard> {
 
   @override
   Widget build(BuildContext context) {
-    final elements = linkify(widget.paragraph.content);
+    final linkifiers = [...defaultLinkifiers, const CustomLinkifier()];
+    final elements = linkify(widget.paragraph.content, linkifiers: linkifiers);
     TextSpan textSpan = TextSpan(
       children: List.generate(elements.length, (index) {
         final element = elements[index];
@@ -55,6 +57,17 @@ class _TextCardState extends State<TextCard> {
                   fontWeight: FontWeight.w400,
                   height: 1.35,
                   color: Theme.of(context).primaryColor,
+                ),
+          );
+        }
+
+        if (element is BlankElement) {
+          return TextSpan(
+            text: element.url,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  height: 1.35,
+                  color: AppColors.red,
                 ),
           );
         }
@@ -78,7 +91,7 @@ class _TextCardState extends State<TextCard> {
                 if (offset == null) return;
                 widget.onTapText(TextType.text, widget.paragraph.title!, offset: offset!);
               },
-              child: EdTexts.headingSmall(
+              child: FairyTexts.headingSmall(
                 widget.paragraph.title!,
                 context,
                 fontWeight: FontWeight.w600,

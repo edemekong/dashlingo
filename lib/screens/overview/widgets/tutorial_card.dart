@@ -1,18 +1,15 @@
-import 'package:flutterfairy/components/avatar.dart';
-import 'package:flutterfairy/components/bounce_animation.dart';
-import 'package:flutterfairy/components/button.dart';
-import 'package:flutterfairy/components/display_image.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/constants/images_path.dart';
-import 'package:flutterfairy/constants/paths.dart';
-import 'package:flutterfairy/services/navigation_service.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/bounce_animation.dart';
+import 'package:dashlingo/components/display_image.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/paths.dart';
+import 'package:dashlingo/services/navigation_service.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 
-class PostCard extends StatelessWidget {
+class TutorialCard extends StatelessWidget {
   final int index;
-  const PostCard({
+  const TutorialCard({
     Key? key,
     required this.index,
   }) : super(key: key);
@@ -26,7 +23,7 @@ class PostCard extends StatelessWidget {
       child: BounceAnimation(
         reverse: true,
         onTap: () {
-          pushNamedAndRemoveUntil(postPath, queryParameter: {"id": "0skjdi123-234"});
+          pushNamedAndRemoveUntil(lessonPath, queryParameter: {"id": "-123-"});
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -68,14 +65,14 @@ class PostCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EdTexts.callout(
+                  FairyTexts.callout(
                     "Clean custom solution to theming your Flutter app.",
                     context,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
                   const SizedBox(height: AppSpaces.elementSpacing * 0.5),
-                  EdTexts.bodyText(
+                  FairyTexts.bodyText(
                     index == 1
                         ? "Theming your flutter app asdasdasdasdasdasd"
                         : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
@@ -101,7 +98,7 @@ class PostCard extends StatelessWidget {
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                               const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                              EdTexts.footnote(
+                              FairyTexts.footnote(
                                 '12min',
                                 context,
                                 color: Theme.of(context).unselectedWidgetColor,
@@ -117,7 +114,7 @@ class PostCard extends StatelessWidget {
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                               const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                              EdTexts.footnote(
+                              FairyTexts.footnote(
                                 '12th Dec. 2022',
                                 context,
                                 fontWeight: FontWeight.w800,

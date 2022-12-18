@@ -1,6 +1,6 @@
-import 'package:flutterfairy/components/base_state.dart';
-import 'package:flutterfairy/models/quiz.dart';
-import 'package:flutterfairy/utils/logs.dart';
+import 'package:dashlingo/components/base_state.dart';
+import 'package:dashlingo/models/quiz.dart';
+import 'package:dashlingo/utils/logs.dart';
 
 class QuizPageState extends BaseState {
   final Quiz quiz;

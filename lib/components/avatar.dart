@@ -1,4 +1,4 @@
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/images_path.dart';

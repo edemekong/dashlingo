@@ -6,5 +6,5 @@ class IconPaths {
   static const String twitter = 'assets/icons/twitter.png';
   static const String youtube = 'assets/icons/youtube.png';
   static const String linkedIn = 'assets/icons/linkedin.png';
-  static const String logo = 'assets/icons/flutterfairy.png';
+  static const String logo = 'assets/icons/dashlingo.png';
 }

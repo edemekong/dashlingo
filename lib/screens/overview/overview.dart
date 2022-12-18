@@ -1,4 +1,5 @@
-import 'package:flutterfairy/screens/overview/widgets/sizedbar.dart';
+import 'package:dashlingo/screens/overview/widgets/appbar.dart';
+import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -18,23 +19,29 @@ class OverviewView extends StatelessWidget {
         children: [
           AppScaffold(
             drawer: const Drawer(
-              child: EdSizedbar(
-                drawer: true,
-              ),
+              child: EdSizedbar(drawer: true),
             ),
             body: ResponsiveBuilder(
               builder: (context, info) {
-                return Row(
+                return Column(
                   children: [
-                    if (!info.isMobile && !info.isTablet) ...[
-                      const EdSizedbar(drawer: false),
-                      Container(
-                        width: 1.5,
-                        height: MediaQuery.of(context).size.height,
-                        color: Theme.of(context).dividerColor,
+                    DashAppbar(isDesktop: info.isDesktop),
+                    const Divider(thickness: 1.5, height: 0),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          if (!info.isMobile && !info.isTablet) ...[
+                            const EdSizedbar(drawer: false),
+                            Container(
+                              width: 1.5,
+                              height: MediaQuery.of(context).size.height,
+                              color: Theme.of(context).dividerColor,
+                            ),
+                          ],
+                          const NavigationBody(),
+                        ],
                       ),
-                    ],
-                    const NavigationBody(),
+                    ),
                   ],
                 );
               },
@@ -58,15 +65,11 @@ class NavigationBody extends StatelessWidget {
 
     return Expanded(
       child: ClipRRect(
-        child: Column(
-          children: [
-            Navigator(
-              initialRoute: homePath,
-              observers: [RouteObservers()],
-              key: navigationService.navigatorKey,
-              onGenerateRoute: navigationService.onGeneratedRoute,
-            ),
-          ],
+        child: Navigator(
+          initialRoute: dartLearnPath,
+          observers: [RouteObservers()],
+          key: navigationService.navigatorKey,
+          onGenerateRoute: navigationService.onGeneratedRoute,
         ),
       ),
     );

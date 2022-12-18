@@ -1,37 +1,37 @@
-import 'package:flutterfairy/components/avatar.dart';
-import 'package:flutterfairy/components/button.dart';
-import 'package:flutterfairy/components/display_image.dart';
-import 'package:flutterfairy/components/paragraph/paragraph_card.dart';
-import 'package:flutterfairy/components/scaffold.dart';
-import 'package:flutterfairy/components/texts.dart';
-import 'package:flutterfairy/constants/icon_path.dart';
-import 'package:flutterfairy/constants/images_path.dart';
-import 'package:flutterfairy/constants/lessons.dart';
-import 'package:flutterfairy/screens/overview/widgets/appbar.dart';
-import 'package:flutterfairy/screens/overview/widgets/post_card.dart';
-import 'package:flutterfairy/screens/post/post_state.dart';
-import 'package:flutterfairy/theme/colors.dart';
-import 'package:flutterfairy/theme/spaces.dart';
+import 'package:dashlingo/components/avatar.dart';
+import 'package:dashlingo/components/button.dart';
+import 'package:dashlingo/components/display_image.dart';
+import 'package:dashlingo/components/paragraph/paragraph_card.dart';
+import 'package:dashlingo/components/scaffold.dart';
+import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/icon_path.dart';
+import 'package:dashlingo/constants/images_path.dart';
+import 'package:dashlingo/constants/lessons.dart';
+import 'package:dashlingo/screens/overview/widgets/appbar.dart';
+import 'package:dashlingo/screens/overview/widgets/tutorial_card.dart';
+import 'package:dashlingo/screens/tutorial/tutorial_view_state.dart';
+import 'package:dashlingo/theme/colors.dart';
+import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class PostView extends StatelessWidget {
+class TutorialView extends StatelessWidget {
   final String id;
-  const PostView({super.key, required this.id});
+  const TutorialView({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
 
     return ChangeNotifierProvider(
-      create: (context) => PostViewState(id),
+      create: (context) => TutorialViewState(id),
       child: AppScaffold(
         body: Builder(builder: (context) {
           return ResponsiveBuilder(builder: (context, info) {
             final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
             final width = info.isDesktop ? (info.localWidgetSize.width * 0.8) : null;
-            final state = context.read<PostViewState>();
+            final state = context.read<TutorialViewState>();
 
             return SizedBox(
               // width: MediaQuery.of(context).size.width,
@@ -40,14 +40,13 @@ class PostView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    EdAppbar(showMenu: (info.isMobile || info.isTablet)),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: padding),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: AppSpaces.cardPadding),
-                          EdTexts.headingMedium(
+                          FairyTexts.headingMedium(
                             "Theming your flutter application the right way.",
                             context,
                             fontWeight: FontWeight.w600,
@@ -103,7 +102,7 @@ class PostView extends StatelessWidget {
                             child: SizedBox(
                               child: Row(
                                 children: [
-                                  EdTexts.headingMedium(
+                                  FairyTexts.headingMedium(
                                     "Related Posts",
                                     context,
                                     fontWeight: FontWeight.w600,
@@ -123,7 +122,7 @@ class PostView extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) => Padding(
                                 padding: const EdgeInsets.only(right: AppSpaces.elementSpacing),
-                                child: PostCard(index: index),
+                                child: TutorialCard(index: index),
                               ),
                             ),
                           )
@@ -167,14 +166,14 @@ class PostAuthCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EdTexts.subHeading(
+          FairyTexts.subHeading(
               "This tutorial goes over checking users entered location and notifying them if we dont service the area",
               context),
           const SizedBox(height: AppSpaces.elementSpacing),
           FittedBox(
             child: Row(
               children: [
-                EdButton(
+                DashButton(
                   title: 'Try quiz',
                   icon: const Icon(
                     Icons.psychology_outlined,
@@ -184,7 +183,7 @@ class PostAuthCard extends StatelessWidget {
                   onPressed: () {},
                 ),
                 const SizedBox(width: AppSpaces.elementSpacing),
-                EdButton(
+                DashButton(
                   title: 'View Code',
                   icon: Image.asset(
                     IconPaths.github,
@@ -210,8 +209,8 @@ class PostAuthCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EdTexts.subHeading("Written by Paul Jeremiah", context),
-                  EdTexts.bodyText("CEO and Lead Developer", context),
+                  FairyTexts.subHeading("Written by Paul Jeremiah", context),
+                  FairyTexts.bodyText("CEO and Lead Developer", context),
                 ],
               ),
             ],
@@ -228,7 +227,7 @@ class PostAuthCard extends StatelessWidget {
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                   const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                  EdTexts.subHeadingSmall(
+                  FairyTexts.subHeadingSmall(
                     '12th Dec. 2022',
                     context,
                     fontWeight: FontWeight.w800,
@@ -245,7 +244,7 @@ class PostAuthCard extends StatelessWidget {
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                   const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                  EdTexts.subHeadingSmall(
+                  FairyTexts.subHeadingSmall(
                     '12min',
                     context,
                     color: Theme.of(context).unselectedWidgetColor,
@@ -268,7 +267,7 @@ class PostAuthCard extends StatelessWidget {
                     url: IconPaths.github,
                     local: true,
                   ),
-                  label: EdTexts.subHeading("Firebase", context),
+                  label: FairyTexts.subHeading("Firebase", context),
                 ),
               ),
             ),

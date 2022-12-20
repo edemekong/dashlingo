@@ -46,7 +46,7 @@ class TutorialView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: AppSpaces.cardPadding),
-                          FairyTexts.headingMedium(
+                          DashTexts.headingMedium(
                             "Theming your flutter application the right way.",
                             context,
                             fontWeight: FontWeight.w600,
@@ -102,7 +102,7 @@ class TutorialView extends StatelessWidget {
                             child: SizedBox(
                               child: Row(
                                 children: [
-                                  FairyTexts.headingMedium(
+                                  DashTexts.headingMedium(
                                     "Related Posts",
                                     context,
                                     fontWeight: FontWeight.w600,
@@ -166,7 +166,7 @@ class PostAuthCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FairyTexts.subHeading(
+          DashTexts.subHeading(
               "This tutorial goes over checking users entered location and notifying them if we dont service the area",
               context),
           const SizedBox(height: AppSpaces.elementSpacing),
@@ -209,8 +209,8 @@ class PostAuthCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FairyTexts.subHeading("Written by Paul Jeremiah", context),
-                  FairyTexts.bodyText("CEO and Lead Developer", context),
+                  DashTexts.subHeading("Written by Paul Jeremiah", context),
+                  DashTexts.bodyText("CEO and Lead Developer", context),
                 ],
               ),
             ],
@@ -227,7 +227,7 @@ class PostAuthCard extends StatelessWidget {
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                   const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                  FairyTexts.subHeadingSmall(
+                  DashTexts.subHeadingSmall(
                     '12th Dec. 2022',
                     context,
                     fontWeight: FontWeight.w800,
@@ -244,7 +244,7 @@ class PostAuthCard extends StatelessWidget {
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                   const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                  FairyTexts.subHeadingSmall(
+                  DashTexts.subHeadingSmall(
                     '12min',
                     context,
                     color: Theme.of(context).unselectedWidgetColor,
@@ -267,7 +267,7 @@ class PostAuthCard extends StatelessWidget {
                     url: IconPaths.github,
                     local: true,
                   ),
-                  label: FairyTexts.subHeading("Firebase", context),
+                  label: DashTexts.subHeading("Firebase", context),
                 ),
               ),
             ),

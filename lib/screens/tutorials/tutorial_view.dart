@@ -36,13 +36,13 @@ class TutorialsViewBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: AppSpaces.cardPadding),
-                          FairyTexts.headingBig(
+                          DashTexts.headingBig(
                             "Flutter & Dart Tutorials",
                             context,
                             fontWeight: FontWeight.w600,
                           ),
                           const SizedBox(height: AppSpaces.elementSpacing),
-                          FairyTexts.subHeading(
+                          DashTexts.subHeading(
                             "Learn cross platform development from the world's top cross platform sdk's",
                             context,
                             fontWeight: FontWeight.w400,
@@ -113,7 +113,7 @@ class TutorialsViewBody extends StatelessWidget {
                                   borderRadius: AppSpaces.defaultBorderRadius,
                                   color: selected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
                                 ),
-                                child: FairyTexts.subHeading('${index + 1}', context,
+                                child: DashTexts.subHeading('${index + 1}', context,
                                     color: selected && isLight ? AppColors.white : null),
                               ),
                             );

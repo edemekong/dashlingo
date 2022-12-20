@@ -23,7 +23,7 @@ class TutorialCard extends StatelessWidget {
       child: BounceAnimation(
         reverse: true,
         onTap: () {
-          pushNamedAndRemoveUntil(lessonPath, queryParameter: {"id": "-123-"});
+          pushNamedAndRemoveUntil(tutorialPath, queryParameter: {"id": "-123-"});
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -65,14 +65,14 @@ class TutorialCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FairyTexts.callout(
+                  DashTexts.callout(
                     "Clean custom solution to theming your Flutter app.",
                     context,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
                   const SizedBox(height: AppSpaces.elementSpacing * 0.5),
-                  FairyTexts.bodyText(
+                  DashTexts.bodyText(
                     index == 1
                         ? "Theming your flutter app asdasdasdasdasdasd"
                         : "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
@@ -98,7 +98,7 @@ class TutorialCard extends StatelessWidget {
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                               const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                              FairyTexts.footnote(
+                              DashTexts.footnote(
                                 '12min',
                                 context,
                                 color: Theme.of(context).unselectedWidgetColor,
@@ -114,7 +114,7 @@ class TutorialCard extends StatelessWidget {
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                               const SizedBox(width: AppSpaces.elementSpacing * 0.25),
-                              FairyTexts.footnote(
+                              DashTexts.footnote(
                                 '12th Dec. 2022',
                                 context,
                                 fontWeight: FontWeight.w800,

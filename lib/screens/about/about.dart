@@ -68,14 +68,14 @@ class ProfileViewWidget extends StatelessWidget {
                 local: true,
               ),
               const SizedBox(height: AppSpaces.cardPadding),
-              FairyTexts.headingMedium(
+              DashTexts.headingMedium(
                 "Paul Jeremiah",
                 context,
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w800,
               ),
               const SizedBox(height: AppSpaces.elementSpacing),
-              FairyTexts.subHeading(
+              DashTexts.subHeading(
                 'CODE | CODE REVIEW | CLEAN CODE | LIFESTYLE',
                 context,
                 fontFamily: COURIER_NEW,
@@ -134,7 +134,7 @@ class SocialLinks extends StatelessWidget {
                   color: Theme.of(context).iconTheme.color,
                 ),
                 const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-                FairyTexts.bodyText(socialLinks[index].title, context),
+                DashTexts.bodyText(socialLinks[index].title, context),
                 if (index == socialLinks.length - 1) ...[
                   const SizedBox(width: AppSpaces.elementSpacing),
                   VerticalDivider(color: Theme.of(context).iconTheme.color, width: 0),

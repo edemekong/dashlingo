@@ -17,13 +17,13 @@ class AppRootProviders extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
       ],
-      child: const EdpiiiApp(),
+      child: const DashApp(),
     );
   }
 }
 
-class EdpiiiApp extends StatelessWidget {
-  const EdpiiiApp({super.key});
+class DashApp extends StatelessWidget {
+  const DashApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class EdpiiiApp extends StatelessWidget {
 
     if (path.startsWith(profilePath)) {
       path = "Profile";
-    } else if (path.startsWith(tutorialPath)) {
+    } else if (path.startsWith(tutorialsPath)) {
       path = "Tutorials";
     } else if (path.startsWith(learnPath)) {
       path = "Learn";

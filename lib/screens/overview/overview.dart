@@ -3,6 +3,7 @@ import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../components/bottom_navigation_bar.dart';
 import '../../components/loading_overley.dart';
 import '../../components/scaffold.dart';
 import '../../constants/paths.dart';
@@ -18,20 +19,17 @@ class OverviewView extends StatelessWidget {
       child: Stack(
         children: [
           AppScaffold(
-            drawer: const Drawer(
-              child: DashSizedbar(drawer: true),
-            ),
             body: ResponsiveBuilder(
               builder: (context, info) {
                 return Column(
                   children: [
-                    DashAppbar(isDesktop: info.isDesktop),
+                    DashAppbar(info: info),
                     const Divider(thickness: 1.5, height: 0),
                     Expanded(
                       child: Row(
                         children: [
-                          if (!info.isMobile && !info.isTablet) ...[
-                            const DashSizedbar(drawer: false),
+                          if (!info.isMobile) ...[
+                            DashSizedbar(info: info),
                             Container(
                               width: 1.5,
                               height: MediaQuery.of(context).size.height,
@@ -42,6 +40,10 @@ class OverviewView extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (info.isMobile) ...[
+                      const Divider(thickness: 1.5, height: 0),
+                      const AppBottomNavigationBar(currentIndex: 0),
+                    ],
                   ],
                 );
               },
@@ -67,7 +69,6 @@ class NavigationBody extends StatelessWidget {
       child: ClipRRect(
         child: Navigator(
           initialRoute: learnPath,
-          observers: [RouteObservers()],
           key: navigationService.navigatorKey,
           onGenerateRoute: navigationService.onGeneratedRoute,
         ),

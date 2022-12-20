@@ -2,11 +2,11 @@
 
 import 'package:dashlingo/screens/about/about.dart';
 import 'package:dashlingo/screens/learn/learn_view.dart';
-import 'package:dashlingo/screens/lessons/lesson/lesson_view.dart';
 import 'package:dashlingo/screens/tutorials/tutorial_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constants/paths.dart';
+import '../screens/lessons/lesson/lesson_view.dart';
 import '../screens/not_found.dart';
 import '../screens/tutorial/tutorial_view.dart';
 import 'get_it.dart';
@@ -18,8 +18,11 @@ class NavigationService {
 
   ValueNotifier<String> routeNotifier = ValueNotifier<String>(learnPath);
   ValueNotifier<bool> showNavigationBar = ValueNotifier<bool>(false);
+  ValueNotifier<int> currentPathIndex = ValueNotifier<int>(0);
 
-  List<String> pathToCloseNavigationBar = [];
+  List<String> pathToCloseNavigationBar = [
+    lessonPath,
+  ];
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -52,12 +55,16 @@ class NavigationService {
       case profilePath:
         return navigateToPageRoute(settings, const ProfileViewWidget());
 
-      case tutorialPath:
+      case tutorialsPath:
         return navigateToPageRoute(settings, const TutorialsView(id: ''));
+
+      case tutorialPath:
+        final id = routeData?["id"] ?? "";
+        return navigateToPageRoute(settings, TutorialView(id: id));
 
       case lessonPath:
         final id = routeData?["id"] ?? "";
-        return navigateToPageRoute(settings, TutorialView(id: id));
+        return navigateToPageRoute(settings, const LessonViewWidget());
     }
 
     return navigateToPageRoute(settings, const ErrorScreen(type: ErrorType.notFound));
@@ -136,5 +143,10 @@ Future<void> pushNamedAndRemoveUntil<T>(String path, {Map<String, dynamic>? quer
 
   final navigationService = locate<NavigationService>();
   navigationService.routeNotifier.value = path;
+
+  int index = tabPaths.indexWhere((element) => (element == path || path.startsWith(element)));
+  if (index != -1) {
+    navigationService.currentPathIndex.value = index;
+  }
   navigationService.pushNamedAndRemoveUntil(path, data: queryParameter);
 }

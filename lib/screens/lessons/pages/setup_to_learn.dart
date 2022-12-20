@@ -23,7 +23,7 @@ class SetUpToLearn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: AppSpaces.cardPadding),
-                FairyTexts.headingSmall("Choose your path", context),
+                DashTexts.headingSmall("Choose your path", context),
                 const SizedBox(height: AppSpaces.cardPadding * 2),
                 ...List.generate(
                   2,

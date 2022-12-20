@@ -1,11 +1,13 @@
+import 'package:dashlingo/components/display_image.dart';
 import 'package:dashlingo/components/texts.dart';
+import 'package:dashlingo/constants/images_path.dart';
 import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/bounce_animation.dart';
-import '../../../components/textfield.dart';
 import '../../../constants/paths.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
@@ -13,10 +15,11 @@ import '../../../theme/spaces.dart';
 import '../../../theme/theme.dart';
 
 class DashAppbar extends StatelessWidget {
-  final bool isDesktop;
+  final SizingInformation info;
+
   const DashAppbar({
     Key? key,
-    required this.isDesktop,
+    required this.info,
   }) : super(key: key);
 
   @override
@@ -33,37 +36,50 @@ class DashAppbar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (!isDesktop) ...[
-            IconButton(
-              splashRadius: 20,
-              onPressed: () {
-                Scaffold.of(navigationService.navigatorKey.currentState!.context).openDrawer();
-              },
-              icon: const Icon(Icons.menu),
-            ),
-          ],
-          const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+          // if (!isDesktop) ...[
+          //   IconButton(
+          //     splashRadius: 20,
+          //     onPressed: () {
+          //       Scaffold.of(navigationService.navigatorKey.currentState!.context).openDrawer();
+          //     },
+          //     icon: const Icon(Icons.menu),
+          //   ),
+          // ],
+          // const SizedBox(width: AppSpaces.elementSpacing * 0.5),
           BounceAnimation(
             onTap: () {
               pushNamedAndRemoveUntil(learnPath);
             },
             child: Center(
-              child: FairyTexts.headingMedium('dashlingo', context,
-                  color: isLight ? Theme.of(context).primaryColor : null),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.8),
+                    child: DisplayImage(
+                      url: isLight ? ImagePaths.dashLight : ImagePaths.dash,
+                    ),
+                  ),
+                  const SizedBox(width: AppSpaces.elementSpacing * 0.8),
+                  DashTexts.headingMedium('dashlingo', context, color: isLight ? Theme.of(context).primaryColor : null),
+                ],
+              ),
             ),
           ),
           const SizedBox(width: AppSpaces.cardPadding),
           const Spacer(),
-          MenuButtonVertical(
-            menu: const Menu(
-              title: 'PROFILE',
-              icon: Icon(CupertinoIcons.person_circle),
-              link: profilePath,
+          if (info.isDesktop || info.isTablet) ...[
+            MenuButtonVertical(
+              iconOnly: true,
+              menu: const Menu(
+                title: 'PROFILE',
+                icon: Icon(CupertinoIcons.person_circle),
+                link: profilePath,
+              ),
+              disableHighlight: true,
+              onChanged: () {},
             ),
-            disableHighlight: true,
-            onChanged: () {},
-          ),
-          const SizedBox(width: AppSpaces.elementSpacing),
+          ],
+
           IconButton(
             splashRadius: 20,
             onPressed: () {

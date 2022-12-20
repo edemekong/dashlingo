@@ -4,11 +4,12 @@ import 'package:dashlingo/components/button.dart';
 import 'package:dashlingo/components/scaffold.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
-import 'package:dashlingo/services/navigation_service.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../../services/navigation_service.dart';
 
 class LearnView extends StatefulWidget {
   const LearnView({super.key});
@@ -29,11 +30,56 @@ class _LearnViewState extends State<LearnView> {
         return SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: padding),
           child: SizedBox(
-            width: info.localWidgetSize.width * 0.8,
-            height: MediaQuery.of(context).size.height * 2.2,
+            width: info.localWidgetSize.width,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
+                const SizedBox(height: AppSpaces.elementSpacing),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpaces.elementSpacing,
+                    vertical: AppSpaces.cardPadding * 0.65,
+                  ),
+                  decoration: const BoxDecoration(
+                    borderRadius: AppSpaces.defaultBorderRadius,
+                    color: AppColors.primaryColor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DashTexts.headingSmall(
+                            'Step 1',
+                            context,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.white,
+                          ),
+                          const SizedBox(height: AppSpaces.elementSpacing * 0.5),
+                          DashTexts.subHeading(
+                            'Start with the basics',
+                            context,
+                            color: AppColors.white,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 150,
+                        child: DashButton(
+                          title: 'TUTORIAL',
+                          icon: Icon(
+                            Icons.book,
+                            color: AppColors.white,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height,
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: List.generate(
@@ -45,8 +91,10 @@ class _LearnViewState extends State<LearnView> {
                         return Positioned(
                           left: isNext3 ? 0 : value,
                           right: isNext3 ? value : 0,
-                          bottom: (index + 1) * 180,
-                          child: const LessonButton(),
+                          top: index == 0 ? (index + 1) * 100 : (index + 1) * 130,
+                          child: LessonButton(
+                            state: index == 0 ? LessonButtonState.initial : LessonButtonState.disabled,
+                          ),
                         );
                       },
                     ),
@@ -61,9 +109,13 @@ class _LearnViewState extends State<LearnView> {
   }
 }
 
+enum LessonButtonState { initial, disabled, completed }
+
 class LessonButton extends StatefulWidget {
+  final LessonButtonState state;
   const LessonButton({
     Key? key,
+    required this.state,
   }) : super(key: key);
 
   @override
@@ -75,6 +127,8 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
   late Animation<double> offsetAnimation;
   bool toggle = false;
   Timer? _timer;
+
+  bool get isDisabled => [LessonButtonState.disabled].contains(widget.state);
 
   @override
   void initState() {
@@ -91,7 +145,8 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
     animate();
   }
 
-  animate() {
+  void animate() {
+    if (isDisabled) return;
     _timer?.cancel();
     _timer = null;
     _timer = Timer.periodic(const Duration(milliseconds: 900), (_) {
@@ -119,17 +174,19 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
           width: square,
           height: square,
           child: Stack(
-            // fit: StackFit.loose,
+            fit: StackFit.loose,
             clipBehavior: Clip.none,
             children: [
               Center(
                 child: CustomPaint(
                   painter: DrawLessonButtonPainter(
                     toggle: toggle,
-                    color: Theme.of(context).primaryColor,
+                    color: isDisabled ? Theme.of(context).cardColor : Theme.of(context).primaryColor,
                   ),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      pushNamedAndRemoveUntil(lessonPath, queryParameter: {"step": "1"});
+                    },
                     onTapUp: (_) {
                       toggle = false;
                       setState(() {});
@@ -145,82 +202,87 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                       child: Align(
                         alignment: toggle ? const Alignment(0, 0.19) : const Alignment(0, -0.3),
                         child: Icon(
-                          Icons.star_rounded,
-                          size: 50,
-                          color: AppColors.white.darken(0.1),
+                          isDisabled ? Icons.lock : Icons.star_rounded,
+                          size: 40,
+                          color: AppColors.white,
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              AnimatedBuilder(
-                animation: offsetAnimation,
-                builder: (context, child) {
-                  return Positioned(
-                    top: offsetAnimation.value,
-                    child: child!,
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpaces.elementSpacing,
-                    vertical: AppSpaces.elementSpacing * 0.5,
-                  ),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: AppSpaces.defaultBorderRadiusTextField,
-                    color: Theme.of(context).cardColor,
-                    border: Border.all(
-                      color: Theme.of(context).dividerColor,
+              if (!isDisabled) ...[
+                AnimatedBuilder(
+                  animation: offsetAnimation,
+                  builder: (context, child) {
+                    return Positioned(
+                      left: -8,
+                      top: offsetAnimation.value,
+                      child: child!,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpaces.elementSpacing,
+                      vertical: AppSpaces.elementSpacing * 0.5,
+                    ),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: AppSpaces.defaultBorderRadiusTextField,
+                      color: Theme.of(context).cardColor,
+                      border: Border.all(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                    child: DashTexts.subHeading(
+                      'START',
+                      context,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
-                  child: FairyTexts.subHeading(
-                    'START',
-                    context,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).primaryColor,
-                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ),
-        const SizedBox(height: AppSpaces.elementSpacing * 0.5),
-        FittedBox(
-          child: Row(
-            children: [
-              SizedBox(
-                width: square * 0.6,
-                child: Container(
-                  height: 10,
-                  width: square * 0.8,
-                  decoration: BoxDecoration(
-                    borderRadius: AppSpaces.defaultBorderRadius,
-                    color: AppColors.white.darken(0.2),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                        height: 10,
-                        width: (50 / 100) * (square * 0.8),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: AppSpaces.defaultBorderRadius,
+        if (!isDisabled) ...[
+          const SizedBox(height: AppSpaces.elementSpacing * 0.5),
+          FittedBox(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: square * 0.6,
+                  child: Container(
+                    height: 10,
+                    width: square * 0.8,
+                    decoration: BoxDecoration(
+                      borderRadius: AppSpaces.defaultBorderRadius,
+                      color: AppColors.white.darken(0.2),
+                    ),
+                    child: Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                          height: 10,
+                          width: (50 / 100) * (square * 0.8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: AppSpaces.defaultBorderRadius,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-              FairyTexts.bodyText('10%', context, fontWeight: FontWeight.w600)
-            ],
+                const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+                DashTexts.bodyText('10%', context, fontWeight: FontWeight.w600)
+              ],
+            ),
           ),
-        ),
+        ],
       ],
     );
   }

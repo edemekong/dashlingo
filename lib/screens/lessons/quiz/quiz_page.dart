@@ -38,8 +38,8 @@ class QuizPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: AppSpaces.cardPadding),
-                        FairyTexts.headingSmall(quiz.title, context),
+                        const SizedBox(height: AppSpaces.elementSpacing),
+                        DashTexts.headingSmall(quiz.title, context),
                         const SizedBox(height: AppSpaces.cardPadding),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,8 +50,8 @@ class QuizPage extends StatelessWidget {
                                 bottom: AppSpaces.elementSpacing,
                               ),
                               child: SizedBox(
-                                width: 80,
-                                child: DisplayImage(url: ImagePaths.fairy),
+                                width: 100,
+                                child: DisplayImage(url: ImagePaths.dash1),
                               ),
                             ),
                             Container(
@@ -67,18 +67,18 @@ class QuizPage extends StatelessWidget {
                                   color: Theme.of(context).dividerColor,
                                 ),
                               ),
-                              child: FairyTexts.subHeadingSmall(
+                              child: DashTexts.subHeadingSmall(
                                 quiz.instruction,
                                 context,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: AppSpaces.elementSpacing),
+                        const SizedBox(height: AppSpaces.cardPadding),
                         Container(
                           constraints: const BoxConstraints(
-                            maxHeight: 150,
-                            minHeight: 100,
+                            maxHeight: 120,
+                            minHeight: 80,
                           ),
                           padding: const EdgeInsets.all(AppSpaces.elementSpacing),
                           width: MediaQuery.of(context).size.width,
@@ -92,7 +92,7 @@ class QuizPage extends StatelessWidget {
                           ),
                           child: const QuestionBoard(),
                         ),
-                        const Divider(height: AppSpaces.cardPadding),
+                        const SizedBox(height: AppSpaces.elementSpacing),
                         ...List.generate(
                           quiz.answers.length,
                           (index) {
@@ -207,8 +207,9 @@ class QuizBottomNav extends StatelessWidget {
                     Expanded(
                       child: result(correct, context, wrong, state),
                     ),
+                  ] else ...[
+                    const Spacer(),
                   ],
-                  const Spacer(),
                   DashButton(
                     title: isNext ? "Continue" : 'Check',
                     onPressed: state.selectedAnswer == null
@@ -255,24 +256,26 @@ class QuizBottomNav extends StatelessWidget {
               ),
             )),
         const SizedBox(width: AppSpaces.elementSpacing),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FairyTexts.callout(
-              correct ? "Nice!" : "Correct solution:",
-              context,
-              color: correct ? AppColors.green : AppColors.red,
-              fontWeight: FontWeight.w600,
-            ),
-            if (wrong) ...[
-              const SizedBox(height: AppSpaces.elementSpacing * 0.25),
-              FairyTexts.bodyText(
-                state.correctAnswer?.content ?? "",
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DashTexts.callout(
+                correct ? "Nice!" : "Correct solution:",
                 context,
-                color: AppColors.red,
+                color: correct ? AppColors.green : AppColors.red,
+                fontWeight: FontWeight.w600,
               ),
+              if (wrong) ...[
+                const SizedBox(height: AppSpaces.elementSpacing * 0.25),
+                DashTexts.bodyText(
+                  state.correctAnswer?.content ?? "",
+                  context,
+                  color: AppColors.red,
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ],
     );
@@ -350,7 +353,7 @@ class EdAnswerCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Center(
-                child: FairyTexts.subHeading(
+                child: DashTexts.subHeading(
                   '${index + 1}',
                   context,
                   color: Theme.of(context).backgroundColor,
@@ -359,7 +362,7 @@ class EdAnswerCard extends StatelessWidget {
             ),
             const SizedBox(width: AppSpaces.elementSpacing),
             Expanded(
-              child: FairyTexts.subHeading(
+              child: DashTexts.subHeading(
                 answer.content,
                 context,
                 fontWeight: FontWeight.w400,

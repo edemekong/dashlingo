@@ -22,8 +22,8 @@ class ErrorScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FairyTexts.headingBig("404", context),
-            FairyTexts.headingMedium(message ?? "Page Not Found", context),
+            DashTexts.headingBig("404", context),
+            DashTexts.headingMedium(message ?? "Page Not Found", context),
             const SizedBox(height: AppSpaces.cardPadding * 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

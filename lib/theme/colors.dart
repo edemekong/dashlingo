@@ -9,8 +9,8 @@ class AppColors {
   static const Color darkOrange = Color(0xFFDCA438);
   static const Color lightOrange = Color(0xFFFBE84D);
 
-  static const Color primaryColor = Color(0xFF307FC4);
-  static const Color primaryColorDark = Color(0xFF224F84);
+  static const Color primaryColor = Color(0xFF0ABAFB);
+  static const Color primaryColorDark = Color(0xFF3390C2);
 
   static const Color accentColor = blue;
 
@@ -32,6 +32,9 @@ class AppColors {
 
   static const Color cardDark = Color(0xFF232E35);
   static const Color cardDark2 = Color(0xFF293238);
+
+  static const Color iconDark = Color(0xFF232E35);
+  static const Color iconLight = Color(0xFF535353);
 
   static const Color cardLight = Color(0xFFF5F5F5);
   static const Color cardLight2 = Color(0xFFB7B7B7);

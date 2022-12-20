@@ -91,7 +91,7 @@ class _TextCardState extends State<TextCard> {
                 if (offset == null) return;
                 widget.onTapText(TextType.text, widget.paragraph.title!, offset: offset!);
               },
-              child: FairyTexts.headingSmall(
+              child: DashTexts.headingSmall(
                 widget.paragraph.title!,
                 context,
                 fontWeight: FontWeight.w600,

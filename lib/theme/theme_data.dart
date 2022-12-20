@@ -5,7 +5,7 @@ import 'colors.dart';
 
 class AppThemeData {
   static ThemeData themeLight = ThemeData(
-    fontFamily: "Poppins",
+    fontFamily: "DINRoundPro",
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.white,
@@ -43,7 +43,7 @@ class AppThemeData {
       splashRadius: 16,
     ),
     iconTheme: const IconThemeData(
-      color: AppColors.black,
+      color: AppColors.iconLight,
       size: 24,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -31,7 +31,7 @@ class ProfileAvater extends StatelessWidget {
         height: size,
         url: url,
         icon: Image.asset(
-          isLight ? ImagePaths.profileLight : ImagePaths.profileDark,
+          isLight ? ImagePaths.dashLight : ImagePaths.dash,
           width: size,
           height: size,
           scale: size > 80 ? 0.1 : 1,

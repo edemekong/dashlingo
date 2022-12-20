@@ -215,7 +215,7 @@ class _SnappbumTextfieldState extends State<EdTextfield> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.labelText != null) ...[
-            FairyTexts.callout(widget.labelText!, context),
+            DashTexts.callout(widget.labelText!, context),
           ],
           const SizedBox(height: AppSpaces.elementSpacing * 0.5),
           SizedBox(

@@ -123,14 +123,15 @@ class DashButton extends StatelessWidget {
     return Container(
       height: height ?? 45,
       constraints: const BoxConstraints(minWidth: 130),
-      padding: const EdgeInsets.symmetric(horizontal: AppSpaces.cardPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
       decoration: BoxDecoration(
         color: disable ? (Theme.of(context).canvasColor) : (background ?? AppColors.primaryColor),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            spreadRadius: 2,
             color: ((disable ? AppColors.accentColor : background ?? AppColors.primaryColorDark)).darken(),
-            offset: const Offset(1, 4),
+            offset: const Offset(1, 2),
           ),
         ],
       ),
@@ -145,7 +146,7 @@ class DashButton extends StatelessWidget {
                     const SizedBox(width: AppSpaces.elementSpacing * 0.5),
                   ],
                   buttonTitle(context,
-                      Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w500, color: textColor)),
+                      Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w600, color: textColor)),
                 ],
               ),
       ),

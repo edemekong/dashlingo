@@ -8,23 +8,29 @@ import 'package:dashlingo/constants/icon_path.dart';
 import 'package:dashlingo/constants/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/services/get_it.dart';
+import 'package:responsive_builder/src/sizing_information.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/spaces.dart';
 
 class DashSizedbar extends StatelessWidget {
-  final bool drawer;
-  const DashSizedbar({Key? key, required, required this.drawer}) : super(key: key);
+  final SizingInformation info;
+  const DashSizedbar({
+    Key? key,
+    required,
+    required this.info,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       height: MediaQuery.of(context).size.height,
-      width: AppSpaces.webWidth * 0.25,
+      // width: AppSpaces.webWidth * 0.25,
       color: Theme.of(context).backgroundColor,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -44,10 +50,11 @@ class DashSizedbar extends StatelessWidget {
                         child: MenuButtonVertical(
                           menu: tabs[index],
                           onChanged: () {
-                            if (drawer) {
-                              Scaffold.of(context).closeDrawer();
-                            }
+                            // if (drawer) {
+                            //   Scaffold.of(context).closeDrawer();
+                            // }
                           },
+                          iconOnly: info.isTablet,
                         ),
                       );
                     },
@@ -65,9 +72,10 @@ class DashSizedbar extends StatelessWidget {
               menu: const Menu(
                 title: 'LOGOUT',
                 icon: Icon(Icons.logout),
-                link: '/hi',
+                link: '/logout',
               ),
               onChanged: () {},
+              iconOnly: info.isTablet,
             ),
           ),
         ],
@@ -80,11 +88,13 @@ class MenuButtonVertical extends StatefulWidget {
   final Menu menu;
   final bool disableHighlight;
   final void Function() onChanged;
+  final bool iconOnly;
   const MenuButtonVertical({
     Key? key,
     required this.menu,
     required this.onChanged,
     this.disableHighlight = false,
+    this.iconOnly = false,
   }) : super(key: key);
 
   @override
@@ -147,7 +157,7 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
                 left: AppSpaces.elementSpacing * 0.25,
               ),
               childrenPadding: const EdgeInsets.only(left: AppSpaces.cardPadding),
-              title: FairyTexts.subHeading(
+              title: DashTexts.subHeading(
                 widget.menu.title,
                 context,
                 color: Theme.of(context).iconTheme.color?.withOpacity(.8),
@@ -163,6 +173,7 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
                       onChanged: () {
                         widget.onChanged();
                       },
+                      iconOnly: true,
                     ),
                   );
                 },
@@ -179,6 +190,9 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
           },
           child: Container(
             // color: Colors.transparent,
+            constraints: BoxConstraints(
+              minWidth: widget.iconOnly ? 35 : 200,
+            ),
             padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.5),
             decoration: BoxDecoration(
               color: isTapped ? buttonColor.withOpacity(.1) : null,
@@ -203,17 +217,20 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
                                   : Theme.of(context).iconTheme.color?.withOpacity(.8)),
                         ),
                     child: widget.menu.icon),
+                if (!widget.iconOnly) ...[
+                  const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+                  DashTexts.subHeadingSmall(
+                    widget.menu.title,
+                    context,
+                    fontWeight: isTapped || _isHovered ? FontWeight.w700 : FontWeight.w600,
+                    color: isTapped
+                        ? buttonColor
+                        : (_isHovered
+                            ? Theme.of(context).iconTheme.color
+                            : Theme.of(context).iconTheme.color?.withOpacity(.8)),
+                  ),
+                ],
                 const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-                FairyTexts.subHeadingSmall(
-                  widget.menu.title,
-                  context,
-                  fontWeight: isTapped || _isHovered ? FontWeight.w600 : FontWeight.w500,
-                  color: isTapped
-                      ? buttonColor
-                      : (_isHovered
-                          ? Theme.of(context).iconTheme.color
-                          : Theme.of(context).iconTheme.color?.withOpacity(.8)),
-                ),
               ],
             ),
           ),
@@ -232,7 +249,7 @@ const List<Menu> tabs = [
   Menu(
     title: 'TUTORIALS',
     icon: Icon(Icons.article_outlined),
-    link: tutorialPath,
+    link: tutorialsPath,
   ),
   Menu(
     title: 'LEADERBOARD',

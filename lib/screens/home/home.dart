@@ -35,13 +35,13 @@ class HomeView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: AppSpaces.cardPadding),
-                            FairyTexts.headingBig(
+                            DashTexts.headingBig(
                               "Build Flutter apps with ease.",
                               context,
                               fontWeight: FontWeight.w600,
                             ),
                             const SizedBox(height: AppSpaces.elementSpacing),
-                            FairyTexts.subHeading(
+                            DashTexts.subHeading(
                               "Inspired to give beginners & intermediates where they can always fallback to.",
                               context,
                               fontWeight: FontWeight.w400,
@@ -75,7 +75,7 @@ class HomeView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Expanded(
-                              child: FairyTexts.subHeading("Test your Dart & Flutter skills", context),
+                              child: DashTexts.subHeading("Test your Dart & Flutter skills", context),
                             ),
                             const SizedBox(width: AppSpaces.cardPadding),
                             DashButton(
@@ -92,7 +92,7 @@ class HomeView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            FairyTexts.headingMedium(
+                            DashTexts.headingMedium(
                               "Featured",
                               context,
                               fontWeight: FontWeight.w600,

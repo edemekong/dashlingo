@@ -18,17 +18,17 @@ class LessonView extends StatelessWidget {
       body: ResponsiveBuilder(builder: (context, info) {
         return Column(
           children: [
-            const SizedBox(height: AppSpaces.cardPadding),
+            const SizedBox(height: AppSpaces.elementSpacing),
             SizedBox(
-              width: info.localWidgetSize.width * 0.8,
+              width: info.localWidgetSize.width * 0.9,
               child: Row(
                 children: [
-                  const CloseButton(),
-                  const SizedBox(width: AppSpaces.elementSpacing),
+                  // const CloseButton(),
+                  // const SizedBox(width: AppSpaces.elementSpacing),
                   Expanded(
                     child: StepperProgressBar(
                       count: (((state.currentPageIndex + 1) / 3) * 100).toInt(),
-                      width: info.localWidgetSize.width * 0.8,
+                      width: info.localWidgetSize.width * 0.9,
                       height: 15,
                     ),
                   ),

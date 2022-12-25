@@ -3,7 +3,7 @@ import 'package:dashlingo/theme/colors.dart';
 import 'package:linkify/linkify.dart';
 
 import 'package:dashlingo/components/texts.dart';
-import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/learn/paragraph.dart';
 import 'package:dashlingo/theme/spaces.dart';
 
 import '../../dash_text/formatted_texts.dart';
@@ -14,11 +14,13 @@ enum TextType { url, hyperLink, text }
 class TextCard extends StatefulWidget {
   final Function(TextType, String, {Offset offset}) onTapText;
   final Paragraph paragraph;
+  final TextStyle? style;
 
   const TextCard({
     Key? key,
     required this.paragraph,
     required this.onTapText,
+    this.style,
   }) : super(key: key);
 
   @override
@@ -40,6 +42,11 @@ class _TextCardState extends State<TextCard> {
   Widget build(BuildContext context) {
     final linkifiers = [...defaultLinkifiers, const CustomLinkifier()];
     final elements = linkify(widget.paragraph.content, linkifiers: linkifiers);
+    final style = widget.style ??
+        Theme.of(context).textTheme.subtitle1?.copyWith(
+              fontWeight: FontWeight.w400,
+              height: 1.35,
+            );
     TextSpan textSpan = TextSpan(
       children: List.generate(elements.length, (index) {
         final element = elements[index];
@@ -53,22 +60,22 @@ class _TextCardState extends State<TextCard> {
         if (element is LinkableElement) {
           return TextSpan(
             text: element.url,
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  height: 1.35,
-                  color: Theme.of(context).primaryColor,
-                ),
+            style: style?.copyWith(
+              fontWeight: FontWeight.w400,
+              height: 1.35,
+              color: Theme.of(context).primaryColor,
+            ),
           );
         }
 
         if (element is BlankElement) {
           return TextSpan(
             text: element.url,
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  height: 1.35,
-                  color: AppColors.red,
-                ),
+            style: style?.copyWith(
+              fontWeight: FontWeight.w400,
+              height: 1.35,
+              color: AppColors.red,
+            ),
           );
         }
 
@@ -104,7 +111,7 @@ class _TextCardState extends State<TextCard> {
         RichText(
           softWrap: true,
           text: TextSpan(
-            style: Theme.of(context).textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w400, height: 1.35),
+            style: style,
             children: [textSpan],
           ),
         ),

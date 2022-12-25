@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:dashlingo/components/base_state.dart';
 import 'package:dashlingo/constants/duration.dart';
-import 'package:dashlingo/constants/mock.dart';
-import 'package:dashlingo/models/quiz.dart';
-import 'package:dashlingo/utils/logs.dart';
+import '../../constants/mocks/learns.dart';
+import '../../models/learn/learn.dart';
 
-class LearnState extends BaseState {
+class LessonState extends BaseState {
   late PageController pageController;
 
   int currentPageIndex = 0;
-  List<Quiz> quizes = [];
+  List<Learn> playAndLearn = [];
 
   Map<String, dynamic> answers = {};
 
-  LearnState() {
+  LessonState() {
     pageController = PageController();
-    quizes = quizData;
+    playAndLearn = learns.cast<Learn>();
   }
 
   void onPageChanged(int index) {
@@ -24,7 +23,7 @@ class LearnState extends BaseState {
   }
 
   void animateToPage() {
-    if ((currentPageIndex + 1) >= quizData.length) return;
+    if ((currentPageIndex + 1) >= learns.length) return;
     currentPageIndex++;
     notifyListeners();
     pageController.animateToPage(currentPageIndex, duration: fast, curve: Curves.ease);

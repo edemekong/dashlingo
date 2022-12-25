@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../constants/paths.dart';
 import '../services/get_it.dart';
 import '../services/navigation_service.dart';
+import 'hide_widget.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
@@ -38,69 +39,70 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   Widget build(BuildContext context) {
     final navigationService = locate<NavigationService>();
 
-    return ValueListenableBuilder<bool>(
-      valueListenable: navigationService.showNavigationBar,
-      builder: (context, isShowNavigationBar, _) {
-        edPrint(" isShowNavigationBar $isShowNavigationBar");
-        if (!isShowNavigationBar) {
-          return const SizedBox.shrink();
-        }
-        return ValueListenableBuilder<int>(
-            valueListenable: navigationService.currentPathIndex,
-            builder: (context, currentIndex, _) {
-              return Padding(
-                padding: const EdgeInsets.only(top: AppSpaces.elementSpacing * 0.5),
-                child: ClipRRect(
-                  child: BottomNavigationBar(
-                    showSelectedLabels: true,
-                    showUnselectedLabels: true,
-                    iconSize: 38,
-                    selectedIconTheme: Theme.of(context).iconTheme.copyWith(
-                          color: Theme.of(context).primaryColor,
-                        ),
-                    unselectedIconTheme: Theme.of(context).iconTheme,
-                    currentIndex: currentIndex,
-                    onTap: (index) {
-                      // if (index == 2) {
-                      //   state.selectCreateOption();
-                      // }
-                      // state.updatePageIndex(index);
-
-                      // final hasFocus = FocusScope.of(context).hasFocus;
-                      // if (hasFocus) {
-                      //   FocusScope.of(context).unfocus();
-                      // }
-
-                      pushNamedAndRemoveUntil(tabPaths[index]);
-                    },
-                    items: List.generate(
-                      menus.length,
-                      (index) {
-                        Menu menu = menus[index];
-                        return BottomNavigationBarItem(
-                          label: '',
-                          tooltip: menu.title,
-                          activeIcon: IconTheme(
-                            data: Theme.of(context).iconTheme.copyWith(
-                                  size: 40,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                            child: menu.icon,
+    return HideWidget(
+      child: ValueListenableBuilder<bool>(
+        valueListenable: navigationService.showNavigationBar,
+        builder: (context, isShowNavigationBar, _) {
+          if (isShowNavigationBar) {
+            return const SizedBox.shrink();
+          }
+          return ValueListenableBuilder<int>(
+              valueListenable: navigationService.currentPathIndex,
+              builder: (context, currentIndex, _) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: AppSpaces.elementSpacing * 0.5),
+                  child: ClipRRect(
+                    child: BottomNavigationBar(
+                      showSelectedLabels: true,
+                      showUnselectedLabels: true,
+                      iconSize: 38,
+                      selectedIconTheme: Theme.of(context).iconTheme.copyWith(
+                            color: Theme.of(context).primaryColor,
                           ),
-                          icon: IconTheme(
-                            data: Theme.of(context).iconTheme.copyWith(
-                                  size: 40,
-                                ),
-                            child: menu.icon,
-                          ),
-                        );
+                      unselectedIconTheme: Theme.of(context).iconTheme,
+                      currentIndex: currentIndex,
+                      onTap: (index) {
+                        // if (index == 2) {
+                        //   state.selectCreateOption();
+                        // }
+                        // state.updatePageIndex(index);
+
+                        // final hasFocus = FocusScope.of(context).hasFocus;
+                        // if (hasFocus) {
+                        //   FocusScope.of(context).unfocus();
+                        // }
+
+                        pushNamedAndRemoveUntil(tabPaths[index]);
                       },
+                      items: List.generate(
+                        menus.length,
+                        (index) {
+                          Menu menu = menus[index];
+                          return BottomNavigationBarItem(
+                            label: '',
+                            tooltip: menu.title,
+                            activeIcon: IconTheme(
+                              data: Theme.of(context).iconTheme.copyWith(
+                                    size: 40,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                              child: menu.icon,
+                            ),
+                            icon: IconTheme(
+                              data: Theme.of(context).iconTheme.copyWith(
+                                    size: 40,
+                                  ),
+                              child: menu.icon,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              );
-            });
-      },
+                );
+              });
+        },
+      ),
     );
   }
 }

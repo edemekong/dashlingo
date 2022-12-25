@@ -6,7 +6,7 @@ import 'package:dashlingo/components/scaffold.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/icon_path.dart';
 import 'package:dashlingo/constants/images_path.dart';
-import 'package:dashlingo/constants/lessons.dart';
+import 'package:dashlingo/constants/tutorial.dart';
 import 'package:dashlingo/screens/overview/widgets/appbar.dart';
 import 'package:dashlingo/screens/overview/widgets/tutorial_card.dart';
 import 'package:dashlingo/screens/tutorial/tutorial_view_state.dart';
@@ -81,7 +81,7 @@ class TutorialView extends StatelessWidget {
                             ),
                             child: ClipRRect(
                               child: ParagraphCard(
-                                lesson: lesson,
+                                paragraphs: tutorial.paragraphs,
                                 scrollToPosition: state.scrollToIndex,
                               ),
                             ),

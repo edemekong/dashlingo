@@ -1,9 +1,9 @@
 import 'package:dashlingo/components/base_state.dart';
-import 'package:dashlingo/models/quiz.dart';
+import 'package:dashlingo/models/learn/learn.dart';
 import 'package:dashlingo/utils/logs.dart';
 
-class QuizPageState extends BaseState {
-  final Quiz quiz;
+class LearnPlayState extends BaseState {
+  final Learn learn;
   final Function(Answer answer) onNext;
   List<Answer> answers = [];
   Answer? selectedAnswer;
@@ -12,7 +12,7 @@ class QuizPageState extends BaseState {
 
   bool validate = false;
 
-  String get correctAnswerId => quiz.correctAnswerId;
+  String get correctAnswerId => learn.correctAnswerId;
 
   Answer? get correctAnswer {
     try {
@@ -23,8 +23,8 @@ class QuizPageState extends BaseState {
     return null;
   }
 
-  QuizPageState(this.quiz, this.selectedAnswer, this.onNext) {
-    answers = quiz.answers;
+  LearnPlayState(this.learn, this.selectedAnswer, this.onNext) {
+    answers = learn.answers;
     if (selectedAnswer != null) {
       onValidate();
     }

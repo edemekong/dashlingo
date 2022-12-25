@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/learn/paragraph.dart';
 import 'package:dashlingo/theme/spaces.dart';
 
 class SeperatorCard extends StatelessWidget {
   final Paragraph paragraph;
-  const SeperatorCard({super.key, required this.paragraph});
+  final double size;
+  const SeperatorCard({
+    super.key,
+    required this.paragraph,
+    required this.size,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class SeperatorCard extends StatelessWidget {
                   padding: const EdgeInsets.only(right: AppSpaces.elementSpacing * 0.5),
                   child: Icon(
                     Icons.circle,
-                    size: 5,
+                    size: size,
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                 ),

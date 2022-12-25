@@ -6,7 +6,7 @@ import 'package:dashlingo/screens/tutorials/tutorial_view.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constants/paths.dart';
-import '../screens/lessons/lesson/lesson_view.dart';
+import '../screens/lessons/lesson_view.dart';
 import '../screens/not_found.dart';
 import '../screens/tutorial/tutorial_view.dart';
 import 'get_it.dart';

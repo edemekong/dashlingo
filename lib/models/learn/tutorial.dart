@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'paragraph.dart';
 
-class Lesson {
+class Tutorial {
   final String id;
   final String title;
   final String description;
@@ -12,7 +12,7 @@ class Lesson {
   final Map<String, dynamic> author;
   final int createdAt;
   final int updatedAt;
-  const Lesson({
+  Tutorial({
     required this.id,
     required this.title,
     required this.description,
@@ -22,7 +22,7 @@ class Lesson {
     required this.updatedAt,
   });
 
-  Lesson copyWith({
+  Tutorial copyWith({
     String? id,
     String? title,
     String? description,
@@ -31,7 +31,7 @@ class Lesson {
     int? createdAt,
     int? updatedAt,
   }) {
-    return Lesson(
+    return Tutorial(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -54,8 +54,8 @@ class Lesson {
     };
   }
 
-  factory Lesson.fromMap(Map<String, dynamic> map) {
-    return Lesson(
+  factory Tutorial.fromMap(Map<String, dynamic> map) {
+    return Tutorial(
       id: map['id'] ?? '',
       title: map['title'] ?? '',
       description: map['description'] ?? '',
@@ -68,18 +68,18 @@ class Lesson {
 
   String toJson() => json.encode(toMap());
 
-  factory Lesson.fromJson(String source) => Lesson.fromMap(json.decode(source));
+  factory Tutorial.fromJson(String source) => Tutorial.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Lesson(id: $id, title: $title, description: $description, paragraphs: $paragraphs, author: $author, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Tutorial(id: $id, title: $title, description: $description, paragraphs: $paragraphs, author: $author, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Lesson &&
+    return other is Tutorial &&
         other.id == id &&
         other.title == title &&
         other.description == description &&

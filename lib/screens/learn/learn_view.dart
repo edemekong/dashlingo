@@ -9,7 +9,23 @@ import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../constants/mocks/steps.dart';
+import '../../models/learn/lesson.dart';
+import '../../models/learn/step.dart';
 import '../../services/navigation_service.dart';
+
+const List<Color> colors = [
+  AppColors.primaryColor,
+  AppColors.orange,
+  AppColors.pink,
+  AppColors.cyen,
+  AppColors.brown,
+  AppColors.red,
+  AppColors.lightPink,
+  AppColors.purple,
+  AppColors.primaryColor,
+  AppColors.red,
+];
 
 class LearnView extends StatefulWidget {
   const LearnView({super.key});
@@ -32,76 +48,14 @@ class _LearnViewState extends State<LearnView> {
           child: SizedBox(
             width: info.localWidgetSize.width,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: AppSpaces.elementSpacing),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpaces.elementSpacing,
-                    vertical: AppSpaces.cardPadding * 0.65,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: AppSpaces.defaultBorderRadius,
-                    color: AppColors.primaryColor,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DashTexts.headingSmall(
-                            'Step 1',
-                            context,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.white,
-                          ),
-                          const SizedBox(height: AppSpaces.elementSpacing * 0.5),
-                          DashTexts.subHeading(
-                            'Start with the basics',
-                            context,
-                            color: AppColors.white,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 150,
-                        child: DashButton(
-                          title: 'TUTORIAL',
-                          icon: Icon(
-                            Icons.book,
-                            color: AppColors.white,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: List.generate(
-                      10,
-                      (index) {
-                        final value = screenWidth / 8;
-                        final isNext3 = index % 2 == 0;
-
-                        return Positioned(
-                          left: isNext3 ? 0 : value,
-                          right: isNext3 ? value : 0,
-                          top: index == 0 ? (index + 1) * 100 : (index + 1) * 130,
-                          child: LessonButton(
-                            state: index == 0 ? LessonButtonState.initial : LessonButtonState.disabled,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+                children: List.generate(steps.length, (index) {
+              return StepView(
+                color: colors[index % steps.length],
+                screenWidth: screenWidth,
+                step: steps[index],
+                count: index + 1,
+              );
+            })),
           ),
         );
       }),
@@ -109,13 +63,107 @@ class _LearnViewState extends State<LearnView> {
   }
 }
 
+class StepView extends StatelessWidget {
+  final int count;
+  final DashStep step;
+  final Color color;
+
+  const StepView(
+      {Key? key, required this.screenWidth, required this.step, required, required this.color, required this.count})
+      : super(key: key);
+
+  final double screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(height: AppSpaces.elementSpacing),
+        Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpaces.elementSpacing,
+            vertical: AppSpaces.cardPadding * 0.65,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: AppSpaces.defaultBorderRadius,
+            color: color,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DashTexts.headingSmall(
+                    "Step $count",
+                    context,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.white,
+                  ),
+                  const SizedBox(height: AppSpaces.elementSpacing * 0.5),
+                  DashTexts.subHeading(
+                    step.description,
+                    context,
+                    color: AppColors.white,
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 150,
+                child: DashButton(
+                  title: 'TUTORIAL',
+                  background: color,
+                  icon: const Icon(
+                    Icons.book,
+                    color: AppColors.white,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * ((step.lessons.length + 1.5) * 0.15),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: List.generate(
+              step.lessons.length,
+              (index) {
+                final Lesson lesson = step.lessons[index];
+                final value = screenWidth / 8;
+                final isNext3 = index % 2 == 0;
+
+                return Positioned(
+                  left: isNext3 ? 0 : value,
+                  right: isNext3 ? value : 0,
+                  top: index == 0 ? (index + 1) * 100 : (index + 1) * 130,
+                  child: LessonButton(
+                    color: color,
+                    state: index == 0 ? LessonButtonState.initial : LessonButtonState.disabled,
+                    lesson: lesson,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 enum LessonButtonState { initial, disabled, completed }
 
 class LessonButton extends StatefulWidget {
+  final Color color;
   final LessonButtonState state;
   const LessonButton({
     Key? key,
     required this.state,
+    required Lesson lesson,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -181,7 +229,7 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                 child: CustomPaint(
                   painter: DrawLessonButtonPainter(
                     toggle: toggle,
-                    color: isDisabled ? Theme.of(context).cardColor : Theme.of(context).primaryColor,
+                    color: isDisabled ? Theme.of(context).cardColor : widget.color,
                   ),
                   child: GestureDetector(
                     onTap: () {
@@ -238,7 +286,7 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                       'START',
                       context,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).primaryColor,
+                      color: widget.color,
                     ),
                   ),
                 ),
@@ -269,7 +317,7 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                           height: 10,
                           width: (50 / 100) * (square * 0.8),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
+                            color: widget.color,
                             borderRadius: AppSpaces.defaultBorderRadius,
                           ),
                         ),

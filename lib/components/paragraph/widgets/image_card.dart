@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dashlingo/components/display_image.dart';
-import 'package:dashlingo/models/lesson/paragraph.dart';
+import 'package:dashlingo/models/learn/paragraph.dart';
 import 'package:dashlingo/theme/spaces.dart';
 
 class ImageCard extends StatelessWidget {

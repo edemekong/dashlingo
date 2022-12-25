@@ -1,3 +1,4 @@
+import 'package:dashlingo/components/hide_widget.dart';
 import 'package:dashlingo/screens/overview/widgets/appbar.dart';
 import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +24,29 @@ class OverviewView extends StatelessWidget {
               builder: (context, info) {
                 return Column(
                   children: [
-                    DashAppbar(info: info),
-                    const Divider(thickness: 1.5, height: 0),
+                    HideWidget(
+                      child: Column(
+                        children: [
+                          DashAppbar(info: info),
+                          const Divider(thickness: 1.5, height: 0),
+                        ],
+                      ),
+                    ),
                     Expanded(
                       child: Row(
                         children: [
                           if (!info.isMobile) ...[
-                            DashSizedbar(info: info),
-                            Container(
-                              width: 1.5,
-                              height: MediaQuery.of(context).size.height,
-                              color: Theme.of(context).dividerColor,
+                            HideWidget(
+                              child: Row(
+                                children: [
+                                  DashSizedbar(info: info),
+                                  Container(
+                                    width: 1.5,
+                                    height: MediaQuery.of(context).size.height,
+                                    color: Theme.of(context).dividerColor,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                           const NavigationBody(),

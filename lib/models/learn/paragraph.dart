@@ -1,6 +1,19 @@
 import 'dart:convert';
 
-enum ParagraphType { text, image, video, code, seperator, dartpad }
+import 'package:flutter/foundation.dart';
+
+enum ParagraphType {
+  text,
+  image,
+  video,
+  code,
+  output,
+  seperator,
+  dartpad,
+  fillInBlanks,
+  fillInMultipleBlanks,
+  fileUpload
+}
 
 class Paragraph {
   final String id;
@@ -9,6 +22,7 @@ class Paragraph {
   final String content;
   final double? aspectRatio;
   final String? caption;
+  final List<String>? fill;
 
   /// text, image, video, code, seperator
   final String type;
@@ -20,6 +34,7 @@ class Paragraph {
     required this.content,
     this.aspectRatio,
     this.caption,
+    this.fill,
     required this.type,
   });
 
@@ -30,6 +45,7 @@ class Paragraph {
     String? content,
     double? aspectRatio,
     String? caption,
+    List<String>? fill,
     String? type,
   }) {
     return Paragraph(
@@ -39,6 +55,7 @@ class Paragraph {
       content: content ?? this.content,
       aspectRatio: aspectRatio ?? this.aspectRatio,
       caption: caption ?? this.caption,
+      fill: fill ?? this.fill,
       type: type ?? this.type,
     );
   }
@@ -51,6 +68,7 @@ class Paragraph {
       'content': content,
       'aspectRatio': aspectRatio,
       'caption': caption,
+      'fill': fill,
       'type': type,
     };
   }
@@ -61,8 +79,9 @@ class Paragraph {
       index: map['index']?.toInt() ?? 0,
       title: map['title'],
       content: map['content'] ?? '',
-      aspectRatio: map['aspectRatio']?.toInt(),
+      aspectRatio: map['aspectRatio']?.toDouble(),
       caption: map['caption'],
+      fill: List<String>.from(map['fill']),
       type: map['type'] ?? '',
     );
   }
@@ -73,7 +92,7 @@ class Paragraph {
 
   @override
   String toString() {
-    return 'Paragraph(id: $id, index: $index, title: $title, content: $content, aspectRatio: $aspectRatio, caption: $caption, type: $type)';
+    return 'Paragraph(id: $id, index: $index, title: $title, content: $content, aspectRatio: $aspectRatio, caption: $caption, fill: $fill, type: $type)';
   }
 
   @override
@@ -87,6 +106,7 @@ class Paragraph {
         other.content == content &&
         other.aspectRatio == aspectRatio &&
         other.caption == caption &&
+        listEquals(other.fill, fill) &&
         other.type == type;
   }
 
@@ -98,6 +118,7 @@ class Paragraph {
         content.hashCode ^
         aspectRatio.hashCode ^
         caption.hashCode ^
+        fill.hashCode ^
         type.hashCode;
   }
 }

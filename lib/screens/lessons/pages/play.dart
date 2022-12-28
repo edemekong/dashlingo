@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components/display_image.dart';
-import '../../../components/stepper.dart';
 import '../../../components/texts.dart';
 import '../../../constants/images_path.dart';
 import '../../../models/learn/learn.dart';
@@ -24,7 +23,7 @@ class PlayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<LearnPlayState>();
-    final learn = state.learn;
+    final Learn learn = state.learn;
 
     return Expanded(
       child: Center(
@@ -37,7 +36,7 @@ class PlayPage extends StatelessWidget {
               children: [
                 const SizedBox(height: AppSpaces.elementSpacing),
                 DashTexts.headingSmall(learn.title, context),
-                const SizedBox(height: AppSpaces.cardPadding),
+                const SizedBox(height: AppSpaces.elementSpacing * 1.5),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -52,13 +51,13 @@ class PlayPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.all(AppSpaces.elementSpacing * 0.5),
+                      padding: const EdgeInsets.all(AppSpaces.elementSpacing),
                       constraints: const BoxConstraints(
                         maxWidth: 250,
                       ),
                       decoration: BoxDecoration(
                         color: Theme.of(context).backgroundColor,
-                        borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
+                        borderRadius: AppSpaces.defaultBorderRadiusTextField.copyWith(topLeft: Radius.zero),
                         border: Border.all(
                           width: 1.5,
                           color: Theme.of(context).dividerColor,
@@ -67,11 +66,13 @@ class PlayPage extends StatelessWidget {
                       child: DashTexts.subHeadingSmall(
                         learn.instruction,
                         context,
+                        fontWeight: FontWeight.w700,
+                        family: 'Courier New',
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: AppSpaces.cardPadding),
+                const SizedBox(height: AppSpaces.elementSpacing),
                 Container(
                   constraints: const BoxConstraints(
                     minHeight: 80,
@@ -114,6 +115,7 @@ class PlayPage extends StatelessWidget {
                     );
                   },
                 ),
+                const SizedBox(height: kToolbarHeight),
               ],
             ),
           ),

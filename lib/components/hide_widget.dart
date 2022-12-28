@@ -1,3 +1,4 @@
+import 'package:dashlingo/constants/duration.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:dashlingo/services/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,15 @@ class HideWidget extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: navigationService.routeNotifier,
       builder: (context, route, child) {
-        if (route.startsWith(lessonPath)) {
-          return const SizedBox.shrink();
-        }
-        return child!;
+        final isShow = route.startsWith(lessonPath);
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+          child: isShow ? const SizedBox.shrink() : child!,
+        );
       },
       child: child,
     );

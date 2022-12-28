@@ -54,13 +54,22 @@ class DashTexts {
       );
 
   static Widget subHeadingSmall(String text, BuildContext context,
-          {Color? color, TextOverflow? overflow, int? maxLines, FontWeight? fontWeight, bool center = false}) =>
+          {Color? color,
+          TextOverflow? overflow,
+          int? maxLines,
+          FontWeight? fontWeight,
+          bool center = false,
+          String? family}) =>
       Text(
         text,
         overflow: overflow,
         textAlign: center ? TextAlign.center : TextAlign.start,
         maxLines: maxLines,
-        style: Theme.of(context).textTheme.subtitle2?.copyWith(color: color, fontWeight: fontWeight),
+        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+              color: color,
+              fontWeight: fontWeight,
+              fontFamily: family,
+            ),
       );
 
   static Widget callout(String text, BuildContext context,

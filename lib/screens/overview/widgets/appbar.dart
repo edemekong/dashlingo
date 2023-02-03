@@ -67,18 +67,6 @@ class DashAppbar extends StatelessWidget {
           ),
           const SizedBox(width: AppSpaces.cardPadding),
           const Spacer(),
-          if (info.isDesktop || info.isTablet) ...[
-            MenuButtonVertical(
-              iconOnly: true,
-              menu: const Menu(
-                title: 'PROFILE',
-                icon: Icon(CupertinoIcons.person_circle),
-                link: profilePath,
-              ),
-              disableHighlight: true,
-              onChanged: () {},
-            ),
-          ],
 
           IconButton(
             splashRadius: 20,

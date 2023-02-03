@@ -28,12 +28,6 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
     super.initState();
 
     menus.addAll(tabs);
-    menus.add(const Menu(
-      title: 'PROFILE',
-      icon: Icon(CupertinoIcons.person_circle),
-      activeIcon: Icon(CupertinoIcons.person_circle_fill),
-      link: profilePath,
-    ));
   }
 
   @override

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dashlingo/components/bounce_animation.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -248,4 +249,10 @@ const List<Menu> tabs = [
     activeIcon: Icon(Icons.emoji_events),
     icon: Icon(Icons.emoji_events_outlined),
   ),
+  Menu(
+    title: 'PROFILE',
+    icon: Icon(CupertinoIcons.person_circle),
+    activeIcon: Icon(CupertinoIcons.person_circle_fill),
+    link: profilePath,
+  )
 ];

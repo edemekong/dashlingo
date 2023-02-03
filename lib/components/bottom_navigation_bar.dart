@@ -31,6 +31,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
     menus.add(const Menu(
       title: 'PROFILE',
       icon: Icon(CupertinoIcons.person_circle),
+      activeIcon: Icon(CupertinoIcons.person_circle_fill),
       link: profilePath,
     ));
   }
@@ -62,16 +63,6 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
                       unselectedIconTheme: Theme.of(context).iconTheme,
                       currentIndex: currentIndex,
                       onTap: (index) {
-                        // if (index == 2) {
-                        //   state.selectCreateOption();
-                        // }
-                        // state.updatePageIndex(index);
-
-                        // final hasFocus = FocusScope.of(context).hasFocus;
-                        // if (hasFocus) {
-                        //   FocusScope.of(context).unfocus();
-                        // }
-
                         pushNamedAndRemoveUntil(tabPaths[index]);
                       },
                       items: List.generate(
@@ -86,7 +77,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
                                     size: 40,
                                     color: Theme.of(context).primaryColor,
                                   ),
-                              child: menu.icon,
+                              child: menu.activeIcon,
                             ),
                             icon: IconTheme(
                               data: Theme.of(context).iconTheme.copyWith(

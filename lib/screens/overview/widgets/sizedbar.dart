@@ -1,17 +1,13 @@
 import 'dart:async';
 
 import 'package:dashlingo/components/bounce_animation.dart';
-import 'package:dashlingo/components/display_image.dart';
-import 'package:dashlingo/components/textfield.dart';
 import 'package:dashlingo/components/texts.dart';
-import 'package:dashlingo/constants/icon_path.dart';
 import 'package:dashlingo/constants/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/services/get_it.dart';
-import 'package:responsive_builder/src/sizing_information.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
-import '../../../theme/colors.dart';
 import '../../../theme/spaces.dart';
 
 class DashSizedbar extends StatelessWidget {
@@ -24,10 +20,8 @@ class DashSizedbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLight = Theme.of(context).brightness == Brightness.light;
     return Container(
       height: MediaQuery.of(context).size.height,
-      // width: AppSpaces.webWidth * 0.25,
       color: Theme.of(context).backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,11 +43,7 @@ class DashSizedbar extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
                         child: MenuButtonVertical(
                           menu: tabs[index],
-                          onChanged: () {
-                            // if (drawer) {
-                            //   Scaffold.of(context).closeDrawer();
-                            // }
-                          },
+                          onChanged: () {},
                           iconOnly: info.isTablet,
                         ),
                       );
@@ -189,7 +179,6 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
             pushNamedAndRemoveUntil(widget.menu.link);
           },
           child: Container(
-            // color: Colors.transparent,
             constraints: BoxConstraints(
               minWidth: widget.iconOnly ? 35 : 200,
             ),
@@ -216,7 +205,7 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
                                   ? Theme.of(context).iconTheme.color
                                   : Theme.of(context).iconTheme.color?.withOpacity(.8)),
                         ),
-                    child: widget.menu.icon),
+                    child: isTapped ? widget.menu.activeIcon : widget.menu.icon),
                 if (!widget.iconOnly) ...[
                   const SizedBox(width: AppSpaces.elementSpacing * 0.5),
                   DashTexts.subHeadingSmall(
@@ -244,18 +233,19 @@ const List<Menu> tabs = [
   Menu(
     title: 'LEARN',
     link: learnPath,
-    icon: Icon(Icons.home),
+    icon: Icon(Icons.home_outlined),
+    activeIcon: Icon(Icons.home),
   ),
   Menu(
     title: 'TUTORIALS',
     icon: Icon(Icons.article_outlined),
+    activeIcon: Icon(Icons.article),
     link: tutorialsPath,
   ),
   Menu(
     title: 'LEADERBOARD',
     link: leaderboard,
-    icon: Icon(
-      Icons.emoji_events_outlined,
-    ),
+    activeIcon: Icon(Icons.emoji_events),
+    icon: Icon(Icons.emoji_events_outlined),
   ),
 ];

@@ -20,116 +20,112 @@ class TutorialsViewBody extends StatelessWidget {
     final state = context.watch<TutorialsState>();
 
     return Builder(builder: (context) {
-      return AppScaffold(
-        body: Builder(builder: (context) {
-          return ResponsiveBuilder(builder: (context, info) {
-            final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
-            return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: padding),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: AppSpaces.cardPadding),
-                          DashTexts.headingBig(
-                            "Flutter & Dart Tutorials",
-                            context,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          const SizedBox(height: AppSpaces.elementSpacing),
-                          DashTexts.subHeading(
-                            "Learn cross platform development from the world's top cross platform sdk's",
-                            context,
-                            fontWeight: FontWeight.w400,
-                          ),
-                          const SizedBox(height: AppSpaces.cardPadding),
-                          Row(
-                            children: const [
-                              Expanded(
-                                flex: 3,
-                                child: EdTextfield(
-                                  hintText: 'Search tutorials',
-                                  showClear: true,
-                                  maxLines: 1,
-                                  padding: EdgeInsets.zero,
-                                  prefix: Icon(Icons.search),
-                                ),
-                              ),
-                              Spacer(),
-                            ],
-                          ),
-                          const SizedBox(height: AppSpaces.cardPadding),
-                          GridView.builder(
-                            itemCount: 6,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: info.localWidgetSize.width <= 500
-                                  ? 1
-                                  : info.localWidgetSize.width <= 760
-                                      ? 2
-                                      : (info.isMobile ? 2 : 3),
-                              mainAxisSpacing: AppSpaces.elementSpacing,
-                              crossAxisSpacing: AppSpaces.elementSpacing,
-                              childAspectRatio: 1,
+      return ResponsiveBuilder(builder: (context, info) {
+        final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
+        return SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: padding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: AppSpaces.cardPadding),
+                      DashTexts.headingBig(
+                        "Flutter & Dart Tutorials",
+                        context,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      const SizedBox(height: AppSpaces.elementSpacing),
+                      DashTexts.subHeading(
+                        "Learn cross platform development from the world's top cross platform sdk's",
+                        context,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      const SizedBox(height: AppSpaces.cardPadding),
+                      Row(
+                        children: const [
+                          Expanded(
+                            flex: 3,
+                            child: EdTextfield(
+                              hintText: 'Search tutorials',
+                              showClear: true,
+                              maxLines: 1,
+                              padding: EdgeInsets.zero,
+                              prefix: Icon(Icons.search),
                             ),
-                            itemBuilder: (context, index) {
-                              return FittedBox(
-                                child: TutorialCard(
-                                  index: index,
-                                ),
-                              );
-                            },
                           ),
+                          Spacer(),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: AppSpaces.cardPadding),
-                    const Divider(thickness: 1.5, height: 0),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: AppSpaces.elementSpacing,
-                        horizontal: padding,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          5,
-                          (index) {
-                            final selected = index == 0;
-                            return BounceAnimation(
-                              child: Container(
-                                margin: const EdgeInsets.only(right: AppSpaces.elementSpacing),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: AppSpaces.elementSpacing * 0.5,
-                                  vertical: AppSpaces.elementSpacing * 0.15,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: AppSpaces.defaultBorderRadius,
-                                  color: selected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
-                                ),
-                                child: DashTexts.subHeading('${index + 1}', context,
-                                    color: selected && isLight ? AppColors.white : null),
-                              ),
-                            );
-                          },
+                      const SizedBox(height: AppSpaces.cardPadding),
+                      GridView.builder(
+                        itemCount: 6,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: info.localWidgetSize.width <= 500
+                              ? 1
+                              : info.localWidgetSize.width <= 760
+                                  ? 2
+                                  : (info.isMobile ? 2 : 3),
+                          mainAxisSpacing: AppSpaces.elementSpacing,
+                          crossAxisSpacing: AppSpaces.elementSpacing,
+                          childAspectRatio: 1,
                         ),
+                        itemBuilder: (context, index) {
+                          return FittedBox(
+                            child: TutorialCard(
+                              index: index,
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                    const Divider(thickness: 1.5, height: 0),
-                    const SizedBox(height: AppSpaces.cardPadding * 2),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          });
-        }),
-      );
+                const SizedBox(height: AppSpaces.cardPadding),
+                const Divider(thickness: 1.5, height: 0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppSpaces.elementSpacing,
+                    horizontal: padding,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      5,
+                      (index) {
+                        final selected = index == 0;
+                        return BounceAnimation(
+                          child: Container(
+                            margin: const EdgeInsets.only(right: AppSpaces.elementSpacing),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpaces.elementSpacing * 0.5,
+                              vertical: AppSpaces.elementSpacing * 0.15,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: AppSpaces.defaultBorderRadius,
+                              color: selected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
+                            ),
+                            child: DashTexts.subHeading('${index + 1}', context,
+                                color: selected && isLight ? AppColors.white : null),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                const Divider(thickness: 1.5, height: 0),
+                const SizedBox(height: AppSpaces.cardPadding * 2),
+              ],
+            ),
+          ),
+        );
+      });
     });
   }
 }

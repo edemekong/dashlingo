@@ -11,12 +11,11 @@ class AppState extends BaseState with WidgetsBindingObserver {
 
   AppState() {
     WidgetsBinding.instance.addObserver(this);
-    navigationService.routeNotifier.addListener(_listenToTitle);
   }
 
   @override
   void dispose() {
-    navigationService.routeNotifier.removeListener(_listenToTitle);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -36,10 +35,5 @@ class AppState extends BaseState with WidgetsBindingObserver {
 
       default:
     }
-  }
-
-  void _listenToTitle() {
-    screenTitle = navigationService.routeNotifier.value;
-    notifyListeners();
   }
 }

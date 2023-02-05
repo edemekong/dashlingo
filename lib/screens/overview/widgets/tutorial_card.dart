@@ -6,6 +6,7 @@ import 'package:dashlingo/services/navigation_service.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TutorialCard extends StatelessWidget {
   final int index;
@@ -23,7 +24,7 @@ class TutorialCard extends StatelessWidget {
       child: BounceAnimation(
         reverse: true,
         onTap: () {
-          pushNamedAndRemoveUntil(tutorialPath, queryParameter: {"id": "-123-"});
+          context.push(tutorialPath);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

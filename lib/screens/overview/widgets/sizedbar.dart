@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:dashlingo/components/bounce_animation.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
+import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/services/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
@@ -118,114 +120,112 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
     final navigationService = locate<NavigationService>();
     final Color buttonColor = Theme.of(context).primaryColor;
 
-    return ValueListenableBuilder<String>(
-      valueListenable: navigationService.routeNotifier,
-      builder: (context, value, _) {
-        final isTapped =
-            widget.disableHighlight == false && (widget.menu.link == value || value.startsWith(widget.menu.link));
+    final value = GoRouter.of(context).location;
 
-        if (widget.menu.subRoutes.isNotEmpty) {
-          return ListTileTheme(
-            dense: true,
-            minVerticalPadding: 0,
-            horizontalTitleGap: AppSpaces.elementSpacing,
-            minLeadingWidth: 10,
-            child: ExpansionTile(
-              leading: IconTheme(
-                  data: Theme.of(context).iconTheme.copyWith(
-                        size: 30,
-                        color: isTapped
-                            ? buttonColor
-                            : (_isHovered
-                                ? Theme.of(context).iconTheme.color
-                                : Theme.of(context).iconTheme.color?.withOpacity(.8)),
-                      ),
-                  child: widget.menu.icon),
-              iconColor: Theme.of(context).iconTheme.color,
-              collapsedIconColor: Theme.of(context).iconTheme.color,
-              onExpansionChanged: (_) {},
-              tilePadding: const EdgeInsets.only(
-                left: AppSpaces.elementSpacing * 0.25,
-              ),
-              childrenPadding: const EdgeInsets.only(left: AppSpaces.cardPadding),
-              title: DashTexts.subHeading(
-                widget.menu.title,
-                context,
-                color: Theme.of(context).iconTheme.color?.withOpacity(.8),
-              ),
-              children: List.generate(
-                widget.menu.subRoutes.length,
-                (index) {
-                  final subMenu = widget.menu.subRoutes[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing * 0.5),
-                    child: MenuButtonVertical(
-                      menu: subMenu,
-                      onChanged: () {
-                        widget.onChanged();
-                      },
-                      iconOnly: true,
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
-        }
-        return BounceAnimation(
-          onHover: (_) => _onHover(true),
-          onExit: (_) => _onHover(false),
-          onTap: () {
-            widget.onChanged();
-            pushNamedAndRemoveUntil(widget.menu.link);
-          },
-          child: Container(
-            constraints: BoxConstraints(
-              minWidth: widget.iconOnly ? 35 : 200,
-            ),
-            padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.5),
-            decoration: BoxDecoration(
-              color: isTapped ? buttonColor.withOpacity(.1) : null,
-              borderRadius: BorderRadius.circular(8),
-              border: isTapped
-                  ? Border.all(
-                      width: 1.5,
-                      color: buttonColor,
-                    )
-                  : null,
-            ),
-            child: Row(
-              children: [
-                const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-                IconTheme(
-                    data: Theme.of(context).iconTheme.copyWith(
-                          size: 30,
-                          color: isTapped
-                              ? buttonColor
-                              : (_isHovered
-                                  ? Theme.of(context).iconTheme.color
-                                  : Theme.of(context).iconTheme.color?.withOpacity(.8)),
-                        ),
-                    child: isTapped ? widget.menu.activeIcon : widget.menu.icon),
-                if (!widget.iconOnly) ...[
-                  const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-                  DashTexts.subHeadingSmall(
-                    widget.menu.title,
-                    context,
-                    fontWeight: isTapped || _isHovered ? FontWeight.w700 : FontWeight.w600,
+    final isTapped =
+        widget.disableHighlight == false && (widget.menu.link == value || value.startsWith(widget.menu.link));
+
+    if (widget.menu.subRoutes.isNotEmpty) {
+      return ListTileTheme(
+        dense: true,
+        minVerticalPadding: 0,
+        horizontalTitleGap: AppSpaces.elementSpacing,
+        minLeadingWidth: 10,
+        child: ExpansionTile(
+          leading: IconTheme(
+              data: Theme.of(context).iconTheme.copyWith(
+                    size: 30,
                     color: isTapped
                         ? buttonColor
                         : (_isHovered
                             ? Theme.of(context).iconTheme.color
                             : Theme.of(context).iconTheme.color?.withOpacity(.8)),
                   ),
-                ],
-                const SizedBox(width: AppSpaces.elementSpacing * 0.5),
-              ],
-            ),
+              child: widget.menu.icon),
+          iconColor: Theme.of(context).iconTheme.color,
+          collapsedIconColor: Theme.of(context).iconTheme.color,
+          onExpansionChanged: (_) {},
+          tilePadding: const EdgeInsets.only(
+            left: AppSpaces.elementSpacing * 0.25,
           ),
-        );
+          childrenPadding: const EdgeInsets.only(left: AppSpaces.cardPadding),
+          title: DashTexts.subHeading(
+            widget.menu.title,
+            context,
+            color: Theme.of(context).iconTheme.color?.withOpacity(.8),
+          ),
+          children: List.generate(
+            widget.menu.subRoutes.length,
+            (index) {
+              final subMenu = widget.menu.subRoutes[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing * 0.5),
+                child: MenuButtonVertical(
+                  menu: subMenu,
+                  onChanged: () {
+                    widget.onChanged();
+                  },
+                  iconOnly: true,
+                ),
+              );
+            },
+          ),
+        ),
+      );
+    }
+    return BounceAnimation(
+      onHover: (_) => _onHover(true),
+      onExit: (_) => _onHover(false),
+      onTap: () {
+        widget.onChanged();
+        // pushNamedAndRemoveUntil(widget.menu.link);
+        context.go(widget.menu.link);
       },
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: widget.iconOnly ? 35 : 200,
+        ),
+        padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.5),
+        decoration: BoxDecoration(
+          color: isTapped ? buttonColor.withOpacity(.1) : null,
+          borderRadius: BorderRadius.circular(8),
+          border: isTapped
+              ? Border.all(
+                  width: 1.5,
+                  color: buttonColor,
+                )
+              : null,
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+            IconTheme(
+                data: Theme.of(context).iconTheme.copyWith(
+                      size: 30,
+                      color: isTapped
+                          ? buttonColor
+                          : (_isHovered
+                              ? Theme.of(context).iconTheme.color
+                              : Theme.of(context).iconTheme.color?.withOpacity(.8)),
+                    ),
+                child: isTapped ? widget.menu.activeIcon : widget.menu.icon),
+            if (!widget.iconOnly) ...[
+              const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+              DashTexts.subHeadingSmall(
+                widget.menu.title,
+                context,
+                fontWeight: isTapped || _isHovered ? FontWeight.w700 : FontWeight.w600,
+                color: isTapped
+                    ? buttonColor
+                    : (_isHovered
+                        ? Theme.of(context).iconTheme.color
+                        : Theme.of(context).iconTheme.color?.withOpacity(.8)),
+              ),
+            ],
+            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+          ],
+        ),
+      ),
     );
   }
 }

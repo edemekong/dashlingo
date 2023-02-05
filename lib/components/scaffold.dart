@@ -9,7 +9,10 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: body,
+      body: Container(
+        color: Theme.of(context).backgroundColor,
+        child: body,
+      ),
       drawer: drawer,
     );
   }

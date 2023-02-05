@@ -14,11 +14,15 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   ##firebase
-  firebase_core: ^2.2.0
-  cloud_firestore: ^4.0.5
-  firebase_analytics: ^10.0.5
-  firebase_remote_config: ^3.0.4
-  firebase_crashlytics: ^3.0.5
+  ## firebase_core_platform_interface: 4.5.1
+  ## firebase_core: ^1.19.1
+  ## firebase_auth: ^3.4.1
+  ## firebase_storage: ^10.3.1
+  ## cloud_firestore: ^3.2.1
+  ## firebase_messaging: ^11.4.4
+  ## firebase_analytics: ^9.1.12
+  ## firebase_dynamic_links: ^4.3.1
+  ## firebase_crashlytics: ^2.8.4
 
   ##services
   share_plus: ^4.0.10
@@ -63,6 +67,7 @@ dependencies:
   confetti: ^0.7.0
   code_editor: ^1.3.1
   flutter_highlight: ^0.7.0
+  go_router: ^6.0.3
 
 dev_dependencies:
   flutter_test:

@@ -7,12 +7,12 @@ import '../../../theme/spaces.dart';
 
 enum QuizState { non, correct, selected, wrong, disabled }
 
-class EdAnswerCard extends StatelessWidget {
+class DashAnswerCard extends StatelessWidget {
   final Function(Answer) onAnswer;
   final Answer answer;
   final int index;
   final QuizState state;
-  const EdAnswerCard({
+  const DashAnswerCard({
     Key? key,
     required this.index,
     required this.state,
@@ -54,7 +54,7 @@ class EdAnswerCard extends StatelessWidget {
               : isLight
                   ? Theme.of(context).backgroundColor
                   : Theme.of(context).cardColor,
-          borderRadius: AppSpaces.defaultBorderRadius,
+          borderRadius: BorderRadius.circular(18),
           border: Border.all(
             width: 1.5,
             color: cardColor,
@@ -88,7 +88,7 @@ class EdAnswerCard extends StatelessWidget {
               child: DashTexts.subHeading(
                 answer.content,
                 context,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],

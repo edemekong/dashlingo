@@ -1,34 +1,34 @@
-import 'package:dashlingo/constants/duration.dart';
-import 'package:dashlingo/services/get_it.dart';
-import 'package:dashlingo/services/navigation_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:go_router/go_router.dart';
 
 import '../constants/paths.dart';
 
 class HideWidget extends StatelessWidget {
+  final Alignment alignment;
+
   final Widget child;
-  const HideWidget({super.key, required this.child});
+  const HideWidget({super.key, required this.child, this.alignment = Alignment.topCenter});
 
   @override
   Widget build(BuildContext context) {
-    final navigationService = locate<NavigationService>();
-    return ValueListenableBuilder(
-      valueListenable: navigationService.routeNotifier,
-      builder: (context, route, child) {
-        final isShow = route.startsWith(lessonPath);
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) => FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-          child: isShow ? const SizedBox.shrink() : child!,
-        );
-      },
-      child: child,
+    final isShow = GoRouter.of(context).location.startsWith(lessonPath);
+    return ClipRRect(
+      child: AnimatedAlign(
+        curve: Curves.easeInOut,
+        alignment: alignment,
+        heightFactor: [Alignment.topCenter, Alignment.bottomCenter].contains(alignment)
+            ? !isShow
+                ? 1.0
+                : 0.0
+            : null,
+        widthFactor: [Alignment.centerRight, Alignment.centerLeft].contains(alignment)
+            ? !isShow
+                ? 1.0
+                : 0.0
+            : null,
+        duration: const Duration(milliseconds: 150),
+        child: child,
+      ),
     );
   }
 }

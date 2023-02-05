@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dashlingo/app.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/utils/logs.dart';
 

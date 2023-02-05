@@ -7,6 +7,7 @@ import 'package:dashlingo/constants/paths.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../constants/mocks/steps.dart';
@@ -35,8 +36,6 @@ class LearnView extends StatefulWidget {
 }
 
 class _LearnViewState extends State<LearnView> {
-  // bool toggle = false;
-
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -90,27 +89,30 @@ class StepView extends StatelessWidget {
             color: color,
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DashTexts.headingSmall(
-                    "Step $count",
-                    context,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.white,
-                  ),
-                  const SizedBox(height: AppSpaces.elementSpacing * 0.5),
-                  DashTexts.subHeading(
-                    step.description,
-                    context,
-                    color: AppColors.white,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DashTexts.headingSmall(
+                      "Step $count",
+                      context,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.white,
+                    ),
+                    const SizedBox(height: AppSpaces.elementSpacing * 0.5),
+                    DashTexts.subHeading(
+                      step.description,
+                      context,
+                      color: AppColors.white,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
-                width: 150,
+                width: 120,
                 child: DashButton(
                   title: 'TUTORIAL',
                   background: color,
@@ -173,6 +175,7 @@ class LessonButton extends StatefulWidget {
 class _LessonButtonState extends State<LessonButton> with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> offsetAnimation;
+
   bool toggle = false;
   Timer? _timer;
 
@@ -233,7 +236,12 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      pushNamedAndRemoveUntil(lessonPath, queryParameter: {"step": "1"});
+                      context.push(path(
+                        lessonPath,
+                        queryParameters: {
+                          "step": '1',
+                        },
+                      ));
                     },
                     onTapUp: (_) {
                       toggle = false;

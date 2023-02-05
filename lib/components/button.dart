@@ -123,7 +123,7 @@ class DashButton extends StatelessWidget {
     return Container(
       height: height ?? 45,
       constraints: const BoxConstraints(minWidth: 130),
-      padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing * 0.5),
       decoration: BoxDecoration(
         color: disable ? (Theme.of(context).canvasColor) : (background ?? AppColors.primaryColor),
         borderRadius: BorderRadius.circular(12),
@@ -143,7 +143,7 @@ class DashButton extends StatelessWidget {
                 children: [
                   if (icon != null) ...[
                     icon!,
-                    const SizedBox(width: AppSpaces.elementSpacing * 0.5),
+                    const SizedBox(width: AppSpaces.elementSpacing * 0.25),
                   ],
                   buttonTitle(context,
                       Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w600, color: textColor)),

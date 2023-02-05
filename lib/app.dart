@@ -1,4 +1,3 @@
-import 'package:dashlingo/route_delegates.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:dashlingo/services/storage_service.dart';
 import 'package:dashlingo/states/app_state.dart';
@@ -42,11 +41,10 @@ class DashApp extends StatelessWidget {
               ),
             ],
           ),
+          routerConfig: state.navigationService.router,
           shortcuts: {
             LogicalKeySet(LogicalKeyboardKey.space): const ActivateIntent(),
           },
-          routerDelegate: UrlHandlerRouterDelegate(),
-          routeInformationParser: UrlHandlerInformationParser(),
         );
       },
     );

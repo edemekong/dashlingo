@@ -5,6 +5,7 @@ import 'package:dashlingo/screens/overview/widgets/sizedbar.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/bounce_animation.dart';
@@ -36,19 +37,9 @@ class DashAppbar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // if (!isDesktop) ...[
-          //   IconButton(
-          //     splashRadius: 20,
-          //     onPressed: () {
-          //       Scaffold.of(navigationService.navigatorKey.currentState!.context).openDrawer();
-          //     },
-          //     icon: const Icon(Icons.menu),
-          //   ),
-          // ],
-          // const SizedBox(width: AppSpaces.elementSpacing * 0.5),
           BounceAnimation(
             onTap: () {
-              pushNamedAndRemoveUntil(learnPath);
+              context.go(learnPath);
             },
             child: Center(
               child: Row(
@@ -67,7 +58,6 @@ class DashAppbar extends StatelessWidget {
           ),
           const SizedBox(width: AppSpaces.cardPadding),
           const Spacer(),
-
           IconButton(
             splashRadius: 20,
             onPressed: () {

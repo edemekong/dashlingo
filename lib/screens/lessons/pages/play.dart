@@ -56,8 +56,8 @@ class PlayPage extends StatelessWidget {
                         maxWidth: 250,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).backgroundColor,
-                        borderRadius: AppSpaces.defaultBorderRadiusTextField.copyWith(topLeft: Radius.zero),
+                        color: Theme.of(context).cardColor,
+                        borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
                         border: Border.all(
                           width: 1.5,
                           color: Theme.of(context).dividerColor,
@@ -66,8 +66,7 @@ class PlayPage extends StatelessWidget {
                       child: DashTexts.subHeadingSmall(
                         learn.instruction,
                         context,
-                        fontWeight: FontWeight.w700,
-                        family: 'Courier New',
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
@@ -103,7 +102,7 @@ class PlayPage extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
                       child: IgnorePointer(
                         ignoring: state.validate,
-                        child: EdAnswerCard(
+                        child: DashAnswerCard(
                           answer: learn.answers[index],
                           state: (isCorrect ? QuizState.correct : (selected ? QuizState.selected : QuizState.non)),
                           index: index,

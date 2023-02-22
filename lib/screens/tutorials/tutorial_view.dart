@@ -61,29 +61,45 @@ class TutorialsViewBody extends StatelessWidget {
                           Spacer(),
                         ],
                       ),
-                      const SizedBox(height: AppSpaces.cardPadding),
-                      GridView.builder(
-                        itemCount: 6,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: info.localWidgetSize.width <= 500
-                              ? 1
-                              : info.localWidgetSize.width <= 760
-                                  ? 2
-                                  : (info.isMobile ? 2 : 3),
-                          mainAxisSpacing: AppSpaces.elementSpacing,
-                          crossAxisSpacing: AppSpaces.elementSpacing,
-                          childAspectRatio: 1,
+                      const SizedBox(height: AppSpaces.elementSpacing),
+                      if (info.isDesktop) ...[
+                        GridView.builder(
+                          itemCount: 6,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: info.localWidgetSize.width <= 500
+                                ? 1
+                                : info.localWidgetSize.width <= 760
+                                    ? 2
+                                    : (info.isMobile ? 2 : 3),
+                            mainAxisSpacing: AppSpaces.elementSpacing,
+                            crossAxisSpacing: AppSpaces.elementSpacing,
+                            childAspectRatio: 1,
+                          ),
+                          itemBuilder: (context, index) {
+                            return FittedBox(
+                              child: TutorialCard(
+                                index: index,
+                              ),
+                            );
+                          },
                         ),
-                        itemBuilder: (context, index) {
-                          return FittedBox(
-                            child: TutorialCard(
-                              index: index,
-                            ),
-                          );
-                        },
-                      ),
+                      ] else ...[
+                        ListView.builder(
+                          itemCount: 6,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
+                              child: TutorialCard(
+                                index: index,
+                              ),
+                            );
+                          },
+                        ),
+                      ]
                     ],
                   ),
                 ),

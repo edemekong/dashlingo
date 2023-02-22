@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, avoid_web_libraries_in_flutter
 
 import 'package:dashlingo/screens/about/about.dart';
+import 'package:dashlingo/screens/leaderboard/leaderboard.dart';
 import 'package:dashlingo/screens/learn/learn_view.dart';
 import 'package:dashlingo/screens/overview/overview.dart';
 import 'package:dashlingo/screens/tutorials/tutorial_view.dart';
@@ -80,6 +81,15 @@ class NavigationService {
                   final id = state.params['id'] ?? '';
                   return NoTransitionPage(
                     child: TutorialView(id: id),
+                  );
+                },
+              ),
+              GoRoute(
+                path: leaderboard,
+                parentNavigatorKey: tabNavigatorKey,
+                pageBuilder: (_, state) {
+                  return const NoTransitionPage(
+                    child: Leaderboard(),
                   );
                 },
               ),

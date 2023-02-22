@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/src/sizing_information.dart';
 
 import '../../../components/button.dart';
 import '../../../components/texts.dart';
@@ -8,17 +9,17 @@ import '../../../theme/spaces.dart';
 import '../learn_play_state.dart';
 
 class QuizBottomNav extends StatelessWidget {
-  const QuizBottomNav({Key? key, required this.padding, required, required this.isMobile}) : super(key: key);
+  const QuizBottomNav({Key? key, required this.padding, required, required this.info}) : super(key: key);
 
   final double padding;
-  final bool isMobile;
+  final SizingInformation info;
 
   @override
   Widget build(BuildContext context) {
     final state = context.watch<LearnPlayState>();
 
-    final bool correct = state.validate && state.correctAnswerId == state.selectedAnswer?.id;
-    final bool wrong = state.validate && state.correctAnswerId != state.selectedAnswer?.id;
+    final bool correct = state.validate && state.correctAnswerIds.contains(state.selectedAnswer?.id);
+    final bool wrong = state.validate && !state.correctAnswerIds.contains(state.selectedAnswer?.id);
     final bool isLearn = state.learn.learnType == 'learn';
 
     final bool isNext = correct || wrong;
@@ -26,64 +27,67 @@ class QuizBottomNav extends StatelessWidget {
 
     final bool showLine = !state.validate;
 
-    return Column(
-      children: [
-        if (showLine) ...[
-          Divider(
-            thickness: 1.5,
-            height: 0,
-            color: Theme.of(context).dividerColor,
-          ),
-        ],
-        Container(
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.symmetric(
-            horizontal: padding,
-          ),
-          color: correct
-              ? (isLight ? AppColors.lightGreen : Theme.of(context).cardColor)
-              : (wrong
-                  ? (isLight ? AppColors.lightRed : Theme.of(context).cardColor)
-                  : Theme.of(context).backgroundColor),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: AppSpaces.elementSpacing),
-              if (isNext && isMobile) ...[
-                result(correct, context, wrong, state),
-              ],
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final size = info.isDesktop ? (info.localWidgetSize.width * 0.75) : null;
+
+    final bottom2 = MediaQuery.of(context).padding.bottom;
+
+    return Container(
+      width: double.infinity,
+      color: correct
+          ? (isLight ? AppColors.lightGreen : Theme.of(context).cardColor)
+          : (wrong ? (isLight ? AppColors.lightRed : Theme.of(context).cardColor) : Theme.of(context).backgroundColor),
+      child: Column(
+        children: [
+          if (showLine) ...[
+            Divider(
+              thickness: 1.5,
+              height: 0,
+              color: Theme.of(context).dividerColor,
+            ),
+          ],
+          Container(
+            width: size,
+            padding: EdgeInsets.symmetric(
+              horizontal: !info.isDesktop ? AppSpaces.cardPadding * 0.8 : 0,
+            ),
+            child: SizedBox(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (isNext && !isMobile) ...[
-                    Expanded(
-                      child: result(correct, context, wrong, state),
-                    ),
-                  ] else ...[
-                    const Spacer(),
+                  const SizedBox(height: AppSpaces.elementSpacing),
+                  if (isNext && info.isMobile) ...[
+                    result(correct, context, wrong, state),
                   ],
-                  DashButton(
-                    title: isNext || isLearn ? "Continue" : 'Check',
-                    onPressed: state.selectedAnswer == null
-                        ? null
-                        : () {
-                            state.onValidate();
-                          },
-                    background: correct
-                        ? AppColors.green
-                        : (wrong
-                            ? AppColors.red
-                            : state.selectedAnswer != null
-                                ? Theme.of(context).primaryColor
-                                : Theme.of(context).dividerColor),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (isNext && !info.isMobile) ...[
+                        Expanded(
+                          child: result(correct, context, wrong, state),
+                        ),
+                      ] else ...[
+                        const Spacer(),
+                      ],
+                      DashButton(
+                        title: isNext || isLearn ? "Continue" : 'Check',
+                        onPressed: state.selectedAnswer == null ? null : state.onValidate,
+                        background: correct
+                            ? AppColors.green
+                            : (wrong
+                                ? AppColors.red
+                                : state.selectedAnswer != null
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).dividerColor),
+                      ),
+                    ],
                   ),
+                  SizedBox(height: bottom2 < AppSpaces.elementSpacing ? AppSpaces.elementSpacing : bottom2),
                 ],
               ),
-              const SizedBox(height: AppSpaces.elementSpacing),
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

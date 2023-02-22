@@ -6,7 +6,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../components/bottom_navigation_bar.dart';
 import '../../components/loading_overley.dart';
-import '../../components/scaffold.dart';
 
 class OverviewView extends StatelessWidget {
   final Widget body;
@@ -15,10 +14,12 @@ class OverviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appPadding = MediaQuery.of(context).padding;
+
     return Material(
       child: Stack(
         children: [
           Scaffold(
+            resizeToAvoidBottomInset: false,
             body: Padding(
               padding: EdgeInsets.only(top: appPadding.top),
               child: ResponsiveBuilder(
@@ -59,7 +60,6 @@ class OverviewView extends StatelessWidget {
                         ),
                       ),
                       if (info.isMobile) ...[
-                        const Divider(thickness: 1.5, height: 0),
                         const AppBottomNavigationBar(currentIndex: 0),
                       ],
                     ],

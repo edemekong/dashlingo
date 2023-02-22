@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/src/sizing_information.dart';
 
 import '../../../components/display_image.dart';
 import '../../../components/texts.dart';
@@ -11,14 +12,11 @@ import '../widgets/answer_card.dart';
 import '../widgets/boards.dart';
 
 class PlayPage extends StatelessWidget {
-  const PlayPage({
-    Key? key,
-    required this.padding,
-    required this.width,
-  }) : super(key: key);
+  const PlayPage({Key? key, required this.padding, required this.width, required this.info}) : super(key: key);
 
   final double padding;
   final double? width;
+  final SizingInformation info;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +24,8 @@ class PlayPage extends StatelessWidget {
     final Learn learn = state.learn;
 
     return Expanded(
-      child: Center(
-        child: SingleChildScrollView(
+      child: SingleChildScrollView(
+        child: Center(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: padding),
             width: width,
@@ -42,33 +40,63 @@ class PlayPage extends StatelessWidget {
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(
-                        right: AppSpaces.elementSpacing,
+                        right: AppSpaces.elementSpacing * 0.5,
                         bottom: AppSpaces.elementSpacing,
                       ),
                       child: SizedBox(
-                        width: 100,
+                        width: 110,
                         child: DisplayImage(url: ImagePaths.dash1),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(AppSpaces.elementSpacing),
-                      constraints: const BoxConstraints(
-                        maxWidth: 250,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
-                        border: Border.all(
-                          width: 1.5,
-                          color: Theme.of(context).dividerColor,
+                    if (info.isMobile) ...[
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(AppSpaces.elementSpacing),
+                          constraints: BoxConstraints(
+                              // maxWidth: info.isMobile
+                              //     ? double.infinity
+                              //     : width == null
+                              //         ? 200
+                              //         : width! * 0.5,
+                              ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
+                            border: Border.all(
+                              width: 1.5,
+                              color: Theme.of(context).dividerColor,
+                            ),
+                          ),
+                          child: DashTexts.subHeading(
+                            learn.instruction,
+                            context,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                      child: DashTexts.subHeadingSmall(
-                        learn.instruction,
-                        context,
-                        fontWeight: FontWeight.w400,
+                    ] else ...[
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(AppSpaces.elementSpacing),
+                          constraints: BoxConstraints(
+                            maxWidth: width == null ? 200 : width! * 0.5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
+                            border: Border.all(
+                              width: 1.5,
+                              color: Theme.of(context).dividerColor,
+                            ),
+                          ),
+                          child: DashTexts.subHeading(
+                            learn.instruction,
+                            context,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: AppSpaces.elementSpacing),
@@ -86,7 +114,14 @@ class PlayPage extends StatelessWidget {
                       color: Theme.of(context).dividerColor,
                     ),
                   ),
-                  child: const QuestionBoard(),
+                  child: QuestionBoard(
+                    onTapFill: (int index) {},
+                    quizState: !state.validate
+                        ? QuizState.non
+                        : (state.correctAnswerIds.contains(state.selectedAnswer?.id)
+                            ? QuizState.correct
+                            : QuizState.wrong),
+                  ),
                 ),
                 const SizedBox(height: AppSpaces.elementSpacing),
                 ...List.generate(
@@ -97,7 +132,7 @@ class PlayPage extends StatelessWidget {
 
                     final bool isCorrect = state.validate &&
                         state.selectedAnswer != null &&
-                        state.correctAnswerId == state.answers[index].id;
+                        state.correctAnswerIds.contains(state.answers[index].id);
                     return Padding(
                       padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
                       child: IgnorePointer(

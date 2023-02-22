@@ -3,7 +3,8 @@ import 'package:dashlingo/models/learn/learn.dart';
 import 'package:dashlingo/utils/logs.dart';
 
 class LearnPlayState extends BaseState {
-  final Learn learn;
+  late Learn learn;
+
   final Function(Answer answer) onNext;
   List<Answer> answers = [];
   Answer? selectedAnswer;
@@ -12,11 +13,11 @@ class LearnPlayState extends BaseState {
 
   bool validate = false;
 
-  String get correctAnswerId => learn.correctAnswerId;
+  List<String> get correctAnswerIds => learn.correctAnswerIds;
 
   Answer? get correctAnswer {
     try {
-      return answers.firstWhere((element) => element.id == correctAnswerId);
+      return answers.firstWhere((element) => correctAnswerIds.contains(element.id));
     } catch (e) {
       edPrint(e);
     }
@@ -32,6 +33,16 @@ class LearnPlayState extends BaseState {
 
   void onSelectAnswer(Answer answer) {
     selectedAnswer = answer;
+    for (var element in learn.content) {
+      if (element.type == 'fillInBlanks') {
+        final newParagraph = element.copyWith(
+          fill: [answer.content],
+        );
+        var indexWhere = learn.content.indexWhere((x) => x.id == element.id);
+        learn.content.removeAt(indexWhere);
+        learn.content.insert(indexWhere, newParagraph);
+      }
+    }
     notifyListeners();
   }
 

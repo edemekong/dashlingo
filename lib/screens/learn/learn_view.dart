@@ -114,7 +114,7 @@ class StepView extends StatelessWidget {
               SizedBox(
                 width: 120,
                 child: DashButton(
-                  title: 'TUTORIAL',
+                  title: 'TUTORIALS',
                   background: color,
                   icon: const Icon(
                     Icons.book,
@@ -213,6 +213,7 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
   void dispose() {
     _timer?.cancel();
     _timer = null;
+    animationController.dispose();
     super.dispose();
   }
 

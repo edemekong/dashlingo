@@ -1,3 +1,4 @@
+import 'package:dashlingo/app.dart';
 import 'package:dashlingo/components/display_image.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/images_path.dart';
@@ -26,7 +27,12 @@ class DashAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
-    final navigationService = locate<NavigationService>();
+
+    final path = GoRouter.of(context).location;
+
+    print('Rebuild $path');
+
+    final isHome = [learnPath].contains(path);
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -34,41 +40,55 @@ class DashAppbar extends StatelessWidget {
       color: Theme.of(context).backgroundColor,
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          BounceAnimation(
-            onTap: () {
-              context.go(learnPath);
-            },
-            child: Center(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.8),
-                    child: DisplayImage(
-                      url: isLight ? ImagePaths.dashLight : ImagePaths.dash,
-                    ),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if ((info.isDesktop || info.isTablet) || isHome) ...[
+              BounceAnimation(
+                onTap: () {
+                  context.go(learnPath);
+                },
+                child: Center(
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: AppSpaces.elementSpacing * 0.8),
+                        child: DisplayImage(
+                          url: isLight ? ImagePaths.dashLight : ImagePaths.dash,
+                        ),
+                      ),
+                      const SizedBox(width: AppSpaces.elementSpacing * 0.8),
+                      DashTexts.headingMedium('dashlingo', context,
+                          color: isLight ? Theme.of(context).primaryColor : null),
+                    ],
                   ),
-                  const SizedBox(width: AppSpaces.elementSpacing * 0.8),
-                  DashTexts.headingMedium('dashlingo', context, color: isLight ? Theme.of(context).primaryColor : null),
-                ],
+                ),
               ),
-            ),
-          ),
-          const SizedBox(width: AppSpaces.cardPadding),
-          const Spacer(),
-          IconButton(
-            splashRadius: 20,
-            onPressed: () {
-              final String theme =
-                  Theme.of(context).brightness == Brightness.light ? Brightness.dark.name : Brightness.light.name;
-              AppTheme.instance.changeThemeFromName(theme);
-            },
-            icon: Icon(isLight ? Icons.nightlight_round_sharp : Icons.sunny),
-          ),
-        ],
-      ),
+              const SizedBox(width: AppSpaces.cardPadding),
+              const Spacer(),
+              IconButton(
+                splashRadius: 20,
+                onPressed: () {
+                  final String theme =
+                      Theme.of(context).brightness == Brightness.light ? Brightness.dark.name : Brightness.light.name;
+                  AppTheme.instance.changeThemeFromName(theme);
+                },
+                icon: Icon(isLight ? Icons.nightlight_round_sharp : Icons.sunny),
+              ),
+            ] else ...[
+              DashTexts.headingMedium(
+                getTitle(path),
+                context,
+                color: isLight ? Theme.of(context).primaryColor : null,
+              ),
+              const Spacer(),
+              IconButton(
+                splashRadius: 20,
+                onPressed: () {},
+                icon: const Icon(Icons.more_vert),
+              ),
+            ],
+          ]),
     );
   }
 }

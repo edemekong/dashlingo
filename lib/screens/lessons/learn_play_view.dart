@@ -20,7 +20,7 @@ class LearnPlayView extends StatelessWidget {
     return AppScaffold(
       body: ResponsiveBuilder(builder: (context, info) {
         final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
-        final width = info.isDesktop ? (info.localWidgetSize.width * 0.8) : null;
+        final width = info.isDesktop ? (info.localWidgetSize.width * 0.65) : null;
 
         return Column(
           children: [
@@ -34,11 +34,12 @@ class LearnPlayView extends StatelessWidget {
               return PlayPage(
                 padding: padding,
                 width: width,
+                info: info,
               );
             }),
             QuizBottomNav(
               padding: padding,
-              isMobile: info.isMobile,
+              info: info,
             ),
           ],
         );

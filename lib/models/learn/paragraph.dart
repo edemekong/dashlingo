@@ -22,7 +22,7 @@ class Paragraph {
   final String content;
   final double? aspectRatio;
   final String? caption;
-  final List<String>? fill;
+  final List<String> fill;
 
   /// text, image, video, code, seperator
   final String type;
@@ -34,7 +34,7 @@ class Paragraph {
     required this.content,
     this.aspectRatio,
     this.caption,
-    this.fill,
+    this.fill = const [],
     required this.type,
   });
 

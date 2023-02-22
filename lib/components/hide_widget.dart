@@ -12,6 +12,7 @@ class HideWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isShow = GoRouter.of(context).location.startsWith(lessonPath);
+
     return ClipRRect(
       child: AnimatedAlign(
         curve: Curves.easeInOut,

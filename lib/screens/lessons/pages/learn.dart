@@ -40,6 +40,7 @@ class LearnPage extends StatelessWidget {
             child: ParagraphCard(
               paragraphs: state.learn.content,
               scrollToPosition: (Offset offset) {},
+              onTapFill: (int index) {},
             ),
           ),
         ),

@@ -17,30 +17,35 @@ class LessonView extends StatelessWidget {
 
     return AppScaffold(
       body: ResponsiveBuilder(builder: (context, info) {
+        final width = info.isDesktop ? (info.localWidgetSize.width * 0.75) : null;
+
         return Column(
           children: [
             const SizedBox(height: AppSpaces.elementSpacing),
-            SizedBox(
-              width: info.localWidgetSize.width * 0.9,
-              child: Row(
-                children: [
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(Icons.close),
-                    tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                    onPressed: () {
-                      Navigator.maybePop(context);
-                    },
-                  ),
-                  const SizedBox(width: AppSpaces.elementSpacing),
-                  Expanded(
-                    child: StepperProgressBar(
-                      count: (((state.currentPageIndex + 1) / 3) * 100).toInt(),
-                      width: info.localWidgetSize.width * 0.9,
-                      height: 15,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
+              child: SizedBox(
+                width: width,
+                child: Row(
+                  children: [
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(Icons.close),
+                      tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+                      onPressed: () {
+                        Navigator.maybePop(context);
+                      },
                     ),
-                  ),
-                ],
+                    const SizedBox(width: AppSpaces.elementSpacing),
+                    Expanded(
+                      child: StepperProgressBar(
+                        count: (((state.currentPageIndex + 1) / 3) * 100).toInt(),
+                        width: info.localWidgetSize.width * 0.9,
+                        height: 15,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(

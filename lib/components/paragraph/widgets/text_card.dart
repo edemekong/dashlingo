@@ -115,7 +115,6 @@ class _TextCardState extends State<TextCard> {
             children: [textSpan],
           ),
         ),
-        const SizedBox(height: AppSpaces.elementSpacing),
       ],
     );
   }

@@ -19,7 +19,7 @@ class Learn {
   final String learnType;
   final Map<String, dynamic> intructor;
   final List<Answer> answers;
-  final String correctAnswerId;
+  final List<String> correctAnswerIds;
   final List<String> clues;
   final int createdAt;
   final int updatedAt;
@@ -33,7 +33,7 @@ class Learn {
     required this.learnType,
     required this.intructor,
     required this.answers,
-    required this.correctAnswerId,
+    required this.correctAnswerIds,
     required this.clues,
     required this.createdAt,
     required this.updatedAt,
@@ -49,7 +49,7 @@ class Learn {
     String? learnType,
     Map<String, dynamic>? intructor,
     List<Answer>? answers,
-    String? correctAnswerId,
+    List<String>? correctAnswerIds,
     List<String>? clues,
     int? createdAt,
     int? updatedAt,
@@ -64,7 +64,7 @@ class Learn {
       learnType: learnType ?? this.learnType,
       intructor: intructor ?? this.intructor,
       answers: answers ?? this.answers,
-      correctAnswerId: correctAnswerId ?? this.correctAnswerId,
+      correctAnswerIds: correctAnswerIds ?? this.correctAnswerIds,
       clues: clues ?? this.clues,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
@@ -82,7 +82,7 @@ class Learn {
       'learnType': learnType,
       'intructor': intructor,
       'answers': answers.map((x) => x.toMap()).toList(),
-      'correctAnswerId': correctAnswerId,
+      'correctAnswerId': correctAnswerIds,
       'clues': clues,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
@@ -100,7 +100,7 @@ class Learn {
       learnType: map['learnType'] ?? '',
       intructor: Map<String, dynamic>.from(map['intructor']),
       answers: List<Answer>.from(map['answers']?.map((x) => Answer.fromMap(x))),
-      correctAnswerId: map['correctAnswerId'] ?? '',
+      correctAnswerIds: List<String>.from(map['correctAnswerIds']),
       clues: List<String>.from(map['clues']),
       createdAt: map['createdAt']?.toInt() ?? 0,
       updatedAt: map['updatedAt']?.toInt() ?? 0,
@@ -113,7 +113,7 @@ class Learn {
 
   @override
   String toString() {
-    return 'Learn(lessonId: $lessonId, learnId: $learnId, title: $title, instruction: $instruction, content: $content, pathLevel: $pathLevel, learnType: $learnType, intructor: $intructor, answers: $answers, correctAnswerId: $correctAnswerId, clues: $clues, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Learn(lessonId: $lessonId, learnId: $learnId, title: $title, instruction: $instruction, content: $content, pathLevel: $pathLevel, learnType: $learnType, intructor: $intructor, answers: $answers, correctAnswerId: $correctAnswerIds, clues: $clues, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -130,7 +130,7 @@ class Learn {
         other.learnType == learnType &&
         mapEquals(other.intructor, intructor) &&
         listEquals(other.answers, answers) &&
-        other.correctAnswerId == correctAnswerId &&
+        other.correctAnswerIds == correctAnswerIds &&
         listEquals(other.clues, clues) &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt;
@@ -147,7 +147,7 @@ class Learn {
         learnType.hashCode ^
         intructor.hashCode ^
         answers.hashCode ^
-        correctAnswerId.hashCode ^
+        correctAnswerIds.hashCode ^
         clues.hashCode ^
         createdAt.hashCode ^
         updatedAt.hashCode;

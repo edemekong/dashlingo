@@ -2,6 +2,7 @@ import 'package:dashlingo/services/get_it.dart';
 import 'package:dashlingo/services/storage_service.dart';
 import 'package:dashlingo/states/app_state.dart';
 import 'package:dashlingo/theme/theme.dart';
+import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -29,11 +30,11 @@ class DashApp extends StatelessWidget {
     return ValueListenableBuilder<ThemeData>(
       valueListenable: AppTheme.instance.themeDataNotifier,
       builder: (context, theme, _) {
-        final state = context.watch<AppState>();
+        final state = context.read<AppState>();
 
         return MaterialApp.router(
           theme: theme,
-          title: 'Dashlingo ∙ ${getTitle(state.screenTitle)}',
+          title: 'dashlingo ∙ ${getTitle(state.screenTitle)}',
           builder: (context, widget) => Overlay(
             initialEntries: [
               OverlayEntry(
@@ -49,26 +50,26 @@ class DashApp extends StatelessWidget {
       },
     );
   }
+}
 
-  String getTitle(String? path) {
-    if (path == null) {
-      return 'Dashlingo';
-    }
-
-    if (path.startsWith(profilePath)) {
-      path = "Profile";
-    } else if (path.startsWith(tutorialsPath)) {
-      path = "Tutorials";
-    } else if (path.startsWith(learnPath)) {
-      path = "Learn";
-    } else if (path.startsWith(leaderboard)) {
-      path = "Leaderboard";
-    } else {
-      path = "Not Found";
-    }
-
-    return path;
+String getTitle(String? path) {
+  if (path == null) {
+    return 'dashlingo';
   }
+
+  if (path.startsWith(profilePath)) {
+    path = "Profile";
+  } else if (path.startsWith(tutorialsPath)) {
+    path = "Tutorials";
+  } else if (path.startsWith(learnPath)) {
+    path = "Learn";
+  } else if (path.startsWith(leaderboard)) {
+    path = "Leaderboard";
+  } else {
+    path = "Not Found";
+  }
+
+  return path;
 }
 
 Future<void> initializeApp() async {

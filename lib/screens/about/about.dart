@@ -6,7 +6,6 @@ import 'package:dashlingo/constants/images_path.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../components/scaffold.dart';
 import '../../constants/icon_path.dart';
 import '../../models/menu.dart';
@@ -112,13 +111,13 @@ class SocialLinks extends StatelessWidget {
         socialLinks.length,
         (index) => BounceAnimation(
           onTap: () async {
-            if (socialLinks[index].menuType == AppMenuType.link) {
-              final parse = Uri.parse('https://${socialLinks[index].link}');
-              bool canLaunch = await canLaunchUrl(parse);
-              if (canLaunch) {
-                await launchUrl(parse);
-              }
-            }
+            // if (socialLinks[index].menuType == AppMenuType.link) {
+            //   final parse = Uri.parse('https://${socialLinks[index].link}');
+            //   bool canLaunch = await canLaunchUrl(parse);
+            //   if (canLaunch) {
+            //     await launchUrl(parse);
+            //   }
+            // }
           },
           child: Container(
             height: 45,

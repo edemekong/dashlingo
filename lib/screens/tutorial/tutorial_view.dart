@@ -83,6 +83,7 @@ class TutorialView extends StatelessWidget {
                               child: ParagraphCard(
                                 paragraphs: tutorial.paragraphs,
                                 scrollToPosition: state.scrollToIndex,
+                                onTapFill: (int index) {},
                               ),
                             ),
                           ),

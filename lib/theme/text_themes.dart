@@ -5,16 +5,16 @@ class AppTextThemes {
   static const double headline1Size = 48;
   static const double headline2Size = 30;
   static const double headline3Size = 28;
-  static const double headline4Size = 24;
-  static const double headline5Size = 22;
-  static const double headline6Size = 18;
-  static const double subtile1Size = 17.5;
-  static const double subtile2Size = 14.5;
-  static const double body1Size = 13.5;
-  static const double body2Size = 12.5;
-  static const double buttonSize = 14;
-  static const double caption = 11;
-  static const double overline = 10.5;
+  static const double headline4Size = 26;
+  static const double headline5Size = 24;
+  static const double headline6Size = 22;
+  static const double subtile1Size = 20;
+  static const double subtile2Size = 18;
+  static const double body1Size = 17;
+  static const double body2Size = 15.5;
+  static const double buttonSize = 15;
+  static const double caption = 14;
+  static const double overline = 12.5;
 
   static const TextTheme mobileTextThemeLight = TextTheme(
     headline1: TextStyle(

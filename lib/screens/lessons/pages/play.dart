@@ -52,16 +52,9 @@ class PlayPage extends StatelessWidget {
                       Expanded(
                         child: Container(
                           padding: const EdgeInsets.all(AppSpaces.elementSpacing),
-                          constraints: BoxConstraints(
-                              // maxWidth: info.isMobile
-                              //     ? double.infinity
-                              //     : width == null
-                              //         ? 200
-                              //         : width! * 0.5,
-                              ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).cardColor,
-                            borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
+                            borderRadius: AppSpaces.defaultBorderRadiusTextField,
                             border: Border.all(
                               width: 1.5,
                               color: Theme.of(context).dividerColor,
@@ -75,25 +68,23 @@ class PlayPage extends StatelessWidget {
                         ),
                       ),
                     ] else ...[
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(AppSpaces.elementSpacing),
-                          constraints: BoxConstraints(
-                            maxWidth: width == null ? 200 : width! * 0.5,
+                      Container(
+                        padding: const EdgeInsets.all(AppSpaces.elementSpacing),
+                        constraints: BoxConstraints(
+                          maxWidth: width == null ? 400 : width! * 0.5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: AppSpaces.defaultBorderRadiusTextField.copyWith(bottomLeft: Radius.zero),
+                          border: Border.all(
+                            width: 1.5,
+                            color: Theme.of(context).dividerColor,
                           ),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: AppSpaces.defaultBorderRadius.copyWith(topLeft: Radius.zero),
-                            border: Border.all(
-                              width: 1.5,
-                              color: Theme.of(context).dividerColor,
-                            ),
-                          ),
-                          child: DashTexts.subHeading(
-                            learn.instruction,
-                            context,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        ),
+                        child: DashTexts.subHeading(
+                          learn.instruction,
+                          context,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

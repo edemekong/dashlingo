@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DashTexts {
+  DashTexts._();
   static Widget headingBig(String text, BuildContext context, {Color? color, FontWeight? fontWeight}) => Text(text,
       style: Theme.of(context).textTheme.headline1?.copyWith(
             color: color,

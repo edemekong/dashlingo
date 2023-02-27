@@ -2,6 +2,7 @@ import 'package:dashlingo/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppSpaces {
+  AppSpaces._();
   static const double cardPadding = 35;
   static const double webWidth = 1080;
   static const double elementSpacing = cardPadding * 0.5;

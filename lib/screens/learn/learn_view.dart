@@ -14,6 +14,7 @@ import '../../constants/mocks/steps.dart';
 import '../../models/learn/lesson.dart';
 import '../../models/learn/step.dart';
 import '../../services/navigation_service.dart';
+import '../account_setup/account_setup.dart';
 
 const List<Color> colors = [
   AppColors.primaryColor,
@@ -41,20 +42,82 @@ class _LearnViewState extends State<LearnView> {
     return AppScaffold(
       body: ResponsiveBuilder(builder: (context, info) {
         final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
-        final screenWidth = info.localWidgetSize.width;
-        return SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: padding),
-          child: SizedBox(
-            width: info.localWidgetSize.width,
-            child: Column(
-                children: List.generate(steps.length, (index) {
-              return StepView(
-                color: colors[index % steps.length],
-                screenWidth: screenWidth,
-                step: steps[index],
-                count: index + 1,
-              );
-            })),
+
+        return AccountSetup();
+
+        return SizedBox(
+          width: info.screenSize.width,
+          height: MediaQuery.of(context).size.height,
+          child: Row(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  primary: true,
+                  physics: const ClampingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: padding),
+                  child: Column(
+                    children: List.generate(steps.length, (index) {
+                      return StepView(
+                        color: colors[index % steps.length],
+                        info: info,
+                        step: steps[index],
+                        count: index + 1,
+                      );
+                    }),
+                  ),
+                ),
+              ),
+              if (info.screenSize.width >= 768) ...[
+                SizedBox(
+                  width: (info.screenSize.width - 100) * 0.3,
+                  height: MediaQuery.of(context).size.height,
+                  child: SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(
+                            right: AppSpaces.elementSpacing,
+                            top: AppSpaces.elementSpacing,
+                            left: AppSpaces.elementSpacing * 0.5,
+                          ),
+                          padding: const EdgeInsets.all(AppSpaces.elementSpacing),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).dividerColor,
+                            ),
+                            borderRadius: AppSpaces.defaultBorderRadius,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              DashTexts.headingSmall(
+                                'Create a profile to save your progress!',
+                                context,
+                              ),
+                              const SizedBox(height: AppSpaces.cardPadding),
+                              DashButton(
+                                title: 'CREATE AN ACCOUNT',
+                                background: AppColors.green,
+                                onPressed: () {},
+                              ),
+                              const SizedBox(height: AppSpaces.elementSpacing),
+                              DashButton(
+                                title: 'LOGIN',
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ],
           ),
         );
       }),
@@ -67,11 +130,10 @@ class StepView extends StatelessWidget {
   final DashStep step;
   final Color color;
 
-  const StepView(
-      {Key? key, required this.screenWidth, required this.step, required, required this.color, required this.count})
+  const StepView({Key? key, required this.info, required this.step, required, required this.color, required this.count})
       : super(key: key);
 
-  final double screenWidth;
+  final SizingInformation info;
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +189,14 @@ class StepView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * ((step.lessons.length + 1.5) * 0.15),
+          height: info.screenSize.shortestSide * ((step.lessons.length + 1.5) * 0.15),
           child: Stack(
             alignment: AlignmentDirectional.center,
             children: List.generate(
               step.lessons.length,
               (index) {
                 final Lesson lesson = step.lessons[index];
-                final value = screenWidth / 8;
+                final value = info.localWidgetSize.width / 8;
                 final isNext3 = index % 2 == 0;
 
                 return Positioned(

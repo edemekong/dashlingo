@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:dashlingo/components/bounce_animation.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
+import 'package:dashlingo/states/auth_state.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dashlingo/services/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../../models/menu.dart';
 import '../../../services/navigation_service.dart';
@@ -66,8 +68,11 @@ class DashSizedbar extends StatelessWidget {
                 title: 'LOGOUT',
                 icon: Icon(Icons.logout),
                 link: '/logout',
+                menuType: AppMenuType.tap,
               ),
-              onChanged: () {},
+              onChanged: () {
+                context.read<AuthState>().logOut();
+              },
               iconOnly: info.isTablet,
             ),
           ),
@@ -178,7 +183,9 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
       onExit: (_) => _onHover(false),
       onTap: () {
         widget.onChanged();
-        // pushNamedAndRemoveUntil(widget.menu.link);
+        if (widget.menu.menuType == AppMenuType.tap) {
+          return;
+        }
         context.go(widget.menu.link);
       },
       child: Container(

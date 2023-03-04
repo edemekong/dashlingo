@@ -28,6 +28,10 @@
     <meta name="apple-mobile-web-app-title" content="dashlingo" />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="70893004989-35g7q3j8a2i51pbr5m9bf1cr6kid24h4.apps.googleusercontent.com">
+
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -92,7 +96,25 @@
       }
     </style>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!--  The core Firebase JS SDK is always required and must be listed first  -->
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
     <script>
+        // var firebaseConfig = {
+        // apiKey: "AIzaSyDJnknDDfZL87yaG37T2_DeeIpJ8BVhDh4",
+        // authDomain: "dashlingo-test.firebaseapp.com",
+        // projectId: "dashlingo-test",
+        // storageBucket: "dashlingo-test.appspot.com",
+        // messagingSenderId: "70893004989",
+        // appId: "1:70893004989:web:8ceaf062cc9967ba4cafd4",
+        // measurementId: "G-W1BLVMVYF8"
+        // };
+        // firebase.initializeApp(firebaseConfig);
+      
       // The value below is injected by flutter build, do not touch.
       var serviceWorkerVersion = null;
     </script>

@@ -17,18 +17,17 @@ class AccountSetup extends StatelessWidget {
     return AppScaffold(
       body: ResponsiveBuilder(
         builder: (context, info) {
-          final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
-          final width = info.isDesktop ? (info.localWidgetSize.width * 0.65) : null;
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: AppSpaces.elementSpacing * 0.5),
               Padding(
-                padding: const EdgeInsets.all(AppSpaces.elementSpacing),
+                padding: const EdgeInsets.only(left: AppSpaces.elementSpacing * 0.5),
                 child: CloseButton(
                   onPressed: () {},
                 ),
               ),
+              const SizedBox(height: AppSpaces.elementSpacing),
               Expanded(
                 child: PageView(
                   children: [
@@ -58,7 +57,7 @@ class ChooseYourLevel extends StatelessWidget {
     final width = info.isDesktop ? (info.localWidgetSize.width * 0.65) : null;
 
     return Padding(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.symmetric(horizontal: padding),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -79,7 +78,7 @@ class ChooseYourLevel extends StatelessWidget {
                   subtitle: '',
                   onTap: () {},
                 ),
-                const SizedBox(height: AppSpaces.elementSpacing),
+                const SizedBox(height: AppSpaces.elementSpacing * 0.5),
                 QuizBoxCard(
                   state: QuizState.non,
                   title: '',
@@ -132,16 +131,16 @@ class QuizBoxCard extends StatelessWidget {
           children: [
             const DisplayImage(
               url: ImagePaths.dash1,
-              width: 80,
-              height: 80,
+              width: 60,
+              height: 60,
             ),
-            const SizedBox(width: AppSpaces.elementSpacing),
+            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DashTexts.subHeading(
+                  DashTexts.subHeadingSmall(
                     'Learning Flutter/Dart for the first time?',
                     context,
                     fontWeight: FontWeight.w600,
@@ -155,6 +154,7 @@ class QuizBoxCard extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(width: AppSpaces.elementSpacing * 0.5),
             Icon(
               Icons.arrow_forward_ios_rounded,
               color: Theme.of(context).dividerColor,

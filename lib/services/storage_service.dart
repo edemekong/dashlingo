@@ -30,7 +30,7 @@ class StorageService {
 
       await _sharedPreferences.remove(key);
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return false;
   }
@@ -42,7 +42,7 @@ class StorageService {
 
       return await _sharedPreferences.setBool(key, value);
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return false;
   }
@@ -54,7 +54,7 @@ class StorageService {
       await _sharedPreferences.setInt(key, value);
       return true;
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return false;
   }
@@ -65,7 +65,7 @@ class StorageService {
 
       return _sharedPreferences.getInt(key);
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return null;
   }
@@ -77,7 +77,7 @@ class StorageService {
       await _sharedPreferences.setString(key, value);
       return true;
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return false;
   }
@@ -88,7 +88,7 @@ class StorageService {
 
       return _sharedPreferences.getString(key);
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return null;
   }

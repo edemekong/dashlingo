@@ -2,6 +2,7 @@ import 'package:dashlingo/components/progress_indicator.dart';
 import 'package:dashlingo/theme/colors.dart';
 import 'package:dashlingo/theme/spaces.dart';
 import 'package:dashlingo/theme/theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'bounce_animation.dart';
 
@@ -154,10 +155,13 @@ class DashButton extends StatelessWidget {
   }
 
   Text buttonTitle(BuildContext context, [TextStyle? style]) {
-    return Text(
-      "$title",
-      style: style,
-    );
+    final String text = (() {
+      if (kIsWeb && title != null) {
+        return title!.toUpperCase();
+      }
+      return '$title';
+    })();
+    return Text(text, style: style);
   }
 }
 

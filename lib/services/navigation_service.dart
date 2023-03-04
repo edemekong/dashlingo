@@ -97,7 +97,7 @@ class NavigationService {
                 path: lessonPath,
                 parentNavigatorKey: tabNavigatorKey,
                 pageBuilder: (_, state) {
-                  edPrint(state.queryParams);
+                  dashPrint(state.queryParams);
                   return const NoTransitionPage(
                     child: LessonViewWidget(),
                   );

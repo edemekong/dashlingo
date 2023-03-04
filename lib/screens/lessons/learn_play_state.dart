@@ -19,7 +19,7 @@ class LearnPlayState extends BaseState {
     try {
       return answers.firstWhere((element) => correctAnswerIds.contains(element.id));
     } catch (e) {
-      edPrint(e);
+      dashPrint(e);
     }
     return null;
   }

@@ -74,15 +74,13 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
                       tooltip: menu.title,
                       activeIcon: IconTheme(
                         data: Theme.of(context).iconTheme.copyWith(
-                              size: 36,
+                              size: 34,
                               color: Theme.of(context).primaryColor,
                             ),
                         child: menu.activeIcon,
                       ),
                       icon: IconTheme(
-                        data: Theme.of(context).iconTheme.copyWith(
-                              size: 36,
-                            ),
+                        data: Theme.of(context).iconTheme.copyWith(size: 34),
                         child: menu.icon,
                       ),
                     );

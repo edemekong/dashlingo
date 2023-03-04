@@ -1,8 +1,10 @@
 import 'package:dashlingo/services/get_it.dart';
 import 'package:dashlingo/services/storage_service.dart';
 import 'package:dashlingo/states/app_state.dart';
+import 'package:dashlingo/states/auth_state.dart';
 import 'package:dashlingo/theme/theme.dart';
 import 'package:dashlingo/utils/logs.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +18,7 @@ class AppRootProviders extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AppState()),
+        ChangeNotifierProvider(create: (context) => AuthState(), lazy: true),
       ],
       child: const DashApp(),
     );
@@ -54,7 +57,7 @@ class DashApp extends StatelessWidget {
 
 String getTitle(String? path) {
   if (path == null) {
-    return 'dashlingo';
+    return 'Learn from dash!';
   }
 
   if (path.startsWith(profilePath)) {
@@ -72,8 +75,25 @@ String getTitle(String? path) {
   return path;
 }
 
-Future<void> initializeApp() async {
+enum AppEnvironment { mobile, web }
+
+Future<void> initializeApp([AppEnvironment environment = AppEnvironment.web]) async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (environment == AppEnvironment.web) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyDJnknDDfZL87yaG37T2_DeeIpJ8BVhDh4",
+          authDomain: "dashlingo-test.firebaseapp.com",
+          projectId: "dashlingo-test",
+          storageBucket: "dashlingo-test.appspot.com",
+          messagingSenderId: "70893004989",
+          appId: "1:70893004989:web:8ceaf062cc9967ba4cafd4",
+          measurementId: "G-W1BLVMVYF8"),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
   AppTheme.instance.setThemeFromLocalStorage();
   StorageService.instance.initialisePreference();
 

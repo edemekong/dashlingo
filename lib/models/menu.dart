@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:dashlingo/constants/paths.dart';
 
-enum AppMenuType { path, link }
+enum AppMenuType { path, link, tap }
 
 @immutable
 class Menu {

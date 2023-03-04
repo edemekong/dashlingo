@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-edPrint(dynamic value) {
+dashPrint(dynamic value) {
   debugPrint(value.toString());
 }

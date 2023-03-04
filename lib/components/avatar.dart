@@ -23,18 +23,26 @@ class ProfileAvater extends StatelessWidget {
   Widget build(BuildContext context) {
     final isLight = AppTheme.instance.isLightMode(context);
 
-    return ClipRRect(
-      borderRadius: AppSpaces.defaultCircularRadius,
-      child: DisplayImage(
-        fit: BoxFit.cover,
-        width: size,
-        height: size,
-        url: url,
-        icon: Image.asset(
-          isLight ? ImagePaths.dashLight : ImagePaths.dash,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: AppSpaces.defaultCircularRadius,
+        border: Border.all(
+          color: Theme.of(context).dividerColor,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: AppSpaces.defaultCircularRadius,
+        child: DisplayImage(
+          fit: BoxFit.cover,
           width: size,
           height: size,
-          scale: size > 80 ? 0.1 : 1,
+          url: url,
+          icon: Image.asset(
+            isLight ? ImagePaths.dashLight : ImagePaths.dash,
+            width: size,
+            height: size,
+            scale: size > 80 ? 0.1 : 1,
+          ),
         ),
       ),
     );

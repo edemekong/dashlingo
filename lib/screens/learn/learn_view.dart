@@ -24,6 +24,7 @@ import '../../constants/mocks/steps.dart';
 import '../../models/learn/lesson.dart';
 import '../../models/learn/step.dart';
 import '../../services/navigation_service.dart';
+import '../account_setup/account_setup.dart';
 
 const List<Color> colors = [
   AppColors.primaryColor,
@@ -179,7 +180,7 @@ class ProfileCard extends StatelessWidget {
                   'Create a profile to save your progress!',
                   context,
                 ),
-                const SizedBox(height: AppSpaces.cardPadding),
+                const SizedBox(height: AppSpaces.elementSpacing),
                 DashButton(
                   title: ('Sign in with Google'),
                   icon: const Padding(
@@ -191,15 +192,7 @@ class ProfileCard extends StatelessWidget {
                     ),
                   ),
                   background: AppColors.green,
-                  onPressed: () {
-                    UserRepository.instance.siginWithGoogle().then((value) {
-                      if (value.isRight) {
-                        dashPrint(value.right);
-                      } else {
-                        dashPrint(value.left);
-                      }
-                    });
-                  },
+                  onPressed: context.read<AuthState>().googleSignIn,
                 ),
               ],
             );

@@ -3,7 +3,6 @@ import 'package:dashlingo/services/storage_service.dart';
 import 'package:dashlingo/states/app_state.dart';
 import 'package:dashlingo/states/auth_state.dart';
 import 'package:dashlingo/theme/theme.dart';
-import 'package:dashlingo/utils/logs.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

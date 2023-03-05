@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 @immutable
@@ -9,6 +10,7 @@ class User {
   final String email;
   final String profileImageUrl;
   final List<String> badges;
+  final Map<String, dynamic> preference;
   final int createdAt;
   final int updatedAt;
   final bool disabled;
@@ -23,6 +25,7 @@ class User {
     required this.email,
     required this.profileImageUrl,
     required this.badges,
+    required this.preference,
     required this.createdAt,
     required this.updatedAt,
     required this.disabled,
@@ -38,6 +41,7 @@ class User {
     String? email,
     String? profileImageUrl,
     List<String>? badges,
+    Map<String, dynamic>? preference,
     int? createdAt,
     int? updatedAt,
     bool? disabled,
@@ -52,6 +56,7 @@ class User {
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       badges: badges ?? this.badges,
+      preference: preference ?? this.preference,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       disabled: disabled ?? this.disabled,
@@ -69,6 +74,7 @@ class User {
       'email': email,
       'profileImageUrl': profileImageUrl,
       'badges': badges,
+      'preference': preference,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
       'disabled': disabled,
@@ -85,13 +91,14 @@ class User {
       handle: map['handle'] ?? '',
       email: map['email'] ?? '',
       profileImageUrl: map['profileImageUrl'] ?? '',
-      badges: List<String>.from(map['badges'] ?? const []),
+      badges: List<String>.from(map['badges'] ?? []),
+      preference: Map<String, dynamic>.from(map['preference'] ?? {}),
       createdAt: map['createdAt'] ?? 0,
       updatedAt: map['updatedAt'] ?? 0,
       disabled: map['disabled'] ?? false,
       isTest: map['isTest'] ?? false,
-      settings: Map<String, dynamic>.from(map['settings'] ?? const {}),
-      pointsData: Map<String, dynamic>.from(map['pointsData'] ?? const {}),
+      settings: Map<String, dynamic>.from(map['settings'] ?? {}),
+      pointsData: Map<String, dynamic>.from(map['pointsData'] ?? {}),
     );
   }
 
@@ -101,7 +108,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(uid: $uid, name: $name, handle: $handle, email: $email, profileImageUrl: $profileImageUrl, badges: $badges, createdAt: $createdAt, updatedAt: $updatedAt, disabled: $disabled, isTest: $isTest, settings: $settings, pointsData: $pointsData)';
+    return 'User(uid: $uid, name: $name, handle: $handle, email: $email, profileImageUrl: $profileImageUrl, badges: $badges, preference: $preference, createdAt: $createdAt, updatedAt: $updatedAt, disabled: $disabled, isTest: $isTest, settings: $settings, pointsData: $pointsData)';
   }
 
   @override
@@ -115,6 +122,7 @@ class User {
         other.email == email &&
         other.profileImageUrl == profileImageUrl &&
         listEquals(other.badges, badges) &&
+        mapEquals(other.preference, preference) &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt &&
         other.disabled == disabled &&
@@ -131,6 +139,7 @@ class User {
         email.hashCode ^
         profileImageUrl.hashCode ^
         badges.hashCode ^
+        preference.hashCode ^
         createdAt.hashCode ^
         updatedAt.hashCode ^
         disabled.hashCode ^

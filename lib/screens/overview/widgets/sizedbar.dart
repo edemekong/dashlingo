@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dashlingo/components/bounce_animation.dart';
 import 'package:dashlingo/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
+import 'package:dashlingo/models/user.dart';
 import 'package:dashlingo/states/auth_state.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,6 +26,8 @@ class DashSizedbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User? currentUser = context.select<AuthState, User?>((v) => v.currentUser);
+
     return Container(
       height: MediaQuery.of(context).size.height,
       color: Theme.of(context).backgroundColor,
@@ -34,13 +37,12 @@ class DashSizedbar extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(
-                vertical: AppSpaces.elementSpacing * 0.5,
+                vertical: AppSpaces.elementSpacing,
                 horizontal: AppSpaces.elementSpacing,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: AppSpaces.cardPadding),
                   ...List.generate(
                     tabs.length,
                     (index) {
@@ -58,24 +60,26 @@ class DashSizedbar extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: AppSpaces.elementSpacing,
-              bottom: AppSpaces.elementSpacing,
-            ),
-            child: MenuButtonVertical(
-              menu: const Menu(
-                title: 'LOGOUT',
-                icon: Icon(Icons.logout),
-                link: '/logout',
-                menuType: AppMenuType.tap,
+          if (currentUser != null) ...[
+            Padding(
+              padding: const EdgeInsets.only(
+                left: AppSpaces.elementSpacing,
+                bottom: AppSpaces.elementSpacing,
               ),
-              onChanged: () {
-                context.read<AuthState>().logOut();
-              },
-              iconOnly: info.isTablet,
+              child: MenuButtonVertical(
+                menu: const Menu(
+                  title: 'LOGOUT',
+                  icon: Icon(Icons.logout),
+                  link: '/logout',
+                  menuType: AppMenuType.tap,
+                ),
+                onChanged: () {
+                  context.read<AuthState>().logOut();
+                },
+                iconOnly: info.isTablet,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );

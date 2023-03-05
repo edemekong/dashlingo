@@ -23,7 +23,7 @@ class UserRepository {
     listenToAuthChanges();
   }
 
-  Future<Either<ErrorHandler, SuccessHandler<User>>> siginWithGoogle() async {
+  Future<Either<ErrorHandler, SuccessHandler<User>>> siginWithGoogle(User user) async {
     try {
       final googleUser = await _auth.googleSignIn();
       if (googleUser.isRight) {
@@ -41,15 +41,13 @@ class UserRepository {
             return const Left(ErrorHandler("Failed to get user"));
           }
         } else {
-          User user = User(
+          User newUser = user.copyWith(
             uid: firebaseUser.uid,
             name: firebaseUser.displayName ?? '',
             handle: (firebaseUser.displayName ?? '').toLowerCase().replaceAll(' ', ''),
             email: firebaseUser.email ?? '',
             profileImageUrl: firebaseUser.photoURL ?? '',
             badges: const [],
-            createdAt: DateTime.now().millisecondsSinceEpoch,
-            updatedAt: DateTime.now().millisecondsSinceEpoch,
             disabled: false,
             isTest: false,
             settings: const {},
@@ -59,11 +57,11 @@ class UserRepository {
             },
           );
 
-          await _firestore.collection('users').doc(firebaseUser.uid).set(user.toMap());
+          await _firestore.collection('users').doc(firebaseUser.uid).set(newUser.toMap());
           await getCurrentUser(firebaseUser.uid);
 
           return Right(
-            SuccessHandler<User>(user, "Successfully Login a User From Google Accout"),
+            SuccessHandler<User>(newUser, "Successfully Login a User From Google Accout"),
           );
         }
       } else {

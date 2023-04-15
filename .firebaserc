@@ -1,6 +1,5 @@
 {
   "projects": {
-    "prod": "dashlingoo",
-    "dev": "dashlingo-test"
+    "default": "dashlingoo"
   }
 }

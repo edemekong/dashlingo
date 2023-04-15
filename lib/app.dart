@@ -3,7 +3,10 @@ import 'package:dashlingo/data/services/storage_service.dart';
 import 'package:dashlingo/data/states/app_state.dart';
 import 'package:dashlingo/data/states/auth_state.dart';
 import 'package:dashlingo/UI/theme/theme.dart';
+import 'package:dashlingo/firebase_options.dart';
+import 'package:dashlingo/main.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -82,21 +85,12 @@ String getTitle(String? path) {
   return path;
 }
 
-enum AppEnvironment { mobile, web }
+enum AppFlavor { dev, prod }
 
-Future<void> initializeApp([AppEnvironment environment = AppEnvironment.web]) async {
+Future<void> initializeApp(AppFlavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (environment == AppEnvironment.web) {
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyDJnknDDfZL87yaG37T2_DeeIpJ8BVhDh4",
-          authDomain: "dashlingo-test.firebaseapp.com",
-          projectId: "dashlingo-test",
-          storageBucket: "dashlingo-test.appspot.com",
-          messagingSenderId: "70893004989",
-          appId: "1:70893004989:web:8ceaf062cc9967ba4cafd4",
-          measurementId: "G-W1BLVMVYF8"),
-    );
+  if (kIsWeb) {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform(flavor));
   } else {
     await Firebase.initializeApp();
   }

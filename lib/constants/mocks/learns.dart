@@ -1,8 +1,114 @@
-import 'package:dashlingo/models/learn/paragraph.dart';
+import 'package:dashlingo/data/models/learn/paragraph.dart';
 
-import '../../models/learn/learn.dart';
+import '../../data/models/learn/learn.dart';
 
 List<Learn> learns = [
+  Learn(
+    lessonId: 'alshnu0123ef',
+    learnId: '-asf34sefe',
+    pathLevel: 100,
+    learnType: 'play',
+    title: "Fill in the blanks",
+    instruction: 'Display a String Data-Type on console:',
+    intructor: {
+      "uid": "paul123",
+      "name": "Paul Jeremiah",
+    },
+    content: [
+      Paragraph(
+        id: '1231',
+        index: 0,
+        content: 'print(',
+        type: 'code',
+      ),
+      Paragraph(
+        id: '434',
+        index: 1,
+        content: '',
+        type: 'fillInBlanks',
+      ),
+      Paragraph(
+        id: '1231',
+        index: 2,
+        content: ');',
+        type: 'code',
+      ),
+    ],
+    answers: [
+      Answer(
+        id: '123',
+        learnId: '-qwerty-',
+        content: 'hello, world',
+        type: 'fill',
+      ),
+      Answer(
+        id: '1234',
+        learnId: '-qwerty-',
+        content: '"hello, world"',
+        type: 'fill',
+      ),
+      Answer(
+        id: '123456',
+        learnId: '-qwerty-',
+        content: 'hello, world"',
+        type: 'fill',
+      ),
+    ],
+    correctAnswerIds: ['1234'],
+    clues: ['Flutter can paint on any screen.'],
+    createdAt: 123234234,
+    updatedAt: 9834098534,
+  ),
+  Learn(
+    lessonId: '128jsdfs',
+    learnId: '-123nsdf',
+    pathLevel: 200,
+    learnType: 'play',
+    title: "Fill in the blanks",
+    instruction: 'What command can you use to generate a new Flutter project?',
+    intructor: {
+      "uid": "paul123",
+      "name": "Paul Jeremiah",
+    },
+    content: [
+      Paragraph(
+        id: '1231',
+        index: 0,
+        content: 'To create a new Flutter project, you can use the following command:',
+        type: 'text',
+      ),
+      Paragraph(
+        id: '434',
+        index: 1,
+        content: '',
+        type: 'fillInBlanks',
+      ),
+    ],
+    answers: [
+      Answer(
+        id: '123',
+        learnId: '-qwerty-',
+        content: 'flutter create <project_name>',
+        type: 'fill',
+      ),
+      Answer(
+        id: '1234',
+        learnId: '-qwerty-',
+        content: 'flutter create project',
+        type: 'fill',
+      ),
+      Answer(
+        id: '123456',
+        learnId: '-qwerty-',
+        content: 'flutter run',
+        type: 'fill',
+      ),
+    ],
+    correctAnswerIds: ['123'],
+    clues: ['Flutter can paint on any screen.'],
+    createdAt: 123234234,
+    updatedAt: 9834098534,
+  ),
   Learn(
     lessonId: 'qwertasdasdy123',
     learnId: '-qwerty-123',
@@ -47,7 +153,7 @@ List<Learn> learns = [
         learnId: '',
       ),
     ],
-    correctAnswerId: '123',
+    correctAnswerIds: ['123'],
     clues: ['Flutter can paint on any screen.'],
     createdAt: 123234234,
     updatedAt: 9834098534,
@@ -84,7 +190,7 @@ List<Learn> learns = [
         type: 'fill',
       ),
     ],
-    correctAnswerId: '123',
+    correctAnswerIds: ['123'],
     clues: ['A programing language is coding language.'],
     createdAt: 123234234,
     updatedAt: 9834098534,
@@ -109,7 +215,7 @@ List<Learn> learns = [
       ),
     ],
     answers: [],
-    correctAnswerId: '1234',
+    correctAnswerIds: ['1234'],
     clues: ['Flutter can paint on any screen.'],
     createdAt: 123234234,
     updatedAt: 9834098534,

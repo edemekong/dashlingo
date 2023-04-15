@@ -1,5 +1,5 @@
-import 'package:dashlingo/models/learn/paragraph.dart';
-import '../models/learn/tutorial.dart';
+import 'package:dashlingo/data/models/learn/paragraph.dart';
+import '../data/models/learn/tutorial.dart';
 
 Tutorial tutorial = Tutorial(
   id: '-123-',

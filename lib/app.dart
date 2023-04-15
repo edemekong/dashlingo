@@ -1,8 +1,8 @@
-import 'package:dashlingo/services/get_it.dart';
-import 'package:dashlingo/services/storage_service.dart';
-import 'package:dashlingo/states/app_state.dart';
-import 'package:dashlingo/states/auth_state.dart';
-import 'package:dashlingo/theme/theme.dart';
+import 'package:dashlingo/data/services/get_it.dart';
+import 'package:dashlingo/data/services/storage_service.dart';
+import 'package:dashlingo/data/states/app_state.dart';
+import 'package:dashlingo/data/states/auth_state.dart';
+import 'package:dashlingo/UI/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

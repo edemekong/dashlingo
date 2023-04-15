@@ -1,4 +1,4 @@
-import '../../models/learn/lesson.dart';
+import '../../data/models/learn/lesson.dart';
 
 const List<Lesson> lessons = [
   Lesson(

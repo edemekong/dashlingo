@@ -1,7 +1,7 @@
 import 'package:dashlingo/constants/mocks/lessons.dart';
 
-import '../../models/learn/lesson.dart';
-import '../../models/learn/step.dart';
+import '../../data/models/learn/lesson.dart';
+import '../../data/models/learn/step.dart';
 
 List<DashStep> steps = [
   const DashStep(

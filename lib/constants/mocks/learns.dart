@@ -1,6 +1,6 @@
-import 'package:dashlingo/models/learn/paragraph.dart';
+import 'package:dashlingo/data/models/learn/paragraph.dart';
 
-import '../../models/learn/learn.dart';
+import '../../data/models/learn/learn.dart';
 
 List<Learn> learns = [
   Learn(

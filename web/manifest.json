@@ -1,11 +1,11 @@
 {
-  "name": "Flutter Fairy",
+  "name": "Dashlingo",
   "short_name": "dashlingo",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",
   "theme_color": "#0175C2",
-  "description": "dashlingo's Learn | Build | Deploy",
+  "description": "Dashling: dart language lessons",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [

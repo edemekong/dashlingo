@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DashTexts {
   DashTexts._();
   static Widget headingBig(String text, BuildContext context, {Color? color, FontWeight? fontWeight}) => Text(text,
-      style: Theme.of(context).textTheme.headline1?.copyWith(
+      style: Theme.of(context).textTheme.displayLarge?.copyWith(
             color: color,
             height: 1.1,
             fontWeight: fontWeight,
@@ -14,7 +14,7 @@ class DashTexts {
       Text(
         text,
         textAlign: center ? TextAlign.center : TextAlign.start,
-        style: Theme.of(context).textTheme.headline2?.copyWith(color: color, fontWeight: fontWeight),
+        style: Theme.of(context).textTheme.displayMedium?.copyWith(color: color, fontWeight: fontWeight),
       );
 
   static Widget headingSmall(
@@ -30,7 +30,7 @@ class DashTexts {
           overflow: overflow,
           maxLines: maxLines,
           textAlign: center ? TextAlign.center : TextAlign.start,
-          style: Theme.of(context).textTheme.headline3?.copyWith(
+          style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 color: color,
                 height: 1.1,
                 fontWeight: fontWeight,
@@ -50,7 +50,7 @@ class DashTexts {
         maxLines: maxLines,
         style: Theme.of(context)
             .textTheme
-            .subtitle1
+            .titleMedium
             ?.copyWith(color: color, fontWeight: fontWeight, fontFamily: fontFamily),
       );
 
@@ -66,7 +66,7 @@ class DashTexts {
         overflow: overflow,
         textAlign: center ? TextAlign.center : TextAlign.start,
         maxLines: maxLines,
-        style: Theme.of(context).textTheme.subtitle2?.copyWith(
+        style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: color,
               fontWeight: fontWeight,
               fontFamily: family,
@@ -85,7 +85,7 @@ class DashTexts {
         maxLines: maxLines,
         overflow: overflow,
         textAlign: center ? TextAlign.center : TextAlign.start,
-        style: Theme.of(context).textTheme.headline5?.copyWith(
+        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: color,
               height: 1.2,
               fontWeight: fontWeight,
@@ -101,7 +101,7 @@ class DashTexts {
         maxLines: maxLines,
         overflow: overflow,
         textAlign: center ? TextAlign.center : TextAlign.start,
-        style: Theme.of(context).textTheme.overline?.copyWith(color: color, fontWeight: fontWeight),
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color, fontWeight: fontWeight),
       );
 
   static Widget bodyText(String text, BuildContext context,
@@ -110,13 +110,13 @@ class DashTexts {
           textAlign: center ? TextAlign.center : TextAlign.start,
           overflow: overflow,
           maxLines: maxLines,
-          style: Theme.of(context).textTheme.bodyText1?.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: color,
                 fontWeight: fontWeight,
               ));
 
   static Widget button(String text, BuildContext context, {Color? color}) =>
-      Text(text, style: Theme.of(context).textTheme.button?.copyWith(color: color));
+      Text(text, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: color));
 
   static Widget caption(String text, BuildContext context,
           {Color? color, int? maxLines, TextOverflow? overflow, FontWeight? fontWeight, bool center = false}) =>
@@ -125,6 +125,6 @@ class DashTexts {
         textAlign: center ? TextAlign.center : TextAlign.start,
         maxLines: maxLines,
         overflow: overflow,
-        style: Theme.of(context).textTheme.caption?.copyWith(color: color, fontWeight: fontWeight ?? FontWeight.w400),
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: color, fontWeight: fontWeight ?? FontWeight.w400),
       );
 }

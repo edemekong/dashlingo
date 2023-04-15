@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:responsive_builder/src/sizing_information.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/button.dart';
 import '../../../components/texts.dart';
@@ -35,7 +35,9 @@ class QuizBottomNav extends StatelessWidget {
       width: double.infinity,
       color: correct
           ? (isLight ? AppColors.lightGreen : Theme.of(context).cardColor)
-          : (wrong ? (isLight ? AppColors.lightRed : Theme.of(context).cardColor) : Theme.of(context).backgroundColor),
+          : (wrong
+              ? (isLight ? AppColors.lightRed : Theme.of(context).cardColor)
+              : Theme.of(context).colorScheme.background),
       child: Column(
         children: [
           if (showLine) ...[

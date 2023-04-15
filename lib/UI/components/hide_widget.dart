@@ -1,7 +1,6 @@
+import 'package:dashlingo/constants/paths.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../constants/paths.dart';
 
 class HideWidget extends StatelessWidget {
   final Alignment alignment;
@@ -11,7 +10,7 @@ class HideWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isShow = GoRouter.of(context).location.startsWith(lessonPath);
+    final isShow = GoRouter.of(context).location.startsWith(AppRoute.lesson.path);
 
     return ClipRRect(
       child: AnimatedAlign(

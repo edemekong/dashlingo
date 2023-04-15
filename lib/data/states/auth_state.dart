@@ -6,22 +6,6 @@ import '../../utils/logs.dart';
 
 class AuthState extends BaseState {
   final UserRepository userRepository = UserRepository.instance;
-  User? currentUser;
-
-  AuthState() {
-    userRepository.userNotifier.addListener(_listenToCurrentUser);
-  }
-
-  @override
-  void dispose() {
-    userRepository.userNotifier.removeListener(_listenToCurrentUser);
-    super.dispose();
-  }
-
-  void _listenToCurrentUser() {
-    currentUser = userRepository.userNotifier.value;
-    notifyListeners();
-  }
 
   void logOut() async {
     final signOut = await userRepository.signOut();

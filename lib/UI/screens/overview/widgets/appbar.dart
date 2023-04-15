@@ -2,17 +2,12 @@ import 'package:dashlingo/app.dart';
 import 'package:dashlingo/UI/components/display_image.dart';
 import 'package:dashlingo/UI/components/texts.dart';
 import 'package:dashlingo/constants/images_path.dart';
-import 'package:dashlingo/UI/screens/overview/widgets/sizedbar.dart';
-import 'package:dashlingo/data/services/get_it.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/bounce_animation.dart';
 import '../../../../constants/paths.dart';
-import '../../../../data/models/menu.dart';
-import '../../../../data/services/navigation_service.dart';
 import '../../../theme/spaces.dart';
 import '../../../theme/theme.dart';
 
@@ -30,14 +25,12 @@ class DashAppbar extends StatelessWidget {
 
     final path = GoRouter.of(context).location;
 
-    print('Rebuild $path');
-
-    final isHome = [learnPath].contains(path);
+    final isHome = [AppRoute.learn.path].contains(path);
 
     return Container(
       width: MediaQuery.of(context).size.width,
       height: kToolbarHeight * 1.2,
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.background,
       padding: const EdgeInsets.symmetric(horizontal: AppSpaces.elementSpacing),
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +39,7 @@ class DashAppbar extends StatelessWidget {
             if ((info.isDesktop || info.isTablet) || isHome) ...[
               BounceAnimation(
                 onTap: () {
-                  context.go(learnPath);
+                  context.go(AppRoute.learn.path);
                 },
                 child: Center(
                   child: Row(

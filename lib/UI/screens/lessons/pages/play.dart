@@ -98,7 +98,7 @@ class PlayPage extends StatelessWidget {
                   padding: const EdgeInsets.all(AppSpaces.elementSpacing),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).backgroundColor,
+                    color: Theme.of(context).colorScheme.background,
                     borderRadius: AppSpaces.defaultBorderRadius,
                     border: Border.all(
                       width: 1.5,

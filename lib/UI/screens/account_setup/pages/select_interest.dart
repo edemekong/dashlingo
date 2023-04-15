@@ -23,7 +23,6 @@ class SelectUserInterest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double padding = info.localWidgetSize.width / AppSpaces.elementSpacing;
-    final width = info.isDesktop ? (info.localWidgetSize.width * 0.65) : null;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding),

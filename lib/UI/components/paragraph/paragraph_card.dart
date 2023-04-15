@@ -1,4 +1,3 @@
-import 'package:dashlingo/UI/components/bounce_animation.dart';
 import 'package:dashlingo/UI/components/paragraph/widgets/fill_blank.dart';
 import 'package:dashlingo/UI/screens/lessons/widgets/answer_card.dart';
 import 'package:dashlingo/UI/theme/spaces.dart';

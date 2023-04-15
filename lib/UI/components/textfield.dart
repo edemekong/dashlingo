@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dashlingo/UI/components/texts.dart';
 import 'package:dashlingo/UI/theme/colors.dart';
 import 'package:dashlingo/UI/theme/spaces.dart';
-import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

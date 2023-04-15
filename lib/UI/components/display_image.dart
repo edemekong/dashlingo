@@ -99,7 +99,6 @@ class _DisplayImageState extends State<DisplayImage> with AutomaticKeepAliveClie
   }
 
   Widget _buildError(BuildContext context) {
-    final isLight = AppTheme.instance.isLightMode(context);
     return Container(
       color: Theme.of(context).cardColor,
       child: IconTheme(

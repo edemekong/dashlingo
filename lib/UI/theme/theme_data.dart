@@ -1,11 +1,12 @@
 import 'package:dashlingo/UI/theme/spaces.dart';
 import 'package:dashlingo/UI/theme/text_themes.dart';
+import 'package:dashlingo/constants/font_family.dart';
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class AppThemeData {
   static ThemeData themeLight = ThemeData(
-    fontFamily: "DINRoundPro",
+    fontFamily: AppFonts.DINRoundPro,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.white,
       foregroundColor: AppColors.white,
@@ -16,17 +17,16 @@ class AppThemeData {
       toolbarHeight: 47,
     ),
     dividerTheme: const DividerThemeData(color: AppColors.dividerLight, thickness: AppSpaces.cardOutlineWidth),
-    backgroundColor: AppColors.lightBackground,
     colorScheme: const ColorScheme(
       primary: AppColors.primaryColor,
       secondary: AppColors.black,
       onPrimary: AppColors.primaryColor,
       surface: AppColors.white,
       onSurface: AppColors.white,
-      background: AppColors.white,
+      background: AppColors.lightBackground,
       brightness: Brightness.light,
       error: AppColors.red,
-      onBackground: AppColors.white,
+      onBackground: AppColors.lightBackground,
       onError: AppColors.red,
       onSecondary: AppColors.white,
     ),
@@ -67,7 +67,7 @@ class AppThemeData {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.lightGrey,
       filled: true,
-      hintStyle: AppTextThemes.mobileTextThemeLight.bodyText1,
+      hintStyle: AppTextThemes.mobileTextThemeLight.bodyLarge,
       iconColor: AppColors.black,
       border: AppSpaces.outLineBorder.copyWith(
         borderSide: const BorderSide(
@@ -108,7 +108,7 @@ class AppThemeData {
   );
 
   static ThemeData themeDark = ThemeData(
-    fontFamily: "Poppins",
+    fontFamily: AppFonts.DINRoundPro,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.cardLight,
       iconTheme: IconThemeData(
@@ -123,15 +123,14 @@ class AppThemeData {
       onPrimary: AppColors.primaryColor,
       surface: AppColors.lightGrey,
       onSurface: AppColors.lightGrey,
-      background: AppColors.black,
+      background: AppColors.darkBackground,
       brightness: Brightness.dark,
       error: AppColors.red,
-      onBackground: AppColors.lightGrey,
+      onBackground: AppColors.darkBackground,
       onError: AppColors.red,
       onSecondary: AppColors.lightGrey,
     ),
     cardColor: AppColors.cardDark,
-    backgroundColor: AppColors.black,
     scaffoldBackgroundColor: AppColors.black,
     primaryColor: AppColors.primaryColor,
     buttonTheme: const ButtonThemeData(
@@ -170,9 +169,9 @@ class AppThemeData {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.black,
       filled: true,
-      hintStyle: AppTextThemes.mobileTextThemeDark.bodyText1,
+      hintStyle: AppTextThemes.mobileTextThemeDark.bodyLarge,
       iconColor: AppColors.white,
-      helperStyle: AppTextThemes.mobileTextThemeDark.bodyText2,
+      helperStyle: AppTextThemes.mobileTextThemeDark.bodyMedium,
       border: AppSpaces.outLineBorder.copyWith(
         borderSide: const BorderSide(
           width: 1.5,

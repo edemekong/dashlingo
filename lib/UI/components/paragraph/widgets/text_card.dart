@@ -43,7 +43,7 @@ class _TextCardState extends State<TextCard> {
     final linkifiers = [...defaultLinkifiers, const CustomLinkifier()];
     final elements = linkify(widget.paragraph.content, linkifiers: linkifiers);
     final style = widget.style ??
-        Theme.of(context).textTheme.subtitle1?.copyWith(
+        Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w400,
               height: 1.35,
             );

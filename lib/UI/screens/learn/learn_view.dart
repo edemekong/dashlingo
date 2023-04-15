@@ -8,13 +8,11 @@ import 'package:dashlingo/UI/components/texts.dart';
 import 'package:dashlingo/constants/icon_path.dart';
 import 'package:dashlingo/constants/paths.dart';
 import 'package:dashlingo/data/models/user.dart';
-import 'package:dashlingo/data/repositories/user_repository.dart';
 import 'package:dashlingo/data/states/auth_state.dart';
 import 'package:dashlingo/UI/theme/colors.dart';
 import 'package:dashlingo/UI/theme/spaces.dart';
-import 'package:dashlingo/utils/logs.dart';
+import 'package:dashlingo/data/states/user_state.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +22,6 @@ import '../../../constants/mocks/steps.dart';
 import '../../../data/models/learn/lesson.dart';
 import '../../../data/models/learn/step.dart';
 import '../../../data/services/navigation_service.dart';
-import '../account_setup/account_setup.dart';
 
 const List<Color> colors = [
   AppColors.primaryColor,
@@ -49,7 +46,7 @@ class LearnView extends StatefulWidget {
 class _LearnViewState extends State<LearnView> {
   @override
   Widget build(BuildContext context) {
-    final User? currentUser = context.select<AuthState, User?>((v) => v.currentUser);
+    final User? currentUser = context.select<UserState, User?>((v) => v.currentUser);
 
     return AppScaffold(
       body: ResponsiveBuilder(builder: (context, info) {
@@ -377,12 +374,9 @@ class _LessonButtonState extends State<LessonButton> with TickerProviderStateMix
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      context.push(path(
-                        lessonPath,
-                        queryParameters: {
-                          "step": '1',
-                        },
-                      ));
+                      context.push(path(AppRoute.lesson.path, queryParameters: {
+                        "step": '1',
+                      }));
                     },
                     onTapUp: (_) {
                       toggle = false;

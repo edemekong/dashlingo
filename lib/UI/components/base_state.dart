@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 
+enum ActionState { initial, loading, disabled, loaded }
+
 class BaseState extends ChangeNotifier {
-  bool isLoading = false;
-  String result = '';
+  ActionState actionState = ActionState.disabled;
 
-  bool mounted = true;
+  bool _mounted = true;
 
-  setLoading(bool value, {String? message}) {
-    isLoading = value;
-    result = message ?? '';
-    snappNotifyListener();
-  }
+  bool get isLoading => actionState == ActionState.loading;
+  bool get isDisabled => [ActionState.loading, ActionState.disabled].contains(actionState);
+  bool get loaded => [ActionState.initial, ActionState.loaded].contains(actionState);
 
-  snappNotifyListener() {
-    if (mounted) {
-      notifyListeners();
-    }
+  set state(ActionState value) {
+    actionState = value;
+    if (_mounted) notifyListeners();
   }
 
   @override
   void dispose() {
-    mounted = false;
+    _mounted = false;
     super.dispose();
+  }
+
+  void setLoading() {
+    state = ActionState.loading;
+  }
+
+  void unsetLoading([ActionState? to]) {
+    state = to ?? ActionState.initial;
+  }
+
+  void notify() {
+    if (_mounted) notifyListeners();
   }
 }

@@ -2,7 +2,6 @@ import 'package:dashlingo/UI/components/scaffold.dart';
 import 'package:dashlingo/UI/screens/account_setup/account_setup_state.dart';
 import 'package:dashlingo/UI/screens/account_setup/pages/select_interest.dart';
 import 'package:dashlingo/UI/theme/spaces.dart';
-import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';

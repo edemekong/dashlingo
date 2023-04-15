@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'constants/paths.dart';
+import 'data/states/user_state.dart';
 
 class AppRootProviders extends StatelessWidget {
   const AppRootProviders({Key? key}) : super(key: key);
@@ -16,8 +17,17 @@ class AppRootProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AppState()),
-        ChangeNotifierProvider(create: (context) => AuthState(), lazy: true),
+        ChangeNotifierProvider(
+          create: (context) => AppState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthState(),
+          lazy: true,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserState(),
+          lazy: false,
+        ),
       ],
       child: const DashApp(),
     );
@@ -59,13 +69,11 @@ String getTitle(String? path) {
     return 'Learn from dash!';
   }
 
-  if (path.startsWith(profilePath)) {
+  if (path.startsWith(AppRoute.profile.path)) {
     path = "Profile";
-  } else if (path.startsWith(tutorialsPath)) {
-    path = "Tutorials";
-  } else if (path.startsWith(learnPath)) {
+  } else if (path.startsWith(AppRoute.learn.path)) {
     path = "Learn";
-  } else if (path.startsWith(leaderboard)) {
+  } else if (path.startsWith(AppRoute.leaderboard.path)) {
     path = "Leaderboard";
   } else {
     path = "Not Found";

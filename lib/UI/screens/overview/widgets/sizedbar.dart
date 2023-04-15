@@ -5,15 +5,13 @@ import 'package:dashlingo/UI/components/texts.dart';
 import 'package:dashlingo/constants/paths.dart';
 import 'package:dashlingo/data/models/user.dart';
 import 'package:dashlingo/data/states/auth_state.dart';
-import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dashlingo/data/services/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../../../data/models/menu.dart';
-import '../../../../data/services/navigation_service.dart';
+import '../../../../data/states/user_state.dart';
 import '../../../theme/spaces.dart';
 
 class DashSizedbar extends StatelessWidget {
@@ -26,11 +24,11 @@ class DashSizedbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User? currentUser = context.select<AuthState, User?>((v) => v.currentUser);
+    final User? currentUser = context.select<UserState, User?>((v) => v.currentUser);
 
     return Container(
       height: MediaQuery.of(context).size.height,
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -126,7 +124,6 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
 
   @override
   Widget build(BuildContext context) {
-    final navigationService = locate<NavigationService>();
     final Color buttonColor = Theme.of(context).primaryColor;
 
     final value = GoRouter.of(context).location;
@@ -241,29 +238,23 @@ class _MenuButtonVerticalState extends State<MenuButtonVertical> {
   }
 }
 
-const List<Menu> tabs = [
+List<Menu> tabs = [
   Menu(
     title: 'LEARN',
-    link: learnPath,
-    icon: Icon(Icons.home_outlined),
-    activeIcon: Icon(Icons.home),
-  ),
-  Menu(
-    title: 'TUTORIALS',
-    icon: Icon(Icons.article_outlined),
-    activeIcon: Icon(Icons.article),
-    link: tutorialsPath,
+    link: AppRoute.learn.path,
+    icon: const Icon(Icons.home_outlined),
+    activeIcon: const Icon(Icons.home),
   ),
   Menu(
     title: 'LEADERBOARD',
-    link: leaderboard,
-    activeIcon: Icon(Icons.emoji_events),
-    icon: Icon(Icons.emoji_events_outlined),
+    link: AppRoute.leaderboard.path,
+    activeIcon: const Icon(Icons.emoji_events),
+    icon: const Icon(Icons.emoji_events_outlined),
   ),
   Menu(
     title: 'PROFILE',
-    icon: Icon(CupertinoIcons.person_circle),
-    activeIcon: Icon(CupertinoIcons.person_circle_fill),
-    link: profilePath,
+    icon: const Icon(CupertinoIcons.person_circle),
+    activeIcon: const Icon(CupertinoIcons.person_circle_fill),
+    link: AppRoute.profile.path,
   )
 ];

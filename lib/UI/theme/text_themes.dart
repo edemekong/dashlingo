@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/font_family.dart';
 import './colors.dart';
 
 class AppTextThemes {
@@ -17,80 +18,80 @@ class AppTextThemes {
   static const double overline = 12.5;
 
   static const TextTheme mobileTextThemeLight = TextTheme(
-    headline1: TextStyle(
-      fontFamily: "DINRoundPro",
+    displayLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline1Size,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
     ),
-    headline2: TextStyle(
-      fontFamily: "DINRoundPro",
+    displayMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline2Size,
       color: AppColors.black,
       fontWeight: FontWeight.w600,
     ),
-    headline3: TextStyle(
-      fontFamily: "DINRoundPro",
+    displaySmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline3Size,
       color: AppColors.black,
       fontWeight: FontWeight.w500,
     ),
-    headline4: TextStyle(
-      fontFamily: "DINRoundPro",
+    headlineMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline4Size,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
     ),
-    headline5: TextStyle(
-      fontFamily: "DINRoundPro",
+    headlineSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline5Size,
       color: AppColors.black,
       fontWeight: FontWeight.w500,
     ),
-    headline6: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline6Size,
       color: AppColors.black,
       fontWeight: FontWeight.w600,
     ),
-    subtitle1: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: subtile1Size,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
     ),
-    subtitle2: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: subtile2Size,
       color: AppColors.black,
       fontWeight: FontWeight.w700,
     ),
-    bodyText1: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodyLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: body1Size,
       color: AppColors.grey,
       fontWeight: FontWeight.w400,
     ),
-    bodyText2: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodyMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: body2Size,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
     ),
-    button: TextStyle(
-      fontFamily: "DINRoundPro",
+    labelLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: buttonSize,
       color: AppColors.white,
       fontWeight: FontWeight.w600,
     ),
-    caption: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodySmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: caption,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
     ),
-    overline: TextStyle(
-      fontFamily: "DINRoundPro",
+    labelSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: overline,
       color: AppColors.black,
       fontWeight: FontWeight.w400,
@@ -98,81 +99,81 @@ class AppTextThemes {
   );
 
   static const TextTheme mobileTextThemeDark = TextTheme(
-    headline1: TextStyle(
-      fontFamily: "DINRoundPro",
+    displayLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline1Size,
       color: AppColors.white,
       fontWeight: FontWeight.w400,
     ),
-    headline2: TextStyle(
-      fontFamily: "DINRoundPro",
+    displayMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline2Size,
       color: AppColors.white,
       fontWeight: FontWeight.w600,
     ),
-    headline3: TextStyle(
-      fontFamily: "DINRoundPro",
+    displaySmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline3Size,
       color: AppColors.white,
       fontWeight: FontWeight.w500,
     ),
-    headline4: TextStyle(
-      fontFamily: "DINRoundPro",
+    headlineMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline4Size,
       color: AppColors.white,
       fontWeight: FontWeight.w400,
     ),
-    headline5: TextStyle(
-      fontFamily: "DINRoundPro",
+    headlineSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline5Size,
       color: AppColors.white,
       fontWeight: FontWeight.w500,
     ),
-    headline6: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: headline6Size,
       color: AppColors.lightGrey,
       fontWeight: FontWeight.w600,
     ),
-    subtitle1: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: subtile1Size,
       color: AppColors.white,
       fontWeight: FontWeight.w400,
     ),
-    subtitle2: TextStyle(
-      fontFamily: "DINRoundPro",
+    titleSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: subtile2Size,
       color: AppColors.lightGrey,
       fontWeight: FontWeight.w700,
     ),
-    bodyText1: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodyLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: body1Size,
       color: AppColors.lightGrey,
       height: 1.35,
       fontWeight: FontWeight.w400,
     ),
-    bodyText2: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodyMedium: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: body2Size,
       color: AppColors.white,
       fontWeight: FontWeight.w400,
     ),
-    button: TextStyle(
-      fontFamily: "DINRoundPro",
+    labelLarge: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: buttonSize,
       color: AppColors.white,
       fontWeight: FontWeight.w600,
     ),
-    caption: TextStyle(
-      fontFamily: "DINRoundPro",
+    bodySmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: caption,
       color: AppColors.white,
       fontWeight: FontWeight.w400,
     ),
-    overline: TextStyle(
-      fontFamily: "DINRoundPro",
+    labelSmall: TextStyle(
+      fontFamily: AppFonts.DINRoundPro,
       fontSize: overline,
       color: AppColors.white,
       fontWeight: FontWeight.w400,

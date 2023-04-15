@@ -18,6 +18,8 @@ class User {
   final Map<String, dynamic> settings;
   final Map<String, dynamic> pointsData;
 
+  bool get accountIsSetup => true;
+
   const User({
     required this.uid,
     required this.name,

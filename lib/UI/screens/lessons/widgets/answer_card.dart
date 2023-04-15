@@ -34,7 +34,7 @@ class DashAnswerCard extends StatelessWidget {
         : correct
             ? AppColors.green
             : (wrong
-                ? Theme.of(context).errorColor
+                ? Theme.of(context).colorScheme.error
                 : (disabled || non)
                     ? Theme.of(context).dividerColor
                     : Theme.of(context).primaryColor);
@@ -50,9 +50,9 @@ class DashAnswerCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpaces.elementSpacing),
         decoration: BoxDecoration(
           color: (disabled || non && !(state == QuizState.selected))
-              ? Theme.of(context).backgroundColor
+              ? Theme.of(context).colorScheme.background
               : isLight
-                  ? Theme.of(context).backgroundColor
+                  ? Theme.of(context).colorScheme.background
                   : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
@@ -79,7 +79,7 @@ class DashAnswerCard extends StatelessWidget {
                 child: DashTexts.subHeading(
                   '${index + 1}',
                   context,
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme.of(context).colorScheme.background,
                 ),
               ),
             ),

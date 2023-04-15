@@ -77,7 +77,7 @@ class ProfileViewWidget extends StatelessWidget {
               DashTexts.subHeading(
                 'CODE | CODE REVIEW | CLEAN CODE | LIFESTYLE',
                 context,
-                fontFamily: COURIER_NEW,
+                fontFamily: AppFonts.COURIER_NEW,
                 fontWeight: FontWeight.w700,
                 center: true,
               ),

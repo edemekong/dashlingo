@@ -76,7 +76,7 @@ class DashButton extends StatelessWidget {
                 children: [
                   buttonTitle(
                       context,
-                      Theme.of(context).textTheme.button?.copyWith(
+                      Theme.of(context).textTheme.labelLarge?.copyWith(
                           fontWeight: FontWeight.w500,
                           color: disable
                               ? (isLight ? Theme.of(context).canvasColor : AppColors.grey)
@@ -107,7 +107,7 @@ class DashButton extends StatelessWidget {
                 children: [
                   buttonTitle(
                     context,
-                    Theme.of(context).textTheme.button?.copyWith(
+                    Theme.of(context).textTheme.labelLarge?.copyWith(
                         fontWeight: FontWeight.w500,
                         color: disable
                             ? (isLight ? Theme.of(context).canvasColor : AppColors.grey)
@@ -147,7 +147,7 @@ class DashButton extends StatelessWidget {
                     const SizedBox(width: AppSpaces.elementSpacing * 0.25),
                   ],
                   buttonTitle(context,
-                      Theme.of(context).textTheme.button?.copyWith(fontWeight: FontWeight.w600, color: textColor)),
+                      Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600, color: textColor)),
                 ],
               ),
       ),

@@ -14,11 +14,10 @@ class CodeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = style ?? Theme.of(context).textTheme.bodyText1;
+    final textStyle = style ?? Theme.of(context).textTheme.bodyLarge;
     return Container(
-      // margin: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
       decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).colorScheme.background,
         borderRadius: AppSpaces.defaultBorderRadius,
       ),
       child: ClipRRect(
@@ -62,8 +61,8 @@ class CodeCard extends StatelessWidget {
             'string': textStyle.copyWith(color: const Color(0xff032f62)),
           },
           padding: const EdgeInsets.all(AppSpaces.elementSpacing),
-          textStyle: Theme.of(context).textTheme.subtitle1?.copyWith(
-                fontFamily: COURIER_NEW,
+          textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontFamily: AppFonts.COURIER_NEW,
                 fontWeight: FontWeight.w700,
               ),
         ),

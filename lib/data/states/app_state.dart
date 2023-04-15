@@ -7,7 +7,7 @@ import '../../UI/components/base_state.dart';
 
 class AppState extends BaseState with WidgetsBindingObserver {
   final navigationService = locate<NavigationService>();
-  String screenTitle = learnPath;
+  String screenTitle = AppRoute.learn.path;
 
   AppState() {
     WidgetsBinding.instance.addObserver(this);

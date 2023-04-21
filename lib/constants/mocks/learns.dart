@@ -7,7 +7,7 @@ List<Learn> learns = [
     lessonId: 'alshnu0123ef',
     learnId: '-asf34sefe',
     pathLevel: 100,
-    learnType: 'play',
+    type: 'play-fill',
     title: "Fill in the blanks",
     instruction: 'Display a String Data-Type on console:',
     intructor: {
@@ -63,7 +63,7 @@ List<Learn> learns = [
     lessonId: '128jsdfs',
     learnId: '-123nsdf',
     pathLevel: 200,
-    learnType: 'play',
+    type: 'play-fill',
     title: "Fill in the blanks",
     instruction: 'What command can you use to generate a new Flutter project?',
     intructor: {
@@ -113,7 +113,7 @@ List<Learn> learns = [
     lessonId: 'qwertasdasdy123',
     learnId: '-qwerty-123',
     pathLevel: 100,
-    learnType: 'play',
+    type: 'play',
     title: "Fill in the blank",
     instruction: 'How would you display a text on the console?',
     intructor: {
@@ -162,7 +162,7 @@ List<Learn> learns = [
     lessonId: 'qwerty',
     learnId: '-qwerty-',
     pathLevel: 100,
-    learnType: 'play',
+    type: 'play',
     title: "Choose the correct answer",
     instruction: 'Welcome, select the following answer that fixed the list.',
     intructor: {
@@ -199,7 +199,7 @@ List<Learn> learns = [
     lessonId: 'qweasdasdrty123',
     learnId: '-qwerasdty-123',
     pathLevel: 100,
-    learnType: 'learn',
+    type: 'learn',
     title: "Select the correct answer",
     instruction: 'Try to select the right option from the answers',
     intructor: {

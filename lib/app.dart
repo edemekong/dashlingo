@@ -4,7 +4,6 @@ import 'package:dashlingo/data/states/app_state.dart';
 import 'package:dashlingo/data/states/auth_state.dart';
 import 'package:dashlingo/UI/theme/theme.dart';
 import 'package:dashlingo/firebase_options.dart';
-import 'package:dashlingo/main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

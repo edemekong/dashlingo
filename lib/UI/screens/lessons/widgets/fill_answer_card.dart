@@ -4,15 +4,14 @@ import '../../../components/texts.dart';
 import '../../../../data/models/learn/learn.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/spaces.dart';
+import 'answer_card.dart';
 
-enum QuizState { non, correct, selected, wrong, disabled }
-
-class DashAnswerCard extends StatelessWidget {
+class DashFillAnswerCard extends StatelessWidget {
   final Function(Answer) onAnswer;
   final Answer answer;
   final int index;
   final QuizState state;
-  const DashAnswerCard({
+  const DashFillAnswerCard({
     Key? key,
     required this.index,
     required this.state,
@@ -51,10 +50,7 @@ class DashAnswerCard extends StatelessWidget {
                   ? Theme.of(context).colorScheme.background
                   : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            width: 1.5,
-            color: cardColor,
-          ),
+          border: Border.all(width: 1.5, color: cardColor),
           boxShadow: [
             BoxShadow(
               color: cardColor,
@@ -62,41 +58,10 @@ class DashAnswerCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          children: [
-            Container(
-              height: 25,
-              width: 25,
-              decoration: BoxDecoration(
-                color: cardColor,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Center(
-                child: Builder(builder: (context) {
-                  if (correct) {
-                    return Icon(
-                      Icons.check,
-                      color: Theme.of(context).colorScheme.background,
-                      size: 18,
-                    );
-                  }
-                  return DashTexts.subHeading(
-                    '${index + 1}',
-                    context,
-                    color: Theme.of(context).colorScheme.background,
-                  );
-                }),
-              ),
-            ),
-            const SizedBox(width: AppSpaces.elementSpacing),
-            Expanded(
-              child: DashTexts.subHeading(
-                answer.content,
-                context,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
+        child: DashTexts.bodyText(
+          answer.content,
+          context,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

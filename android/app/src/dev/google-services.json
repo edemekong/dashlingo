@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "70893004989",
+    "project_id": "dashlingo-test",
+    "storage_bucket": "dashlingo-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70893004989:android:77fbbaa8f4a583ae4cafd4",
+        "android_client_info": {
+          "package_name": "dev.dashlingo.dashlingoDev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70893004989-35g7q3j8a2i51pbr5m9bf1cr6kid24h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHeU1RJCaV41F_cgc9M5HNmwhagy5PSjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70893004989-35g7q3j8a2i51pbr5m9bf1cr6kid24h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

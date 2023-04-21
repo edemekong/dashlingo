@@ -25,17 +25,10 @@ class LearnPlayView extends StatelessWidget {
         return Column(
           children: [
             Builder(builder: (context) {
-              if (learn.learnType == 'learn') {
-                return LearnPage(
-                  padding: padding,
-                  width: width,
-                );
+              if (learn.type == 'learn') {
+                return LearnPage(padding: padding, width: width);
               }
-              return PlayPage(
-                padding: padding,
-                width: width,
-                info: info,
-              );
+              return PlayPage(padding: padding, width: width, info: info);
             }),
             QuizBottomNav(
               padding: padding,

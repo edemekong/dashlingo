@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1006500015865",
+    "project_id": "dashlingoo",
+    "storage_bucket": "dashlingoo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006500015865:android:b2317c07ccba37bc907c28",
+        "android_client_info": {
+          "package_name": "dev.dashlingo.dashlingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006500015865-426a7gu1klhmgnja961d7j2f2drn6033.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo9TZ8H1eokDuBt83GKvMbwsh3B2zg0Tw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006500015865-426a7gu1klhmgnja961d7j2f2drn6033.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1006500015865-3k8ekiqv7fhk07bijg0mj1etv6ifsgp2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.dashlingo.dashlingo"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7845313843304908~5361030869"
+    }
+  ],
+  "configuration_version": "1"
+}

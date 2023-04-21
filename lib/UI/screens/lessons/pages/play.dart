@@ -1,6 +1,7 @@
+import 'package:dashlingo/UI/screens/lessons/widgets/fill_answer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:responsive_builder/src/sizing_information.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../components/display_image.dart';
 import '../../../components/texts.dart';
@@ -60,10 +61,10 @@ class PlayPage extends StatelessWidget {
                               color: Theme.of(context).dividerColor,
                             ),
                           ),
-                          child: DashTexts.subHeading(
+                          child: DashTexts.bodyText(
                             learn.instruction,
                             context,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -81,10 +82,10 @@ class PlayPage extends StatelessWidget {
                             color: Theme.of(context).dividerColor,
                           ),
                         ),
-                        child: DashTexts.subHeading(
+                        child: DashTexts.bodyText(
                           learn.instruction,
                           context,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
@@ -115,31 +116,68 @@ class PlayPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpaces.elementSpacing),
-                ...List.generate(
-                  learn.answers.length,
-                  (index) {
-                    final bool selected =
-                        state.selectedAnswer != null && state.selectedAnswer?.id == state.answers[index].id;
+                if (learn.type == 'play-fill') ...[
+                  const SizedBox(height: AppSpaces.cardPadding),
+                  Wrap(
+                    runAlignment: WrapAlignment.start,
+                    children: List.generate(learn.answers.length, (index) {
+                      final bool selected =
+                          state.selectedAnswer != null && state.selectedAnswer?.id == state.answers[index].id;
 
-                    final bool isCorrect = state.validate &&
-                        state.selectedAnswer != null &&
-                        state.correctAnswerIds.contains(state.answers[index].id);
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
-                      child: IgnorePointer(
-                        ignoring: state.validate,
-                        child: DashAnswerCard(
-                          answer: learn.answers[index],
-                          state: (isCorrect ? QuizState.correct : (selected ? QuizState.selected : QuizState.non)),
-                          index: index,
-                          onAnswer: (Answer answer) {
-                            state.onSelectAnswer(answer);
-                          },
+                      final bool isCorrect = state.validate &&
+                          state.selectedAnswer != null &&
+                          state.correctAnswerIds.contains(state.answers[index].id);
+
+                      final answer = learn.answers[index];
+
+                      QuizState quizState =
+                          (isCorrect ? QuizState.correct : (selected ? QuizState.selected : QuizState.non));
+
+                      return Padding(
+                        padding:
+                            const EdgeInsets.only(bottom: AppSpaces.elementSpacing, right: AppSpaces.elementSpacing),
+                        child: IgnorePointer(
+                          ignoring: state.validate,
+                          child: DashFillAnswerCard(
+                            answer: answer,
+                            state: quizState,
+                            index: index,
+                            onAnswer: (Answer answer) => state.onSelectAnswer(answer),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    }),
+                  ),
+                ] else
+                  ...List.generate(
+                    learn.answers.length,
+                    (index) {
+                      final bool selected =
+                          state.selectedAnswer != null && state.selectedAnswer?.id == state.answers[index].id;
+
+                      final bool isCorrect = state.validate &&
+                          state.selectedAnswer != null &&
+                          state.correctAnswerIds.contains(state.answers[index].id);
+
+                      final answer = learn.answers[index];
+
+                      QuizState quizState =
+                          (isCorrect ? QuizState.correct : (selected ? QuizState.selected : QuizState.non));
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpaces.elementSpacing),
+                        child: IgnorePointer(
+                          ignoring: state.validate,
+                          child: DashAnswerCard(
+                            answer: answer,
+                            state: quizState,
+                            index: index,
+                            onAnswer: (Answer answer) => state.onSelectAnswer(answer),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 const SizedBox(height: kToolbarHeight),
               ],
             ),

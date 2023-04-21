@@ -20,7 +20,7 @@ class QuizBottomNav extends StatelessWidget {
 
     final bool correct = state.validate && state.correctAnswerIds.contains(state.selectedAnswer?.id);
     final bool wrong = state.validate && !state.correctAnswerIds.contains(state.selectedAnswer?.id);
-    final bool isLearn = state.learn.learnType == 'learn';
+    final bool isLearn = state.learn.type == 'learn';
 
     final bool isNext = correct || wrong;
     final isLight = Theme.of(context).brightness == Brightness.light;

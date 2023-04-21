@@ -16,13 +16,15 @@ class Learn {
   final int pathLevel;
 
   ///learn, play, playAndLearn
-  final String learnType;
+  final String type;
+
   final Map<String, dynamic> intructor;
   final List<Answer> answers;
   final List<String> correctAnswerIds;
   final List<String> clues;
   final int createdAt;
   final int updatedAt;
+
   const Learn({
     required this.lessonId,
     required this.learnId,
@@ -30,7 +32,7 @@ class Learn {
     required this.instruction,
     required this.content,
     required this.pathLevel,
-    required this.learnType,
+    required this.type,
     required this.intructor,
     required this.answers,
     required this.correctAnswerIds,
@@ -46,7 +48,7 @@ class Learn {
     String? instruction,
     List<Paragraph>? content,
     int? pathLevel,
-    String? learnType,
+    String? type,
     Map<String, dynamic>? intructor,
     List<Answer>? answers,
     List<String>? correctAnswerIds,
@@ -61,7 +63,7 @@ class Learn {
       instruction: instruction ?? this.instruction,
       content: content ?? this.content,
       pathLevel: pathLevel ?? this.pathLevel,
-      learnType: learnType ?? this.learnType,
+      type: type ?? this.type,
       intructor: intructor ?? this.intructor,
       answers: answers ?? this.answers,
       correctAnswerIds: correctAnswerIds ?? this.correctAnswerIds,
@@ -79,7 +81,7 @@ class Learn {
       'instruction': instruction,
       'content': content.map((x) => x.toMap()).toList(),
       'pathLevel': pathLevel,
-      'learnType': learnType,
+      'type': type,
       'intructor': intructor,
       'answers': answers.map((x) => x.toMap()).toList(),
       'correctAnswerId': correctAnswerIds,
@@ -97,7 +99,7 @@ class Learn {
       instruction: map['instruction'] ?? '',
       content: List<Paragraph>.from(map['content']?.map((x) => Paragraph.fromMap(x))),
       pathLevel: map['pathLevel']?.toInt() ?? 0,
-      learnType: map['learnType'] ?? '',
+      type: map['type'] ?? '',
       intructor: Map<String, dynamic>.from(map['intructor']),
       answers: List<Answer>.from(map['answers']?.map((x) => Answer.fromMap(x))),
       correctAnswerIds: List<String>.from(map['correctAnswerIds']),
@@ -113,7 +115,7 @@ class Learn {
 
   @override
   String toString() {
-    return 'Learn(lessonId: $lessonId, learnId: $learnId, title: $title, instruction: $instruction, content: $content, pathLevel: $pathLevel, learnType: $learnType, intructor: $intructor, answers: $answers, correctAnswerId: $correctAnswerIds, clues: $clues, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Learn(lessonId: $lessonId, learnId: $learnId, title: $title, instruction: $instruction, content: $content, pathLevel: $pathLevel, type: $type, intructor: $intructor, answers: $answers, correctAnswerId: $correctAnswerIds, clues: $clues, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -127,7 +129,7 @@ class Learn {
         other.instruction == instruction &&
         listEquals(other.content, content) &&
         other.pathLevel == pathLevel &&
-        other.learnType == learnType &&
+        other.type == type &&
         mapEquals(other.intructor, intructor) &&
         listEquals(other.answers, answers) &&
         other.correctAnswerIds == correctAnswerIds &&
@@ -144,7 +146,7 @@ class Learn {
         instruction.hashCode ^
         content.hashCode ^
         pathLevel.hashCode ^
-        learnType.hashCode ^
+        type.hashCode ^
         intructor.hashCode ^
         answers.hashCode ^
         correctAnswerIds.hashCode ^

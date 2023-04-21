@@ -51,7 +51,7 @@ class DashAppbar extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: AppSpaces.elementSpacing * 0.8),
-                      DashTexts.headingMedium('dashlingo', context,
+                      DashTexts.headingMedium('dashlingo.dev', context,
                           color: isLight ? Theme.of(context).primaryColor : null),
                     ],
                   ),

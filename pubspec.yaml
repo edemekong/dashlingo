@@ -22,6 +22,7 @@ dependencies:
   firebase_dynamic_links: ^5.0.15
   firebase_crashlytics: ^3.0.15
   google_sign_in: ^6.0.2
+  # google_mobile_ads: ^2.3.0
 
   ## state management control
   provider: ^6.0.2

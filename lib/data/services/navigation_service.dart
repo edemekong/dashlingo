@@ -6,7 +6,6 @@ import 'package:dashlingo/UI/screens/learn/learn_view.dart';
 import 'package:dashlingo/UI/screens/overview/overview.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import '../../constants/paths.dart';
 import '../../UI/screens/lessons/lesson_view.dart';
@@ -17,15 +16,6 @@ class NavigationService {
   GlobalKey<NavigatorState> tabNavigatorKey = GlobalKey<NavigatorState>();
 
   ValueNotifier<int> currentPathIndex = ValueNotifier<int>(0);
-
-  late FToast toast;
-
-  NavigationService() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      toast = FToast();
-      toast = toast.init(navigatorKey.currentContext!);
-    });
-  }
 
   String determineHomePath() {
     return AppRoute.learn.path;

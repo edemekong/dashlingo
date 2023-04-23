@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dashlingo/data/models/user.dart';
 import 'package:dashlingo/data/services/auth_service.dart';
-import 'package:dashlingo/data/services/crashlytics_service.dart';
 import 'package:dashlingo/data/services/get_it.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:dashlingo/utils/results.dart';
@@ -101,7 +100,6 @@ class UserRepository {
 
       return Right(userNotifier.value);
     } on FirebaseException catch (e) {
-      CrashlyticsService.instance.logError(e);
       return Left(ErrorHandler(e.message ?? ''));
     }
   }
@@ -119,7 +117,6 @@ class UserRepository {
 
       return Right(userNotifier.value);
     } on FirebaseException catch (e) {
-      CrashlyticsService.instance.logError(e);
       return Left(ErrorHandler(e.message ?? ''));
     }
   }
@@ -132,7 +129,6 @@ class UserRepository {
       userNotifier.value = null;
       return const Right(true);
     } on FirebaseException catch (e) {
-      CrashlyticsService.instance.logError(e);
       return Left(ErrorHandler(e.message ?? ''));
     }
   }

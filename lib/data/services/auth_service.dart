@@ -1,4 +1,3 @@
-import 'package:dashlingo/data/services/crashlytics_service.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:dashlingo/utils/results.dart';
 import 'package:either_dart/either.dart';
@@ -40,7 +39,6 @@ class AuthService implements SocialAuth {
         return const Left(ErrorHandler('Failed to sigin with google'));
       }
     } on FirebaseAuthException catch (e) {
-      CrashlyticsService.instance.logError(e);
       return Left(ErrorHandler(e.message ?? '', code: e.code));
     }
   }
@@ -68,7 +66,6 @@ class AuthService implements SocialAuth {
       }
     } on FirebaseAuthException catch (e) {
       dashPrint(e);
-      CrashlyticsService.instance.logError(e);
       return Left(ErrorHandler(e.message ?? '', code: e.code));
     }
   }

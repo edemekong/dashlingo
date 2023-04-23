@@ -305,75 +305,11 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.3.0"
-  firebase_crashlytics:
-    dependency: "direct main"
-    description:
-      name: firebase_crashlytics
-      sha256: "42cf6a137eaae7e485e6cc9794336e8e518c506b691aa6e19ff918206c535bec"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.1.0"
-  firebase_crashlytics_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_crashlytics_platform_interface
-      sha256: baa4c3d4af426d29800f0d80d165f31df4548985db151fd761346e07ed433d31
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.4.0"
-  firebase_dynamic_links:
-    dependency: "direct main"
-    description:
-      name: firebase_dynamic_links
-      sha256: "07534e65f1417e2a59f64fa1f551d8f33b3cfe959fc24fd3833e8a810b9239c6"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "5.1.0"
-  firebase_dynamic_links_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_dynamic_links_platform_interface
-      sha256: "8f9e655dbaba284b656549a8aa8eb4cade7354f37ef56aa415ec9ec65cef3118"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.4"
-  firebase_messaging:
-    dependency: "direct main"
-    description:
-      name: firebase_messaging
-      sha256: e4a5eb079aa9e7bd6b5fb2681f2bb8a6c78f87aacbf1c732c6ce91ad71e595ba
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "14.4.0"
-  firebase_messaging_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_messaging_platform_interface
-      sha256: "3a007c888e3414c9e4f7c35ea6fa59eafc623c62ee36155710563a1ebc160063"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.3.0"
-  firebase_messaging_web:
-    dependency: transitive
-    description:
-      name: firebase_messaging_web
-      sha256: a3239662b91b652cea4ce3b3ecac6cccbaebc1b4ac3101224bef805de4195fbf
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.3.0"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_datetime_picker:
-    dependency: "direct main"
-    description:
-      name: flutter_datetime_picker
-      sha256: "8e695c63c769350e541951227c2775190ec73ceda774a315b1dc9a99d5facfe5"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.5.1"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -395,14 +331,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
-  flutter_markdown:
-    dependency: "direct main"
-    description:
-      name: flutter_markdown
-      sha256: "981442432b632237ffc1cf8092b4173b9e9f2278b5740637287c3069b51c8f09"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.6.13"
   flutter_multi_formatter:
     dependency: "direct main"
     description:
@@ -421,14 +349,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  fluttertoast:
-    dependency: "direct main"
-    description:
-      name: fluttertoast
-      sha256: "7cc92eabe01e3f1babe1571c5560b135dfc762a34e41e9056881e2196b178ec1"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "8.1.2"
   font_awesome_flutter:
     dependency: transitive
     description:
@@ -615,14 +535,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.0"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: c2b81e184067b41d0264d514f7cdaa2c02d38511e39d6521a1ccc238f6d7b3f2
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "6.0.1"
   matcher:
     dependency: transitive
     description:
@@ -1007,11 +919,10 @@ packages:
   syntax_highlighter:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "20bbfcca3adbdf63d6a126aa8d7c25f6d071dcd9"
-      url: "https://github.com/josedoes/syntax_highlighter.git"
-    source: git
+      name: syntax_highlighter
+      sha256: "53dc9d57b205be72632cdc85a22e82680d7d3b32ec498c2dc7825c77f633431e"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "0.1.1"
   term_glyph:
     dependency: transitive

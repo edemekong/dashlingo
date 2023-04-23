@@ -1,5 +1,4 @@
 import 'package:dashlingo/data/repositories/user_repository.dart';
-import 'package:dashlingo/data/services/crashlytics_service.dart';
 import 'package:dashlingo/data/services/navigation_service.dart';
 import 'package:dashlingo/utils/logs.dart';
 import 'package:get_it/get_it.dart';
@@ -12,7 +11,6 @@ class GetItService {
   static void init() {
     getIt.registerSingleton<NavigationService>(NavigationService());
     getIt.registerSingleton<UIService>(UIService());
-    getIt.registerSingleton<CrashlyticsService>(CrashlyticsService());
     getIt.registerSingleton<UserRepository>(UserRepository());
 
     dashPrint("Get-it initialized");

@@ -48,7 +48,7 @@ class DashApp extends StatelessWidget {
 
         return MaterialApp.router(
           theme: theme,
-          title: 'dashlingo ∙ ${getTitle(state.screenTitle)}',
+          title: 'dashlingo ∙ Learn',
           builder: (context, widget) => Overlay(
             initialEntries: [
               OverlayEntry(

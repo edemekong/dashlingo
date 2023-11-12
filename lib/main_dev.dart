@@ -1,7 +1,15 @@
-import 'package:dashlingo/app.dart';
+import 'dart:async';
 
-import 'main.dart' as run;
+import 'package:dashlingo/app.dart';
+import 'package:dashlingo/src/configs/app_config.dart';
+import 'package:dashlingo/src/utils/logs.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  run.main([], AppFlavor.dev);
+  runZonedGuarded(() async {
+    await configureApp(AppFlavor.dev);
+
+    runApp(const ProviderScope(child: DashApp()));
+  }, (error, stack) => dashPrint(error));
 }

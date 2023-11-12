@@ -1,51 +1,19 @@
-import 'package:dashlingo/data/services/get_it.dart';
-import 'package:dashlingo/data/services/storage_service.dart';
-import 'package:dashlingo/data/states/app_state.dart';
-import 'package:dashlingo/data/states/auth_state.dart';
-import 'package:dashlingo/UI/theme/theme.dart';
-import 'package:dashlingo/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dashlingo/src/routing/app_routing.dart';
+import 'package:dashlingo/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'constants/paths.dart';
-import 'data/states/user_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AppRootProviders extends StatelessWidget {
-  const AppRootProviders({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => AppState(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AuthState(),
-          lazy: true,
-        ),
-        ChangeNotifierProvider(
-          create: (_) => UserState(),
-          lazy: false,
-        ),
-      ],
-      child: const DashApp(),
-    );
-  }
-}
-
-class DashApp extends StatelessWidget {
+class DashApp extends ConsumerWidget {
   const DashApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final appRouting = ref.read(appRoutingProvider);
+
     return ValueListenableBuilder<ThemeData>(
       valueListenable: AppTheme.instance.themeDataNotifier,
       builder: (context, theme, _) {
-        final state = context.read<AppState>();
-
         return MaterialApp.router(
           theme: theme,
           title: 'dashlingo ∙ Learn',
@@ -56,7 +24,7 @@ class DashApp extends StatelessWidget {
               ),
             ],
           ),
-          routerConfig: state.navigationService.router,
+          routerConfig: appRouting.router,
           shortcuts: {
             LogicalKeySet(LogicalKeyboardKey.space): const ActivateIntent(),
           },
@@ -64,39 +32,4 @@ class DashApp extends StatelessWidget {
       },
     );
   }
-}
-
-String getTitle(String? path) {
-  if (path == null) {
-    return 'Learn from dash!';
-  }
-
-  if (path.startsWith(AppRoute.profile.path)) {
-    path = "Profile";
-  } else if (path.startsWith(AppRoute.learn.path)) {
-    path = "Learn";
-  } else if (path.startsWith(AppRoute.leaderboard.path)) {
-    path = "Leaderboard";
-  } else {
-    path = "Not Found";
-  }
-
-  return path;
-}
-
-enum AppFlavor { dev, prod }
-
-Future<void> initializeApp(AppFlavor flavor) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  if (kIsWeb) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform(flavor));
-  } else {
-    await Firebase.initializeApp();
-  }
-
-  AppTheme.instance.setThemeFromLocalStorage();
-  StorageService.instance.initialisePreference();
-
-  GetItService.init();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 }

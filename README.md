@@ -1,3 +1,3 @@
 ## dashlingo
 
-An open learning space for dart & flutter.
+An open learning space for dart & flutter developers

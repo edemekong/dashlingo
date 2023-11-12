@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:dashlingo/app.dart';
-import 'package:dashlingo/utils/logs.dart';
+import 'package:dashlingo/src/configs/app_config.dart';
+import 'package:dashlingo/src/utils/logs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main(List _, [AppFlavor flavor = AppFlavor.prod]) {
+void main() {
   runZonedGuarded(() async {
-    await initializeApp(flavor);
-    runApp(const AppRootProviders());
+    await configureApp(AppFlavor.prod);
+
+    runApp(const ProviderScope(child: DashApp()));
   }, (error, stack) => dashPrint(error));
 }
